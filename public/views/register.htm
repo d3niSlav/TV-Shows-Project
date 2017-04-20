@@ -1,0 +1,42 @@
+<div id="register-panel" ng-controller="UsersController">
+    <div class="register-wrapper">
+        <form method="POST" id="signupForm">
+            <fieldset id="main-signup">
+                <div class="signup-wrapper">
+                    <a href="/">
+                        <div class="logo_container"></div>
+                    </a>
+                    <ul class="form-fields">
+                        <li class="form-email ">
+                            <div class="fieldgroup">
+                                <span class="error error-message" id="login-key-error">{{errors.email[0]}}</span>
+                                <input type="text" name="email" id="login-key" ng-class="errorClass.email" placeholder="Email&nbsp;address" ng-model="formData.email">
+                            </div>
+                        </li>
+
+                        <li class="form-password">
+                            <div class="fieldgroup">
+                                <span class="error error-message" id="login-password-error">{{errors.password[0]}}</span>
+                                <input type="password" name="password" id="login-password" class="password" ng-class="errorClass.password" placeholder="Password" ng-model="formData.password">
+                            </div>
+                        </li>
+
+                        <li class="form-password">
+                            <div class="fieldgroup">
+                                <span class="error error-message" id="login-confirm-password-error">{{errors.confirmPassword[0]}}</span>
+                                <input type="password" name="passwordConfirm" id="login-confirm-password" class="password" ng-class="errorClass.confirmPassword" placeholder="Confirm Password" ng-model="formData.confirmPassword">
+                            </div>
+                        </li>
+
+                        <li class="button form-actions">
+                            <div class="form-buttons">
+                                <input type="submit" name="signin" value="Sign In" class="btn-primary" id="btn-primary" ng-click="createUser()">
+                            </div>
+                            <span>Already a member? <a href="/login">Log in now</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

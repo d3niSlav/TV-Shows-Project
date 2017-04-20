@@ -7,6 +7,13 @@ body {
     background: black;
 }
 
+a,
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: white;
+}
+
 *,
 *:before,
 *:after {
@@ -450,18 +457,23 @@ body {
 
 
 /*
-* @page Main page
+* @page Content
 */
 
-.welcome-container {
+.page-content {
     margin-top: 50px;
 }
 
 @media (min-width: 991px) {
-    .welcome-container {
+    .page-content {
         margin-top: 70px;
     }
 }
+
+
+/*
+* @page Main page
+*/
 
 .hello-image {
     width: 100%;
@@ -798,11 +810,11 @@ a.movie-info-button {
 }
 
 .login-wrapper {
-    padding-top: 120px;
+    padding-top: 70px;
 }
 
 .register-wrapper {
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 @media (min-width: 480px) {
@@ -810,13 +822,13 @@ a.movie-info-button {
     #register-panel {
         background: url("../images/signupBackground.jpg") no-repeat center;
         background-size: cover;
-        background-position-y: 70px;
+        background-position-y: 10px;
     }
     .login-wrapper {
-        padding-top: 200px;
+        padding-top: 130px;
     }
     .register-wrapper {
-        padding-top: 150px;
+        padding-top: 80px;
     }
 }
 
@@ -847,7 +859,7 @@ a.movie-info-button {
         border-radius: 3px;
     }
     .signin-wrapper {
-        height: 350px;
+        height: 365px;
     }
     .signup-wrapper {
         height: 425px;
@@ -877,12 +889,12 @@ a.movie-info-button {
 #register-panel ul li {
     margin-top: 0px;
     margin-bottom: 5px;
-    height: 57px;
+    height: 65px;
 }
 
 #login-panel ul li:nth-last-child(2),
 #register-panel ul li:nth-last-child(2) {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 #login-panel input,
@@ -890,7 +902,6 @@ a.movie-info-button {
     background: #fdfdfd;
     vertical-align: middle;
     padding: 8px 7px 5px;
-    margin-top: 25px;
     font-size: 16px;
     color: #333;
     border-radius: 2px;
@@ -898,17 +909,33 @@ a.movie-info-button {
     border: 1px solid #c1c1c1;
 }
 
+#login-panel span.password-field {
+    display: block;
+    width: 211px;
+    margin: 0 auto;
+}
+
+#login-panel .password-field input {
+    margin: 0px;
+    width: 170px;
+    border-right: none;
+}
+
 @media (min-width: 480px) {
     #login-panel input,
-    #register-panel input {
-        width: 360px;
+    #register-panel input,
+    #login-panel span.password-field {
+        width: 100%;
+    }
+    #login-panel .password-field input {
+        width: 334px;
     }
 }
 
 #login-panel .button,
 #register-panel .button {
     margin-bottom: 0;
-    margin-top: -25px;
+    margin-top: 10px;
 }
 
 #login-panel input.error,
@@ -930,6 +957,8 @@ a.movie-info-button {
     line-height: 17px;
     color: #dd3737;
     font-weight: 700;
+    height: 20px;
+    display: block;
 }
 
 #login-panel .button .btn-primary,
@@ -948,7 +977,7 @@ a.movie-info-button {
     white-space: nowrap;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #73aec9), color-stop(5%, #73aec9), color-stop(5%, #338ab0), color-stop(100%, #0571a6));
     background-image: -webkit-linear-gradient(top, #287bbc 0%, #23639a 100%);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 480px) {
@@ -968,6 +997,35 @@ a.movie-info-button {
     #register-panel span.error-message.hide {
         display: none;
     }
+}
+
+#login-panel .form-password a.forgot-password-link {
+    font-weight: bold;
+    border: 1px solid #a7a7a7;
+    cursor: pointer;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    border-radius: 0 3px 3px 0;
+    color: #444;
+    background-color: #f2f2f2;
+    background-image: linear-gradient(top, #f2f2f2 0%, #e9e9e9 32%, #d8d8d8 74%, #d1d1d1 100%);
+    float: right;
+    border-left-width: 0;
+    display: block;
+    font-size: 16px;
+    line-height: 38px;
+    height: 39px;
+    padding: 0 14px;
+}
+
+#login-panel .form-password a.forgot-password-link:hover {
+    background-color: #e8e8e8;
+    background-image: -webkit-linear-gradient(top, #e8e8e8 0%, #e3e3e3 13%, #d7d7d7 32%, #b9b9b9 71%, #a9a9a9 100%);
+    background-image: -moz-linear-gradient(top, #e8e8e8 0%, #e3e3e3 13%, #d7d7d7 32%, #b9b9b9 71%, #a9a9a9 100%);
+    background-image: -o-linear-gradient(top, #e8e8e8 0%, #e3e3e3 13%, #d7d7d7 32%, #b9b9b9 71%, #a9a9a9 100%);
+    background-image: linear-gradient(top, #e8e8e8 0%, #e3e3e3 13%, #d7d7d7 32%, #b9b9b9 71%, #a9a9a9 100%);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 #login-panel .button span,
@@ -997,4 +1055,500 @@ a.movie-info-button {
     #register-panel .button span a {
         color: darkred;
     }
+}
+
+
+/*
+* @page TV Show
+*/
+
+#main-show-wrapper {
+    background: #000 url(../images/tvShowBackground.jpg) bottom left no-repeat;
+    background-size: cover;
+}
+
+@media (min-width:992px) {
+    #main-show-wrapper {
+        display: none;
+    }
+}
+
+#main-tvshow-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+    /*font-family: Gotham, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    color: white;
+}
+
+@media (max-width: 600px) {
+    #main-tvshow-container {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 800px) {
+    #main-tvshow-container {
+        font-size: 13px;
+    }
+}
+
+.fancy-header {
+    padding-left: 15px;
+    border-left: 5px solid darkred;
+    line-height: 1;
+    font-weight: 300;
+    font-size: 35px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.poster-container,
+.poster-container img {
+    width: 100%;
+    text-align: center;
+}
+
+.poster-container img {
+    max-width: 340px;
+}
+
+#tvshow-details-container {
+    padding: 15px 5px;
+    font-size: 16px;
+    color: #ccc;
+    line-height: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#tvshow-details-container .show-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    color: white;
+    border-bottom: 3px solid darkred;
+}
+
+#tvshow-details-container div {
+    margin-top: 10px;
+}
+
+#tvshow-details-container div>span:first-child {
+    font-weight: bold;
+}
+
+#tvshow-details-container div.year-and-duration p>span {
+    margin-right: 15px;
+    font-size: 19px;
+}
+
+#tvshow-details-container div.year-and-duration p>span a {
+    color: red;
+}
+
+#tvshow-details-container div.year-and-duration .idbm-rating {
+    border: 1px solid;
+    padding: 0 5px;
+    margin: 0 2px;
+}
+
+
+/*
+* @page Single Tv Show
+*/
+
+#movie-desktop {
+    background: lightgrey;
+    margin-top: 70px;
+    padding-bottom: 5px;
+}
+
+#movie-background {
+    background: radial-gradient(at 10% 30%, rgba(39, 74, 97, 0.9) 0%, rgba(197, 54, 26, 1) 100%), url(../images/moviesBackground.jpg) no-repeat top;
+    filter: 90%;
+    background-size: cover;
+}
+
+#movie-main-info {
+    padding-top: 50px;
+    padding-bottom: 60px;
+    color: white;
+}
+
+#movie-main-info a {
+    color: white;
+}
+
+.info-container {
+    width: 1000px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.movie-details {
+    min-height: 450px;
+}
+
+section.movie-details div.poster {
+    display: block;
+    width: 300px;
+    height: 450px;
+    float: left;
+    position: absolute;
+    left: 0;
+}
+
+section.movie-details div.poster img {
+    width: 100%;
+}
+
+section.movie-details .main-info {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 650px;
+    float: right;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+section.movie-details .main-info .title {
+    margin-bottom: 28px;
+}
+
+section.movie-details .main-info .title h2 {
+    font-size: 2.4em;
+    font-weight: 700;
+    display: inline;
+}
+
+section.movie-details .main-info .title h2 span {
+    opacity: 0.6;
+    font-size: 0.8em;
+    font-weight: 400;
+}
+
+
+/*
+* @subsection Tv Show Navigation
+*/
+
+section.movie-details .main-info ul.actions {
+    margin-bottom: 30px;
+    width: 100%;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+section.movie-details .main-info ul.actions li {
+    margin-right: 20px;
+}
+
+section.movie-details .main-info ul.actions li.round-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #f5f5f5;
+    overflow: hidden;
+    background: #536878;
+    box-shadow: 0 0 3px gray;
+}
+
+section.movie-details .main-info ul.actions li.round-button:hover {
+    background: #344152;
+}
+
+section.movie-details .main-info ul.actions li.round-button a {
+    display: flex;
+    justify-content: center;
+    padding-top: 9px;
+    font-size: 23px;
+}
+
+section.movie-details .main-info .movie-overview h3 {
+    font-weight: 600;
+    line-height: 1.3em;
+    font-size: 1.3em;
+    margin-bottom: 8px;
+}
+
+section.movie-details .main-info .movie-plot p {
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
+section.movie-details .main-info .movie-actions {
+    border-top: 1px solid rgba(100.00%, 100.00%, 100.00%, 0.30);
+    margin-top: 13px;
+    margin-bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+section.movie-cast {
+    padding-top: 40px;
+}
+
+section.movie-cast h3 {
+    font-weight: 600;
+    line-height: 1.3em;
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    border-bottom: 1.5px solid rgba(100.00%, 100.00%, 100.00%, 0.30);
+}
+
+section.movie-cast .actors {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+section.movie-cast .actors li {
+    width: 176px;
+    height: auto;
+    text-align: center;
+}
+
+section.movie-cast .actors li>a {
+    width: 136px;
+    height: 136px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+section.movie-cast .actors li img {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+section.movie-cast .actors li p {
+    font-size: 1em;
+    line-height: 1.4em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+section.movie-cast .actors li p a {
+    font-weight: bold;
+}
+
+section.movie-cast .actors li p.character {
+    font-size: 0.9em;
+}
+
+
+/* section Seasons */
+
+.movie-seasons {
+    margin: 60px 0;
+    height: 390px;
+    background: linear-gradient(to bottom left, rgba(197, 54, 26, 0.9), rgba(39, 74, 97, 1));
+    padding-bottom: 60px;
+    color: white;
+}
+
+.movie-seasons .seasons-information {
+    width: 1000px;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.movie-seasons .season-details {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 280px;
+}
+
+.movie-seasons .season-details img {
+    position: relative;
+    top: -80px;
+    width: 300px;
+    left: 0;
+}
+
+.movie-seasons div.details {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 350px;
+    width: 650px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.movie-seasons div.details h3 {
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.3em;
+    font-size: 1.3em;
+    margin-bottom: 8px;
+}
+
+.movie-seasons div.details div.seasons-list ul {
+    float: right;
+    width: auto;
+    max-width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.movie-seasons div.details div.seasons-list ul li {
+    padding-left: 20px;
+    font-size: 1.3em;
+    line-height: 1.3em;
+}
+
+.movie-seasons div.details h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.movie-seasons div.details h4 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.movie-seasons div.details div.season_overview {
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.movie-seasons div.details div.season_overview p {
+    font-size: 1em;
+    line-height: 1.3em;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-seasons div.details p.button {
+    margin-top: 30px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.movie-seasons div.details p.button a {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: linear .1s;
+    background-color: white;
+    border-color: white;
+    color: #302621;
+    font-weight: 600;
+}
+
+.movie-seasons div.details p.button a:hover {
+    background-color: #302621 !important;
+    border-color: #302621 !important;
+    color: #ffffff !important;
+}
+
+
+/*
+* @section TV Show Episodes
+*/
+
+.movie-episodes {
+    margin: 15px auto;
+}
+
+.title-episode-wrapper,
+.title-episode:focus {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.title-episode {
+    margin: 40px 0 0;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 25px;
+}
+
+.title-episode-gradient {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(5%, rgba(0, 0, 0, .8)), color-stop(95%, rgba(0, 0, 0, 0)));
+    background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, .8) 5%, rgba(0, 0, 0, 0) 95%);
+    background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, .8) 5%, rgba(0, 0, 0, 0) 95%);
+    height: 55px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.title-episode-number {
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+    font-weight: 500;
+    font-size: 40px;
+    color: #fff;
+}
+
+.title-episode-img {
+    width: 100%;
+}
+
+.title-episode-name {
+    font-weight: 700;
+    color: #fff;
+    max-width: 220px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0 0 1px;
+    float: left;
+    font-size: 22px;
+}
+
+.title-episode-raiting {
+    color: darkred;
+    float: right;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.title-episode-raiting:hover {
+    color: firebrick;
+}
+
+.title-episode-runtime {
+    color: #00b7ba;
+    float: right;
+    font-size: 16px;
+    font-style: italic;
+    padding-left: 10px;
+}
+
+.title-episode-synopsis {
+    color: #b3b3b3;
+    clear: both;
+    font-size: 16px;
+    line-height: 20px;
+    padding-top: 10px;
+    height: 110px;
 }

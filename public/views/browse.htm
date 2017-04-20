@@ -1,0 +1,22 @@
+<section id="all-movies">
+    <div class="movies-wrapper">
+        <h4 class="movies-title">All tv shows</h4>
+        <hr>
+        <div class="posters-container row">
+            <div class="cleared-col movie-data  col-md-3 col-sm-4 col-xs-6" ng-repeat="show in shows" id='{{show._id}}'>
+                <div class="movie-poster">
+                    <a ng-href="/show/{{show._id}}">
+                        <img ng-src="{{show.poster}}">
+                    </a>
+                </div>
+                <div class="movie-information">
+                    <h3>{{show.title}}</h3>
+                    <p>
+                        <span>Year: {{show.year}}</span>
+                    </p>
+                    <a class="movie-info-button" ng-href="/show/{{show._id}}">More info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

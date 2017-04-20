@@ -1,0 +1,38 @@
+<div id="login-panel">
+    <div class="login-wrapper">
+        <form method="POST" id="logInForm">
+            <fieldset id="main-signin">
+                <div class="signin-wrapper">
+                    <a href="/">
+                        <div class="logo_container"></div>
+                    </a>
+                    <ul class="form-fields" id="mini-profile--js">
+                        <li class="form-email ">
+                            <div class="fieldgroup">
+                                <span class="error error-message" id="login-key-error">{{errors.email}}</span>
+                                <input type="text" value="" id="login-key" ng-class="errorClass.email" placeholder="Email&nbsp;address" ng-model="formData.email">
+                            </div>
+                        </li>
+
+                        <li class="form-password">
+                            <div class="fieldgroup">
+                                <span class="error error-message" id="login-password-error">{{errors.password}}</span>
+                                <span class="password-field">
+                                <input type="password" id="login-password" class="password" ng-class="errorClass.password" placeholder="Password" ng-model="formData.password">
+                                <a href="/forgottenPassword" class="forgot-password-link" title="Forgot your password?"><i class="fa fa-unlock-alt" aria-hidden="true"></i></a>
+                            </span>
+                            </div>
+                        </li>
+
+                        <li class="button form-actions">
+                            <div class="form-buttons">
+                                <input type="submit" name="signin" value="Sign In" class="btn-primary" id="btn-primary" ng-click="logInUser()">
+                            </div>
+                            <span>Not a member? <a href="/register">Join now</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+    "name": "tv-shows",
+    "version": "1.0.0",
+    "dependencies": {
+        "bootstrap": "latest",
+        "font-awesome": "latest",
+        "animate.css": "latest",
+        "angular": "1.6.4",
+        "angular-route": "latest"
+    }
+}

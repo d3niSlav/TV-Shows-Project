@@ -2,33 +2,52 @@
 <html lang="en">
 
 <head>
-    <title>TV Series</title>
     <meta charset="UTF-8">
+    <base href="/">
+    <title>TV Shows for U</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="assets/css/reset.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <style>
-        @media (max-width: 479px) {
-            #mobile-logo {
-                display: none;
-            }
-        }
-    </style>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+
+    <!-- CSS -->
+    <link href="./css/reset.css" rel="stylesheet" type="text/css">
+    <link href="./libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+
+    <!-- JS -->
+    <script src="./libs/angular/angular.min.js"></script>
+    <script src="./libs/angular-route/angular-route.min.js"></script>
+    <script src="./libs/jquery/dist/jquery.min.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="./js/controllers/MainCtrl.js"></script>
+    <script src="./js/controllers/AllShowsCtrl.js"></script>
+    <script src="./js/services/AllShowsService.js"></script>
+    <script src="./js/controllers/UsersCtrl.js"></script>
+    <script src="./js/services/UsersService.js"></script>
+    <script src="./js/controllers/ProfilesCtrl.js"></script>
+    <script src="./js/services/ProfilesService.js"></script>
+    <script src="./js/controllers/CommentsCtrl.js"></script>
+    <script src="./js/services/CommentsService.js"></script>
+    <script src="./js/controllers/SingleShowCtrl.js"></script>
+    <script src="./js/services/SingleShowService.js"></script>
+    <script src="./js/appRoutes.js"></script>
+    <script src="./js/app.js"></script>
 </head>
 
-<body>
+<body ng-app="tvShowsApp">
     <div class="navbar-fixed-top">
         <div class="topBar">
             <div class="container">
                 <div class="row">
                     <div class="logo pull-left">
-                        <a href="./index.html" title="Tuk shte vkarame opisanie">
-                            <img id="logo" title="Keep your schedule of TV shows in shape" src="assets/images/logo-white.png" alt="Logo">
+                        <a href="/" title="Tuk shte vkarame opisanie">
+                            <img id="logo" title="Keep your schedule of TV shows in shape" src="./images/logo-white.png" alt="Logo">
                         </a>
                     </div>
                     <div class="pull-right content">
                         <div class="login">
-                            <a href="./login.html" title="Login">
+                            <a href="/login" title="Login">
                                 <div class="btn btn-login">Log In</div>
                             </a>
                         </div>
@@ -64,7 +83,7 @@
                 <div class="row">
                     <div class="navigation-spacing">
                         <div class="pull-right" id="navigation-register-desktop">
-                            <a class="btn-get-started-nav pull-right" title="Get Started" href="./register.html"> Register </a>
+                            <a class="btn-get-started-nav pull-right" title="Get Started" href="/register"> Register </a>
                         </div>
                         <div class="pull-right hide" id="navigation-register-desktop">
                             <a class="btn-subscribtions pull-right" title="My TV Series subscriptions" target="_blank"> Subscriptions </a>
@@ -73,13 +92,13 @@
                             <div id="menu-wrap-primary">
                                 <ul class="menu menu-horizontal no-js" id="menu-primary">
                                     <li class="menu-item">
-                                        <a href="./index.html" class="title menu-link" title="Home">Home</a>
+                                        <a href="/" class="title menu-link" title="Home">Home</a>
                                     </li>
                                     <li class="menu-item">
                                         <a href="#" class="title menu-link" title="List of new shows">New Shows</a>
                                     </li>
                                     <li class=" item menu-flyout menu-item">
-                                        <a href="./browse.html" class="title menu-link" title="Browse all TV shows">Browse A-Z</a>
+                                        <a href="/browse" class="title menu-link" title="Browse all TV shows">Browse A-Z</a>
                                     </li>
                                     <li class="menu-item">
                                         <a href="#" class="title menu-link" title="List of shows yet to be released">Coming Soon</a>
@@ -99,8 +118,8 @@
         </div>
         <div class="mobile-nav">
             <div id="mobile-logo" class="mobile-flag pull-left">
-                <a href="./index.html" title="Tuk shte vkarame opisanie">
-                    <img id="logo" title="Keep your schedule of TV shows in shape" src="assets/images/logo-white.png" alt="Logo">
+                <a href="/" title="Tuk shte vkarame opisanie">
+                    <img id="logo" title="Keep your schedule of TV shows in shape" src="./images/logo-white.png" alt="Logo">
                 </a>
             </div>
             <a id="mobile-nav-btn">
@@ -116,12 +135,12 @@
         <div class="container">
             <section>
                 <div class="logo-container">
-                    <img id="logo" src="assets/images/logo-mobile.png" alt="">
+                    <img id="logo" src="./images/logo-mobile.png" alt="">
                 </div>
                 <section>
                     <div class="btn-container">
-                        <a id="btn-email" class="btn white" href="./register.html">Register to our site</a>
-                        <a class="btn" href="./login.html">Login with E-mail</a>
+                        <a id="btn-email" class="btn white" href="/register">Register to our site</a>
+                        <a class="btn" href="/login">Login with E-mail</a>
                     </div>
                 </section>
                 <section id="mobile-links">
@@ -129,7 +148,7 @@
                         <div class="line-divider"></div>
                         <ul class="primary">
                             <li>
-                                <a href="./index.html" title="Home">Home</a>
+                                <a href="/" title="Home">Home</a>
                             </li>
                             <li>
                                 <a href="#" title="List of new shows">New Shows</a>
@@ -164,56 +183,8 @@
             </section>
         </div>
     </div>
-    <div id="register-panel">
-        <div class="register-wrapper">
-            <fieldset id="main-signup">
-                <div class="signup-wrapper">
-                    <a href="./index.html">
-                        <div class="logo_container"></div>
-                    </a>
-                    <ul class="form-fields">
-                        <li class="form-email ">
-                            <div class="fieldgroup">
-                                <span class="error hide error-message" id="login-key-error">You must enter e-mail</span>
-                                <input type="text" value="" id="login-key" placeholder="Email&nbsp;address">
-                            </div>
-                        </li>
-
-                        <li class="form-password">
-                            <div class="fieldgroup">
-                                <span class="error hide error-message" id="login-password-error">You must enter a password</span>
-                                <input type="password" id="login-password" class="password" placeholder="Password">
-                            </div>
-                        </li>
-
-                        <li class="form-password">
-                            <div class="fieldgroup">
-                                <span class="error hide error-message" id="login-confirm-password-error">Password do not match</span>
-                                <input type="password" id="login-confirm-password" class="password" placeholder="Confirm Password">
-                            </div>
-                        </li>
-
-                        <li class="button form-actions">
-                            <div class="form-buttons">
-                                <input type="submit" name="signin" value="Sign In" class="btn-primary" id="btn-primary">
-                            </div>
-                            <span>Already a member? <a href="./login.html">Log in now</a></span>
-                        </li>
-                    </ul>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-    <script>
-        document.getElementById('btn-primary').onclick = function() {
-            document.getElementById('login-key-error').classList.toggle("hide");
-            document.getElementById('login-password-error').classList.toggle("hide");
-            document.getElementById('login-confirm-password-error').classList.toggle("hide");
-            document.getElementById('login-key').classList.toggle("error");
-            document.getElementById('login-password').classList.toggle("error");
-            document.getElementById('login-confirm-password').classList.toggle("error");
-        }
-    </script>
+    <!-- ANGULAR DYNAMIC CONTENT -->
+    <div ng-view class="page-content"></div>
     <script>
         document.getElementById('mobile-nav-btn').onclick = function() {
             document.getElementById('mobile-nav-btn').classList.toggle("is-active");
