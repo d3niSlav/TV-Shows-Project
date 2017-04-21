@@ -35,7 +35,7 @@
     <script src="./js/app.js"></script>
 </head>
 
-<body ng-app="tvShowsApp">
+<body ng-app="tvShowsApp" ng-controller="MainController">
     <div class="navbar-fixed-top">
         <div class="topBar">
             <div class="container">
@@ -118,11 +118,11 @@
         </div>
         <div class="mobile-nav">
             <div id="mobile-logo" class="mobile-flag pull-left">
-                <a href="/" title="Tuk shte vkarame opisanie">
+                <a href="/" title="Your favourite tv shows on one place.">
                     <img id="logo" title="Keep your schedule of TV shows in shape" src="./images/logo-white.png" alt="Logo">
                 </a>
             </div>
-            <a id="mobile-nav-btn">
+            <a href id="mobile-nav-btn" ng-click="mobileButtonClick()">
                 <div class="menu-btn">
                     <span class="menu-btn-bar menu-btn-bar-top"></span>
                     <span class="menu-btn-bar menu-btn-bar-middle"></span>
@@ -139,8 +139,8 @@
                 </div>
                 <section>
                     <div class="btn-container">
-                        <a id="btn-email" class="btn white" href="/register">Register to our site</a>
-                        <a class="btn" href="/login">Login with E-mail</a>
+                        <a id="btn-email" ng-click="mobileButtonClick()" class="btn white" href="/register">Register to our site</a>
+                        <a class="btn" ng-click="mobileButtonClick()" href="/login">Login with E-mail</a>
                     </div>
                 </section>
                 <section id="mobile-links">
@@ -148,34 +148,34 @@
                         <div class="line-divider"></div>
                         <ul class="primary">
                             <li>
-                                <a href="/" title="Home">Home</a>
+                                <a href="/" ng-click="mobileButtonClick()" title="Home">Home</a>
                             </li>
                             <li>
-                                <a href="#" title="List of new shows">New Shows</a>
+                                <a href="#" ng-click="mobileButtonClick()" title="List of new shows">New Shows</a>
                             </li>
                             <li>
-                                <a href="#" title="Browse all TV shows">Browse A-Z</a>
+                                <a href="/browse" ng-click="mobileButtonClick()" title="Browse all TV shows">Browse A-Z</a>
                             </li>
                             <li>
-                                <a href="#" title="List of shows yet to be released">Coming Soon</a>
+                                <a href="#" ng-click="mobileButtonClick()" title="List of shows yet to be released">Coming Soon</a>
                             </li>
                             <li>
-                                <a href="#" title="List of all shows by their raiting">High Scores</a>
+                                <a href="#" ng-click="mobileButtonClick()" title="List of all shows by their raiting">High Scores</a>
                             </li>
                             <li>
-                                <a href="#" title="Schedule for the week">This Week</a>
+                                <a href="#" ng-click="mobileButtonClick()" title="Schedule for the week">This Week</a>
                             </li>
                         </ul>
                         <div class="line-divider"></div>
                         <ul class="secondary">
                             <li>
-                                <a href="#">About the Site</a>
+                                <a href="#" ng-click="mobileButtonClick()">About the Site</a>
                             </li>
                             <li>
-                                <a href="#">Request a Show</a>
+                                <a href="#" ng-click="mobileButtonClick()">Request a Show</a>
                             </li>
                             <li>
-                                <a href="#">Contact us</a>
+                                <a href="#" ng-click="mobileButtonClick()">Contact us</a>
                             </li>
                         </ul>
                     </nav>
@@ -185,13 +185,6 @@
     </div>
     <!-- ANGULAR DYNAMIC CONTENT -->
     <div ng-view class="page-content"></div>
-    <script>
-        document.getElementById('mobile-nav-btn').onclick = function() {
-            document.getElementById('mobile-nav-btn').classList.toggle("is-active");
-            document.getElementById('mobile-logo').classList.toggle("hide");
-            document.getElementById('mobile-menu').classList.toggle("hide");
-        };
-    </script>
 </body>
 
 </html>

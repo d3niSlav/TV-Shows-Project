@@ -59,18 +59,18 @@ a:focus {
     .container {
         max-width: 750px;
     }
-}
-
-@media (min-width: 992px) {
-    .container {
-        max-width: 970px;
-    }
     .navbar-fixed-top .topBar,
     .navbar-fixed-top .bottom-bar {
         display: block;
     }
     .navbar-fixed-top .mobile-nav {
         display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 970px;
     }
 }
 
@@ -93,11 +93,6 @@ a:focus {
     clear: both;
 }
 
-.row {
-    margin-left: -15px;
-    margin-right: -15px;
-}
-
 .pull-left {
     float: left;
 }
@@ -112,12 +107,24 @@ a:focus {
 */
 
 .navbar-fixed-top .topBar {
-    height: 35px;
+    height: 30px;
     color: #fff;
 }
 
+@media (min-width: 992px) {
+    .navbar-fixed-top .topBar {
+        height: 35px;
+    }
+}
+
 .navbar-fixed-top .topBar .content {
-    padding-right: 15px;
+    padding-right: 40px;
+}
+
+@media (min-width: 992px) {
+    .navbar-fixed-top .topBar .content {
+        padding-right: 15px;
+    }
 }
 
 .navbar-fixed-top .topBar .content>div {
@@ -130,14 +137,21 @@ a:focus {
 */
 
 .navbar-fixed-top .topBar .logo {
-    height: 70px;
+    height: 53px;
+    width: 120px;
     -webkit-transition: height 0.5s;
     transition: height 0.5s;
-    width: 160px;
     background: darkred;
     z-index: 1100;
     margin-left: 15px;
     position: absolute;
+}
+
+@media (min-width: 992px) {
+    .navbar-fixed-top .topBar .logo {
+        height: 70px;
+        width: 160px;
+    }
 }
 
 .navbar-fixed-top .topBar .logo:after {
@@ -148,8 +162,14 @@ a:focus {
     border-width: 8px 40px 0 40px;
     border-color: darkred rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
     bottom: -8px;
-    left: 40px;
+    left: 20px;
     position: absolute;
+}
+
+@media (min-width: 992px) {
+    .navbar-fixed-top .topBar .logo:after {
+        left: 40px;
+    }
 }
 
 .logo a {
@@ -160,9 +180,15 @@ a:focus {
 .navbar-fixed-top .topBar .logo #logo {
     transition: top 0.5s;
     position: absolute;
-    max-height: 60px;
+    max-height: 48px;
     padding-left: 5px;
     padding-top: 8px;
+}
+
+@media (min-width: 992px) {
+    .navbar-fixed-top .topBar .logo #logo {
+        max-height: 60px;
+    }
 }
 
 
@@ -172,7 +198,14 @@ a:focus {
 
 .navbar-fixed-top .topBar .login,
 .navbar-fixed-top .topBar .logout {
-    padding-top: 4px;
+    padding-top: 0;
+}
+
+@media (min-width: 992px) {
+    .navbar-fixed-top .topBar .login,
+    .navbar-fixed-top .topBar .logout {
+        padding-top: 4px;
+    }
 }
 
 .btn-login,
@@ -184,12 +217,21 @@ a:focus {
     background: #00b7ba;
     font-weight: 700;
     color: black;
+    font-size: 11px;
+    width: 70px;
+    line-height: 13px;
     margin-top: 7px;
-    font-size: 12px;
-    width: 95px;
     text-align: center;
-    line-height: 17px;
     cursor: pointer;
+}
+
+@media (min-width: 992px) {
+    .btn-login,
+    .btn-logout {
+        font-size: 12px;
+        width: 95px;
+        line-height: 17px;
+    }
 }
 
 .btn-login:hover,
@@ -212,6 +254,13 @@ a:focus {
     float: left;
     width: 100%;
     display: block;
+    height: 30px;
+}
+
+@media (min-width: 992px) {
+    .menu-top-menu-container {
+        height: auto;
+    }
 }
 
 #menu-top-menu {
@@ -230,9 +279,15 @@ a:focus {
     padding: 0 0px;
     border: none;
     float: left;
-    font-size: 16px;
+    font-size: 11px;
     cursor: pointer;
     font-family: proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@media (min-width: 992px) {
+    .navbar-fixed-top .topBar .links ul li {
+        font-size: 16px;
+    }
 }
 
 .navbar-fixed-top .topBar .links ul li:first-child a {
@@ -241,12 +296,20 @@ a:focus {
 }
 
 .navbar-fixed-top .topBar .links ul li a {
-    padding: 0 11px 0px 12px;
+    padding: 0 9px 0px 9px;
+    font-size: 11px;
+    line-height: 12px;
     border-left: 1px solid rgba(255, 255, 255, .6);
-    line-height: 15px;
     display: inline-block;
-    font-size: 12px;
     color: #fff;
+}
+
+@media (min-width: 992px) {
+    .navbar-fixed-top .topBar .links ul li a {
+        padding: 0 11px 0px 12px;
+        font-size: 12px;
+        line-height: 15px;
+    }
 }
 
 .navbar-fixed-top .topBar .links ul li a:hover {
@@ -274,6 +337,16 @@ a:focus {
     padding: 0px 3px 0 0;
     list-style-type: none;
     margin-bottom: 0px;
+    height: 20px;
+    line-height: 14px;
+}
+
+@media (min-width: 992px) {
+    #menu-primary,
+    #menu-primary-mobile {
+        height: 32px;
+        line-height: 24px;
+    }
 }
 
 #menu-primary li,
@@ -284,16 +357,26 @@ a:focus {
 
 #menu-wrap-primary #menu-primary>li a,
 #menu-wrap-primary-mobile #menu-primary-mobile>li a {
-    padding: 0px 10px 0px 10px;
-    line-height: 17px;
-    height: 28px;
+    padding: 0px 6px 0px 6px;
+    line-height: 12px;
+    height: 20px;
+    font-size: 11px;
     width: auto;
     display: block;
     color: #fff;
-    font-size: 14px;
     cursor: pointer;
     text-transform: uppercase;
     font-family: "proxima-nova-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@media (min-width: 992px) {
+    #menu-wrap-primary #menu-primary>li a,
+    #menu-wrap-primary-mobile #menu-primary-mobile>li a {
+        padding: 0px 10px 0px 10px;
+        line-height: 17px;
+        height: 28px;
+        font-size: 14px;
+    }
 }
 
 #menu-wrap-primary #menu-primary>li a:hover {
@@ -315,16 +398,28 @@ a:focus {
 .btn-subscribtions {
     background-color: darkred;
     color: #fff;
-    font-size: 14px;
+    font-size: 11px;
+    line-height: 14px;
+    margin-right: 14px;
+    margin-top: -3px;
+    width: 96px;
     font-weight: bold;
     font-family: "proxima-nova-bold", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 1px 0px 0px 0px;
-    margin-right: -32px;
-    width: 145px;
     text-align: center;
     border: 1px solid darkred;
     border-radius: 5px;
     vertical-align: middle;
+}
+
+@media (min-width: 992px) {
+    .btn-get-started-nav,
+    .btn-subscribtions {
+        margin-top: 0;
+        font-size: 14px;
+        line-height: 21px;
+        width: 145px;
+    }
 }
 
 .btn-get-started-nav:hover,
@@ -333,7 +428,7 @@ a:focus {
     border: 1px solid firebrick;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
     .btn-get-started-nav,
     .btn-subscribtions {
         margin-right: -35px;
@@ -366,7 +461,7 @@ a:focus {
     position: relative;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     .navbar-fixed-top {
         height: 53px;
         border: none;
@@ -464,7 +559,7 @@ a:focus {
     margin-top: 50px;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 992px) {
     .page-content {
         margin-top: 70px;
     }
@@ -615,7 +710,13 @@ a:focus {
 */
 
 #all-movies {
-    margin-top: 100px;
+    margin-top: 80px;
+}
+
+@media (min-width: 992px) {
+    #all-movies {
+        margin-top: 100px;
+    }
 }
 
 .movies-wrapper {
@@ -640,56 +741,7 @@ a:focus {
     padding: 0 1.25rem;
 }
 
-.col-md-3 .col-sm-4 .col-xs-6 {
-    position: relative;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-@media (min-width: 350px) {
-    .col-xs-6 {
-        width: 50%;
-        float: left;
-    }
-}
-
-@media (min-width: 767px) {
-    .col-sm-4 {
-        width: 33.33333%;
-        float: left;
-    }
-}
-
-@media (min-width: 1024px) {
-    .col-md-3 {
-        width: 25%;
-        float: left;
-    }
-}
-
-.cleared-col.col-xs-6:nth-child(2n+1) {
-    clear: left;
-}
-
-@media (min-width: 47.9375em) {
-    .cleared-col.col-sm-4:nth-child(3n+1) {
-        clear: left;
-    }
-    .cleared-col.col-xs-6:nth-child(2n+1),
-    .cleared-col.col-md-3:nth-child(4n+1) {
-        clear: none;
-    }
-}
-
 @media (min-width: 64em) {
-    .cleared-col.col-md-3:nth-child(4n+1) {
-        clear: left;
-    }
-    .cleared-col.col-xs-6:nth-child(2n+1),
-    .cleared-col.col-sm-4:nth-child(3n+1) {
-        clear: none;
-    }
     .movie-data {
         margin-bottom: 80px;
         padding: 0 1.5625rem;
@@ -1166,8 +1218,14 @@ a.movie-info-button {
 
 #movie-desktop {
     background: lightgrey;
-    margin-top: 70px;
+    margin-top: 53px;
     padding-bottom: 5px;
+}
+
+@media (min-width: 992px) {
+    #movie-desktop {
+        margin-top: 70px;
+    }
 }
 
 #movie-background {
@@ -1177,9 +1235,16 @@ a.movie-info-button {
 }
 
 #movie-main-info {
-    padding-top: 50px;
-    padding-bottom: 60px;
+    padding-top: 40px;
+    padding-bottom: 20px;
     color: white;
+}
+
+@media (min-width: 1024px) {
+    #movie-main-info {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
 }
 
 #movie-main-info a {
@@ -1187,22 +1252,65 @@ a.movie-info-button {
 }
 
 .info-container {
-    width: 1000px;
     position: relative;
     margin: 0 auto;
 }
 
+@media (min-width: 768px) {
+    .info-container {
+        width: 700px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .info-container {
+        width: 1000px;
+    }
+}
+
 .movie-details {
-    min-height: 450px;
+    min-height: 600px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .movie-details {
+        min-height: 355px;
+        text-align: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-details {
+        min-height: 450px;
+    }
 }
 
 section.movie-details div.poster {
     display: block;
     width: 300px;
     height: 450px;
-    float: left;
-    position: absolute;
-    left: 0;
+    padding-top: 75px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    section.movie-details div.poster {
+        width: 225px;
+        height: auto;
+        float: left;
+        position: absolute;
+        left: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    section.movie-details div.poster {
+        width: 300px;
+        height: 450px;
+    }
 }
 
 section.movie-details div.poster img {
@@ -1210,29 +1318,62 @@ section.movie-details div.poster img {
 }
 
 section.movie-details .main-info {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 650px;
-    float: right;
-    display: inline-block;
+    margin: 0 auto;
+    margin-top: -470px;
+    width: 300px;
     box-sizing: border-box;
 }
 
+@media (min-width: 768px) {
+    section.movie-details .main-info {
+        position: relative;
+        margin: 0;
+        top: 0;
+        left: 0;
+        width: 450px;
+        float: right;
+        display: inline-block;
+    }
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info {
+        width: 650px;
+    }
+}
+
 section.movie-details .main-info .title {
-    margin-bottom: 28px;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info .title {
+        margin-bottom: 28px;
+    }
 }
 
 section.movie-details .main-info .title h2 {
-    font-size: 2.4em;
+    font-size: 2.1em;
     font-weight: 700;
     display: inline;
 }
 
+@media (min-width: 1024px) {
+    section.movie-details .main-info .title h2 {
+        font-size: 2.4em;
+    }
+}
+
 section.movie-details .main-info .title h2 span {
     opacity: 0.6;
-    font-size: 0.8em;
+    font-size: 0.6em;
     font-weight: 400;
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info .title h2 span {
+        font-size: 0.8em;
+    }
 }
 
 
@@ -1241,26 +1382,58 @@ section.movie-details .main-info .title h2 span {
 */
 
 section.movie-details .main-info ul.actions {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     width: 100%;
-    height: 68px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
+@media (min-width: 1024px) {
+    section.movie-details .main-info ul.actions {
+        margin-bottom: 30px;
+        height: 68px;
+    }
+}
+
 section.movie-details .main-info ul.actions li {
-    margin-right: 20px;
+    margin-right: 15px;
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info ul.actions li {
+        margin-right: 20px;
+    }
+}
+
+section.movie-details .main-info ul.actions li.chart div.text {
+    font-size: 15px;
+    line-height: 17px;
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info ul.actions li.chart div.text {
+        font-size: 20px;
+        line-height: 25px;
+    }
 }
 
 section.movie-details .main-info ul.actions li.round-button {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: 2px solid #f5f5f5;
     overflow: hidden;
     background: #536878;
     box-shadow: 0 0 3px gray;
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info ul.actions li.round-button {
+        width: 45px;
+        height: 45px;
+    }
 }
 
 section.movie-details .main-info ul.actions li.round-button:hover {
@@ -1270,20 +1443,53 @@ section.movie-details .main-info ul.actions li.round-button:hover {
 section.movie-details .main-info ul.actions li.round-button a {
     display: flex;
     justify-content: center;
-    padding-top: 9px;
-    font-size: 23px;
+    padding-top: 5px;
+    font-size: 15px;
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info ul.actions li.round-button a {
+        padding-top: 9px;
+        font-size: 23px;
+    }
+}
+
+section.movie-details .main-info .movie-overview {
+    margin-top: 465px;
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+    section.movie-details .main-info .movie-overview {
+        margin: 0;
+        text-align: left;
+    }
 }
 
 section.movie-details .main-info .movie-overview h3 {
     font-weight: 600;
     line-height: 1.3em;
     font-size: 1.3em;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info .movie-overview h3 {
+        margin-bottom: 8px;
+    }
 }
 
 section.movie-details .main-info .movie-plot p {
-    font-size: 1em;
-    line-height: 1.4em;
+    font-size: 0.9em;
+    line-height: 1.2em;
+}
+
+@media (min-width: 1024px) {
+    section.movie-details .main-info .movie-plot p {
+        font-size: 1em;
+        line-height: 1.4em;
+    }
 }
 
 section.movie-details .main-info .movie-actions {
@@ -1296,8 +1502,20 @@ section.movie-details .main-info .movie-actions {
     box-sizing: border-box;
 }
 
+
+/*
+* @subsection Cast
+*/
+
 section.movie-cast {
-    padding-top: 40px;
+    padding-top: 0;
+    text-align: center;
+}
+
+@media (min-width: 1024px) {
+    section.movie-cast {
+        padding-top: 40px;
+    }
 }
 
 section.movie-cast h3 {
@@ -1305,26 +1523,57 @@ section.movie-cast h3 {
     line-height: 1.3em;
     font-size: 1.3em;
     margin-bottom: 8px;
+    margin-top: 0;
     border-bottom: 1.5px solid rgba(100.00%, 100.00%, 100.00%, 0.30);
 }
 
+@media (min-width: 768px) {
+    section.movie-cast h3 {
+        text-align: left;
+    }
+}
+
 section.movie-cast .actors {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
+    margin-top: 10px;
+    display: inline-block;
+    width: 250px;
+}
+
+@media (min-width: 768px) {
+    section.movie-cast .actors {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    section.movie-cast .actors {
+        margin-top: 30px;
+    }
 }
 
 section.movie-cast .actors li {
     width: 176px;
     height: auto;
     text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 section.movie-cast .actors li>a {
     width: 136px;
-    height: 136px;
-    display: inline-block;
-    margin-bottom: 20px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 1024px) {
+    section.movie-cast .actors li>a {
+        height: 136px;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
 }
 
 section.movie-cast .actors li img {
@@ -1334,12 +1583,33 @@ section.movie-cast .actors li img {
     border: 2px solid white;
 }
 
+@media (min-width: 768px) {
+    section.movie-cast .actors li img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (min-width: 1024px) {
+    section.movie-cast .actors li img {
+        width: 132px;
+        height: 132px;
+    }
+}
+
 section.movie-cast .actors li p {
-    font-size: 1em;
+    font-size: 0.8em;
     line-height: 1.4em;
+    margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@media (min-width: 1024px) {
+    section.movie-cast .actors li p {
+        font-size: 1em;
+    }
 }
 
 section.movie-cast .actors li p a {
@@ -1347,7 +1617,13 @@ section.movie-cast .actors li p a {
 }
 
 section.movie-cast .actors li p.character {
-    font-size: 0.9em;
+    font-size: 0.6em;
+}
+
+@media (min-width: 1024px) {
+    section.movie-cast .actors li p.character {
+        font-size: 0.9em;
+    }
 }
 
 
@@ -1355,43 +1631,119 @@ section.movie-cast .actors li p.character {
 
 .movie-seasons {
     margin: 60px 0;
-    height: 390px;
     background: linear-gradient(to bottom left, rgba(197, 54, 26, 0.9), rgba(39, 74, 97, 1));
-    padding-bottom: 60px;
+    height: auto;
+    padding-bottom: 25px;
     color: white;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons {
+        height: 270px;
+        padding-bottom: 60px;
+        text-align: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons {
+        height: 390px;
+    }
 }
 
 .movie-seasons .seasons-information {
-    width: 1000px;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin: 0 auto;
-    padding-top: 50px;
+    width: auto;
+    padding-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons .seasons-information {
+        width: 700px;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons .seasons-information {
+        width: 1000px;
+        padding-top: 50px;
+    }
 }
 
 .movie-seasons .season-details {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 280px;
+    min-height: 220px;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons .season-details {
+        height: 220px;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons .season-details {
+        height: 280px;
+    }
 }
 
 .movie-seasons .season-details img {
-    position: relative;
-    top: -80px;
     width: 300px;
-    left: 0;
+    height: 450px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons .season-details img {
+        position: relative;
+        width: 225px;
+        height: auto;
+        top: -65px;
+        left: 0;
+        margin: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons .season-details img {
+        top: -80px;
+        width: 300px;
+    }
 }
 
 .movie-seasons div.details {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 350px;
-    width: 650px;
-    height: 100%;
-    box-sizing: border-box;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: -565px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons div.details {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 250px;
+        width: 450px;
+        height: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        text-align: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons div.details {
+        left: 350px;
+        width: 650px;
+    }
 }
 
 .movie-seasons div.details h3 {
@@ -1402,62 +1754,138 @@ section.movie-cast .actors li p.character {
     margin-bottom: 8px;
 }
 
+.movie-seasons div.details div.seasons-list {
+    border-bottom: 2px solid lightgray;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons div.details div.seasons-list {
+        border: none;
+    }
+}
+
 .movie-seasons div.details div.seasons-list ul {
-    float: right;
     width: auto;
-    max-width: 400px;
+    max-width: 300px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: space-around;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons div.details div.seasons-list ul {
+        float: right;
+        max-width: 400px;
+        justify-content: flex-end;
+    }
 }
 
 .movie-seasons div.details div.seasons-list ul li {
-    padding-left: 20px;
-    font-size: 1.3em;
-    line-height: 1.3em;
+    font-size: 0.9em;
+    line-height: 1em;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons div.details div.seasons-list ul li {
+        padding-left: 20px;
+        font-size: 1.3em;
+        line-height: 1.3em;
+    }
 }
 
 .movie-seasons div.details h2 {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
-    font-size: 1.8em;
+    font-size: 1.5em;
     font-weight: 700;
 }
 
+@media (min-width: 768px) {
+    .movie-seasons div.details h2 {
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons div.details h2 {
+        font-size: 1.8em;
+    }
+}
+
 .movie-seasons div.details h4 {
-    margin-bottom: 10px;
+    font-size: 0.9em;
     font-weight: 600;
-    font-size: 1.1em;
+}
+
+@media (min-width: 768px) {
+    .movie-seasons div.details h4 {
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons div.details h4 {
+        font-size: 1.1em;
+    }
 }
 
 .movie-seasons div.details div.season_overview {
-    max-height: 100px;
+    margin-top: 480px;
+    text-align: left;
     overflow: hidden;
 }
 
+@media (min-width: 768px) {
+    .movie-seasons div.details div.season_overview {
+        max-height: 100px;
+        margin: 0;
+    }
+}
+
 .movie-seasons div.details div.season_overview p {
-    font-size: 1em;
-    line-height: 1.3em;
+    font-size: 0.9em;
+    line-height: 1.2em;
+    margin: 0;
     word-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+@media (min-width: 1024px) {
+    .movie-seasons div.details div.season_overview p {
+        font-size: 1em;
+        line-height: 1.3em;
+    }
+}
+
 .movie-seasons div.details p.button {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 0;
     text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons div.details p.button {
+        margin-top: 30px;
+    }
 }
 
 .movie-seasons div.details p.button a {
     border: 2px solid #fff;
     border-radius: 5px;
-    padding: 8px 16px;
     transition: linear .1s;
     background-color: white;
     border-color: white;
     color: #302621;
     font-weight: 600;
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+@media (min-width: 1024px) {
+    .movie-seasons div.details p.button a {
+        padding: 8px 16px;
+    }
 }
 
 .movie-seasons div.details p.button a:hover {
@@ -1516,20 +1944,33 @@ section.movie-cast .actors li p.character {
 .title-episode-name {
     font-weight: 700;
     color: #fff;
-    max-width: 220px;
+    max-width: 180px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     margin: 0 0 1px;
     float: left;
-    font-size: 22px;
+    font-size: 15px;
+}
+
+@media (min-width: 768px) {
+    .title-episode-name {
+        font-size: 22px;
+        max-width: 210px;
+    }
 }
 
 .title-episode-raiting {
     color: darkred;
     float: right;
-    font-size: 16px;
+    font-size: 12px;
     font-style: italic;
+}
+
+@media (min-width: 768px) {
+    .title-episode-raiting {
+        font-size: 16px;
+    }
 }
 
 .title-episode-raiting:hover {
@@ -1539,16 +1980,28 @@ section.movie-cast .actors li p.character {
 .title-episode-runtime {
     color: #00b7ba;
     float: right;
-    font-size: 16px;
+    font-size: 12px;
     font-style: italic;
     padding-left: 10px;
+}
+
+@media (min-width: 768px) {
+    .title-episode-runtime {
+        font-size: 16px;
+    }
 }
 
 .title-episode-synopsis {
     color: #b3b3b3;
     clear: both;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 20px;
     padding-top: 10px;
     height: 110px;
+}
+
+@media (min-width: 768px) {
+    .title-episode-synopsis {
+        font-size: 16px;
+    }
 }
