@@ -21,6 +21,7 @@
 
     <!-- ANGULAR CUSTOM -->
     <script src="./js/controllers/MainCtrl.js"></script>
+    <script src="./js/services/MainService.js"></script>
     <script src="./js/controllers/AllShowsCtrl.js"></script>
     <script src="./js/services/AllShowsService.js"></script>
     <script src="./js/controllers/UsersCtrl.js"></script>
@@ -29,8 +30,12 @@
     <script src="./js/services/ProfilesService.js"></script>
     <script src="./js/controllers/CommentsCtrl.js"></script>
     <script src="./js/services/CommentsService.js"></script>
+    <script src="./js/controllers/NewestShowsCtrl.js"></script>
     <script src="./js/controllers/SingleShowCtrl.js"></script>
     <script src="./js/services/SingleShowService.js"></script>
+    <script src="./js/controllers/RankingCtrl.js"></script>
+    <script src="./js/services/RankingService.js"></script>
+    <script src="./js/controllers/ScheduleCtrl.js"></script>
     <script src="./js/appRoutes.js"></script>
     <script src="./js/app.js"></script>
 </head>
@@ -41,18 +46,18 @@
             <div class="container">
                 <div class="row">
                     <div class="logo pull-left">
-                        <a href="/" title="Tuk shte vkarame opisanie">
+                        <a href="/">
                             <img id="logo" title="Keep your schedule of TV shows in shape" src="./images/logo-white.png" alt="Logo">
                         </a>
                     </div>
                     <div class="pull-right content">
-                        <div class="login">
+                        <div class="login" ng-show="!user.id">
                             <a href="/login" title="Login">
                                 <div class="btn btn-login">Log In</div>
                             </a>
                         </div>
-                        <div class="logout hide">
-                            <a title="Logout">
+                        <div class="logout" ng-show="user.id">
+                            <a title="Logout" id="logoutBtn">
                                 <div class="btn btn-logout">Log out</div>
                             </a>
                         </div>
@@ -82,11 +87,11 @@
             <div class="container">
                 <div class="row">
                     <div class="navigation-spacing">
-                        <div class="pull-right" id="navigation-register-desktop">
+                        <div class="pull-right" ng-show="!user.id" id="navigation-register-desktop">
                             <a class="btn-get-started-nav pull-right" title="Get Started" href="/register"> Register </a>
                         </div>
-                        <div class="pull-right hide" id="navigation-register-desktop">
-                            <a class="btn-subscribtions pull-right" title="My TV Series subscriptions" target="_blank"> Subscriptions </a>
+                        <div class="pull-right" ng-show="user.id" id="navigation-register-desktop">
+                            <a class="btn-subscribtions pull-right" id="myProfile" href="/profile/{{userId}}" title="My personal profile" target="_blank"> My Profile Page </a>
                         </div>
                         <nav class="pull-right">
                             <div id="menu-wrap-primary">
@@ -95,7 +100,7 @@
                                         <a href="/" class="title menu-link" title="Home">Home</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#" class="title menu-link" title="List of new shows">New Shows</a>
+                                        <a href="/newest" class="title menu-link" title="List of new shows">New Shows</a>
                                     </li>
                                     <li class=" item menu-flyout menu-item">
                                         <a href="/browse" class="title menu-link" title="Browse all TV shows">Browse A-Z</a>
@@ -104,10 +109,10 @@
                                         <a href="#" class="title menu-link" title="List of shows yet to be released">Coming Soon</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#" class="title menu-link" title="List of all shows by their raiting">High Scores</a>
+                                        <a href="/ranking" class="title menu-link" title="List of all shows by their raiting">High Scores</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#" class="title menu-link" title="Schedule for the week">This Week</a>
+                                        <a href="/schedule" class="title menu-link" title="Schedule for the week">This Week</a>
                                     </li>
                                 </ul>
                             </div>
@@ -138,9 +143,13 @@
                     <img id="logo" src="./images/logo-mobile.png" alt="">
                 </div>
                 <section>
-                    <div class="btn-container">
-                        <a id="btn-email" ng-click="mobileButtonClick()" class="btn white" href="/register">Register to our site</a>
+                    <div class="btn-container" ng-show="!user.id" id="mobileLoginGroup">
+                        <a class="btn white" ng-click="mobileButtonClick()" href="/register">Register to our site</a>
                         <a class="btn" ng-click="mobileButtonClick()" href="/login">Login with E-mail</a>
+                    </div>
+                    <div class="btn-container" ng-show="user.id" id="mobileProfileGroup">
+                        <a class="btn white" ng-click="mobileButtonClick()" href="/profile/{{userId}}">My Profile Page</a>
+                        <a class="btn" ng-click="mobileButtonClick()" id="mobileLogoutBtn" href="/">Log out</a>
                     </div>
                 </section>
                 <section id="mobile-links">
@@ -151,7 +160,7 @@
                                 <a href="/" ng-click="mobileButtonClick()" title="Home">Home</a>
                             </li>
                             <li>
-                                <a href="#" ng-click="mobileButtonClick()" title="List of new shows">New Shows</a>
+                                <a href="/newest" ng-click="mobileButtonClick()" title="List of new shows">New Shows</a>
                             </li>
                             <li>
                                 <a href="/browse" ng-click="mobileButtonClick()" title="Browse all TV shows">Browse A-Z</a>
@@ -160,10 +169,10 @@
                                 <a href="#" ng-click="mobileButtonClick()" title="List of shows yet to be released">Coming Soon</a>
                             </li>
                             <li>
-                                <a href="#" ng-click="mobileButtonClick()" title="List of all shows by their raiting">High Scores</a>
+                                <a href="/ranking" ng-click="mobileButtonClick()" title="List of all shows by their raiting">High Scores</a>
                             </li>
                             <li>
-                                <a href="#" ng-click="mobileButtonClick()" title="Schedule for the week">This Week</a>
+                                <a href="/schedule" ng-click="mobileButtonClick()" title="Schedule for the week">This Week</a>
                             </li>
                         </ul>
                         <div class="line-divider"></div>
@@ -184,7 +193,7 @@
         </div>
     </div>
     <!-- ANGULAR DYNAMIC CONTENT -->
-    <div ng-view class="page-content"></div>
+    <div ng-view class="page-content" autoscroll="true"></div>
 </body>
 
 </html>

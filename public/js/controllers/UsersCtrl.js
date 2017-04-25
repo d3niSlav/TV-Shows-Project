@@ -1,4 +1,7 @@
-angular.module('UsersCtrl', []).controller('UsersController', ['$scope', '$location', 'Users', function($scope, $location, Users) {
+angular.module('UsersCtrl', []).controller('UsersController', ['$scope', '$location', 'Users', 'Main', function($scope, $location, Users, Main) {
+    Main.getLoggedUserId().then(function(res) {
+        if (JSON.parse(res.data).userId) $location.path('/');
+    });
     $scope.formData = {};
 
     $scope.createUser = function() {
@@ -19,7 +22,7 @@ angular.module('UsersCtrl', []).controller('UsersController', ['$scope', '$locat
 
     $scope.logInUser = function() {
         if (!$.isEmptyObject($scope.formData)) {
-            Users.logIn($scope.formData).then(function() {
+            Users.logIn($scope.formData).then(function(data) {
                 clearErrorsAndFields();
                 $location.path('/');
             }).catch(function(e) {

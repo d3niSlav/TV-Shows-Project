@@ -1,0 +1,59 @@
+<section class="newest-four well-md">
+    <div class="container">
+        <h2 class="text-center newest-title">Newest shows just for you</h2>
+        <div class="row newest-four-container">
+            <div class="col-md-6 col-sm-12 col-xs-12 newest-four-single" ng-repeat="show in newestFourShows">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="show-poster">
+                            <a href="/show/{{show._id}}"> <img src="{{show.poster}}" alt="{{show.title}}"></a>
+                            <div class="show-numbers"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h5 class="show-title"><a href="/show/{{show._id}}">{{show.title}}</a></h5>
+                        <p class="show-plot">{{show.plot}}</p>
+                        <time class="text-center">{{show.released}}</time>
+                        <ul class="inline-list show-stars">
+                            <li ng-repeat="starClass in show.stars track by $index"><i class="fa fa-{{starClass}}" aria-hidden="true"></i></li>
+                        </ul>
+                        <a href="/show/{{show._id}}" class="btn btn-default btn-md "> view more </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="next-three-shows">
+    <div class="container">
+        <h2 class="text-center next-three-title">More shows to watch</h2>
+        <div class="row more-shows-row">
+            <div class="col-xs-12 col-sm-4" ng-repeat="show in moreShows">
+                <div>
+                    <img src="{{show.poster}}" alt="{{show.title}}">
+                </div>
+                <time class="text-center">{{show.released}}</time>
+                <h5 class="show-title text-center"><a href="/show/{{show._id}}">{{show.title}}</a></h5>
+                <div class="show-plot-container">
+                    <p class="show-plot">{{show.plot}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shows-other">
+    <div class="container">
+        <h2 class="text-center next-three-title">Other popular tv-shows</h2>
+        <div class="row more-shows-row">
+            <div class="col-xs-6 col-sm-3" ng-repeat="show in otherShows">
+                <div>
+                    <img src="{{show.poster}}" alt="{{show.title}}">
+                </div>
+                <h5 class="show-title text-center"><a href="/show/{{show._id}}">{{show.title}}</a></h5>
+                <ul class="inline-list show-stars">
+                    <i class="fa fa-{{starClass}}" aria-hidden="true" ng-repeat="starClass in show.stars track by $index"></i>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

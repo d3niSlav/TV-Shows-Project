@@ -21,6 +21,18 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             templateUrl: 'views/browse.htm',
             controller: 'AllShowsController'
         })
+        .when('/newest', {
+            templateUrl: 'views/newest.htm',
+            controller: 'NewestShowsController'
+        })
+        .when('/ranking', {
+            templateUrl: 'views/highScores.htm',
+            controller: 'RankingController'
+        })
+        .when('/schedule', {
+            templateUrl: 'views/schedule.htm',
+            controller: 'ScheduleController'
+        })
         .when('/show/:showId', {
             templateUrl: 'views/show.htm',
             controller: 'SingleShowController'

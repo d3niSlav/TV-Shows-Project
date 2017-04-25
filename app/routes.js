@@ -1,3 +1,4 @@
+var path = require('path');
 var Show = require('./models/show');
 var User = require('./models/user');
 var Profile = require('./models/profile');
@@ -7,7 +8,38 @@ module.exports = function(app, passport) {
 
     // server routes ===========================================================
     app.get('/api/shows', function(req, res) {
-        Show.find(function(err, shows) {
+        Show.
+        find().
+        sort('title').
+        exec(function(err, shows) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(shows);
+        });
+    });
+
+    app.get('/api/shows/newest', function(req, res) {
+        Show.
+        find().
+        sort('-releasedDate').
+        exec(function(err, shows) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(shows);
+        });
+    });
+
+    app.get('/api/shows/top-ten-shows', function(req, res) {
+        Show.
+        find().
+        sort('-imdbRating').
+        limit(10).
+        select('title imdbRating plot logo poster released').
+        exec(function(err, shows) {
             if (err) {
                 res.send(err);
             }
@@ -20,7 +52,6 @@ module.exports = function(app, passport) {
         Show.findOne({ "_id": req.params.id },
             function(err, show) {
                 if (err) {
-                    console.log(err);
                     res.send(err);
                 }
 
@@ -109,7 +140,7 @@ module.exports = function(app, passport) {
                 return res.status(409).json({ error: messages });
             }
 
-            return res.status(200).json({ message: 'User successfully logged in.' });
+            return res.status(200).json({ userId: user._id });
         })(req, res, next);
     });
 
@@ -122,9 +153,28 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/api/logged', function(req, res) {
+        var user = {
+            userId: ""
+        }
+
+        if (req.session.cookie.originalMaxAge !== null) {
+            user.userId = req.session.passport.user;
+        }
+
+        res.json(JSON.stringify(user));
+    });
+
+    app.get('/logout', function(req, res) {
+        req.logout();
+        req.session.destroy((err) => {
+            res.status(200).json({ message: 'Logout succes!' });
+        });
+    });
+
     // frontend routes =========================================================
     app.get('*', function(req, res) {
-        res.sendfile('./public/views/index.html');
+        res.sendFile('index.html', { root: path.join(__dirname, '../public/views/') });
     });
 };
 

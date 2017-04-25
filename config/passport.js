@@ -36,10 +36,11 @@ passport.use('local.signup', new LocalStrategy({
             return done(null, newUser);
         });
 
-        req.logIn(user, function(err) {
+        req.logIn(newUser, function(err) {
             if (err) {
-                return next(err);
+                return done(err);
             }
+            return done(null, newUser);
         });
     });
 }));
@@ -62,10 +63,14 @@ passport.use('local.login', new LocalStrategy({
             return done(null, user, 'Wrong password!');
         }
 
+
         req.logIn(user, function(err) {
             if (err) {
                 return next(err);
             }
+
+            req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
+
             return done(null, user);
         });
     });

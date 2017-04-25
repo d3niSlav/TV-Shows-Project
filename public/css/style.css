@@ -785,6 +785,7 @@ a:focus {
 .movies-wrapper .movie-information {
     padding: 2.5rem 0 .625rem;
     width: 100%;
+    text-align: center;
 }
 
 .movies-wrapper .movie-information h3 {
@@ -796,6 +797,7 @@ a:focus {
     font-size: 18px;
     font-weight: 900;
     letter-spacing: -.03em;
+    margin: 0 auto;
 }
 
 @media (min-width: 64em) {
@@ -810,6 +812,7 @@ a:focus {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    margin: 0 auto;
 }
 
 .movie-information p span {
@@ -1290,7 +1293,7 @@ section.movie-details div.poster {
     display: block;
     width: 300px;
     height: 450px;
-    padding-top: 75px;
+    padding-top: 90px;
     margin: 0 auto;
 }
 
@@ -1368,6 +1371,19 @@ section.movie-details .main-info .title h2 span {
     opacity: 0.6;
     font-size: 0.6em;
     font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    section.movie-details .main-info .title h2 span {
+        display: block;
+    }
+    section.movie-details .main-info .title h2 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        margin: 0 auto;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -1555,7 +1571,6 @@ section.movie-cast .actors {
 }
 
 section.movie-cast .actors li {
-    width: 176px;
     height: auto;
     text-align: center;
     margin: 0 auto;
@@ -1577,8 +1592,8 @@ section.movie-cast .actors li>a {
 }
 
 section.movie-cast .actors li img {
-    width: 132px;
-    height: 132px;
+    width: 100%;
+    height: auto;
     border-radius: 50%;
     border: 2px solid white;
 }
@@ -2004,4 +2019,748 @@ section.movie-cast .actors li p.character {
     .title-episode-synopsis {
         font-size: 16px;
     }
+}
+
+
+/*
+* @page High Scores Page
+*/
+
+
+/*
+* @section Top Three
+*/
+
+.high-scores-container {
+    background: url(http://www.anawalls.com/images/textures/texture-blue-stripes-dark.jpg);
+    background-size: cover;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 25px;
+}
+
+.top-three-wrapper {
+    margin: 0 auto;
+    max-width: 1260px;
+    padding: 0 15px;
+}
+
+.shows-top-three-title {
+    text-align: center;
+    font-size: 5.5vw;
+    color: white;
+    line-height: 6vw;
+    padding-top: 10px;
+    font-weight: bolder;
+}
+
+
+/*
+* @subsection Rating Places
+*/
+
+.show-places {
+    margin: 0;
+    text-align: center;
+}
+
+@media (min-width: 640px) and (max-width: 992px) {
+    .show-places {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .show-places {
+        width: 25%;
+        float: left;
+    }
+}
+
+.show-places ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    display: block;
+}
+
+@media (min-width: 640px) and (max-width: 992px) {
+    .show-places ol {
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.show-places>img {
+    height: 100px;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.show-place {
+    background: radial-gradient(at 50% 20%, rgba(89, 10, 194, 0.4) 0%, rgba(175, 13, 48, 0.2) 100%), url("../images/rankingPlaceBackground.jpg");
+    background-size: cover;
+    height: 30vw;
+    border-radius: 10px;
+    margin: 10px;
+    display: list-item;
+    width: auto;
+}
+
+@media (min-width: 640px) and (max-width: 992px) {
+    .show-place {
+        margin: 0;
+        width: 33%;
+        display: inline-block;
+    }
+}
+
+@media (min-width: 640px) {
+    .show-place {
+        height: 7.2vw;
+    }
+}
+
+.show-place .show-place-info .show-place-logo {
+    margin: 0 auto;
+    padding-top: 5px;
+    height: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 640px) {
+    .show-place .show-place-info .show-place-logo {
+        height: 4vw;
+    }
+}
+
+.show-place .show-place-info img {
+    max-width: 95%;
+    max-height: 100%;
+}
+
+.show-place>img:first-child {
+    height: auto;
+    max-width: 18%;
+    max-height: 40px;
+    margin: 2px 6px;
+    max-height: 90%;
+    float: left;
+}
+
+.show-place .show-place-info {
+    margin-left: 22%;
+}
+
+.show-place .show-air-date {
+    padding-top: 3px;
+}
+
+.show-place .show-air-date span {
+    display: block;
+    margin-right: 10px;
+    border-top: 2px solid rgba(100.00%, 100.00%, 100.00%, 0.30);
+    font-size: 7vw;
+    color: lightgray;
+    font-style: italic;
+}
+
+@media (min-width: 640px) {
+    .show-place .show-air-date span {
+        font-size: 1.6vw;
+    }
+}
+
+
+/*
+* @subsection TV-Show on focus
+*/
+
+.focus-movie {
+    height: auto;
+    margin: 10px;
+    min-height: 360px;
+    background: url(https://i.ytimg.com/vi/pVNbWKa6qbg/maxresdefault.jpg);
+    background-size: cover;
+    border-radius: 10px;
+    color: white;
+    padding-bottom: 10px;
+}
+
+@media (min-width: 640px) and (max-width: 992px) {
+    .focus-movie {
+        width: 100%;
+        margin: 10px auto;
+        display: inline-block;
+        min-height: auto;
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .focus-movie {
+        margin: 10px auto;
+        float: left;
+        width: 75%;
+        padding-bottom: 20px;
+    }
+}
+
+
+/* Poster */
+
+.focus-details div.poster {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    display: block;
+}
+
+@media (min-width: 640px) {
+    .focus-details div.poster {
+        width: 30%;
+        float: left;
+        position: relative;
+        left: 20px;
+        top: 20px;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 20px;
+    }
+}
+
+.focus-details div.poster img {
+    width: 100%;
+}
+
+
+/* Main info */
+
+.focus-details .main-info {
+    margin: 0 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+@media (min-width: 640px) {
+    .focus-details .main-info {
+        position: relative;
+        margin: 0;
+        top: 20px;
+        left: 0;
+        width: 62%;
+        margin-right: 20px;
+        float: right;
+        text-align: left;
+    }
+}
+
+.focus-details .main-info .title {
+    margin-bottom: 5px;
+    border-bottom: 1.5px solid rgba(100.00%, 100.00%, 100.00%, 0.30);
+}
+
+.focus-details .main-info .title h2 {
+    font-size: 2.4em;
+    font-weight: 700;
+    display: inline;
+}
+
+.focus-details .main-info .title h2 a {
+    color: white;
+    text-decoration: none;
+}
+
+.focus-details .main-info p {
+    font-size: 1.54vw;
+    line-height: 1.2em;
+    color: #D3D3D3;
+    height: auto;
+    text-align: left;
+}
+
+@media (max-width: 639px) {
+    .focus-details .main-info p {
+        font-size: 0.8em;
+        line-height: 1.1em;
+        min-height: 100px;
+    }
+}
+
+@media (min-width: 992px) {
+    .focus-details .main-info p {
+        font-size: 1.17vw;
+        min-height: 130px;
+    }
+}
+
+
+/* Tv Show Score */
+
+.focus-details .movie-score-container {
+    margin-top: 15px;
+    float: right;
+}
+
+@media (max-width: 639px) {
+    .focus-details .movie-score-container {
+        width: 70%;
+        float: left;
+    }
+}
+
+.focus-details .movie-score-container .movie-score-info {
+    margin-bottom: 8px;
+    margin-top: 0;
+    border-bottom: 1.5px solid rgba(100.00%, 100.00%, 100.00%, 0.30);
+}
+
+@media (max-width: 639px) {
+    .focus-details .movie-score-container .movie-score-info {
+        margin-right: 5px;
+        font-size: 4.5vw;
+    }
+}
+
+.focus-details .movie-score-container .movie-score-info h3,
+.focus-details .movie-score-container .movie-score-info span.movie-score-points,
+.focus-details .movie-score-container .movie-score-info span.movie-score-max {
+    font-weight: 600;
+    line-height: 1.3em;
+    font-size: 1em;
+    display: inline;
+}
+
+@media (min-width: 640px) {
+    .focus-details .movie-score-container .movie-score-info h3,
+    .focus-details .movie-score-container .movie-score-info span.movie-score-points,
+    .focus-details .movie-score-container .movie-score-info span.movie-score-max {
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 992px) {
+    .focus-details .movie-score-container .movie-score-info h3,
+    .focus-details .movie-score-container .movie-score-info span.movie-score-points,
+    .focus-details .movie-score-container .movie-score-info span.movie-score-max {
+        font-size: 2em;
+    }
+}
+
+.focus-details .movie-score-container .movie-score-info span.movie-score-points {
+    color: lightseagreen;
+}
+
+@media (min-width: 640px) {
+    .focus-details .movie-score-container .movie-score-info span.movie-score-points {
+        padding-left: 20px;
+    }
+}
+
+.focus-details .movie-score-container .movie-score-info span.movie-score-max {
+    color: red;
+}
+
+.focus-details .movie-score-container .btn-container {
+    width: 63%;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+.focus-details .movie-score-container .btn-container a {
+    display: inline-block;
+    border-radius: 8px;
+    background-color: crimson;
+    padding: 6px 20px;
+    font-size: 18px;
+    letter-spacing: -0.04em;
+    color: #fff;
+    border: 2px solid transparent;
+    text-align: center;
+    vertical-align: middle;
+    transition: all 150ms ease-in-out;
+}
+
+@media (min-width: 992px) {
+    .focus-details .movie-score-container .btn-container a {
+        padding: 10px 30px;
+    }
+}
+
+@media (max-width: 639px) {
+    .focus-details .movie-score-container .btn-container a {
+        font-size: 3vw;
+    }
+}
+
+.focus-details .movie-score-medal {
+    float: right;
+    width: 27%;
+}
+
+
+/* Score medal */
+
+@media (min-width: 640px) {
+    .focus-details .movie-score-medal {
+        margin: 0 30px;
+    }
+}
+
+.focus-details .movie-score-medal img {
+    width: 100%;
+    height: auto;
+}
+
+
+/*
+* @section Next three in the ranking
+*/
+
+.next-three-shows {
+    padding-top: 25px;
+    padding-bottom: 50px;
+}
+
+.next-three-title {
+    font-size: 45px;
+    line-height: 42px;
+    font-weight: 700;
+    color: white;
+}
+
+.more-shows-row {
+    margin-top: 70px;
+}
+
+.more-shows-row img {
+    width: 75%;
+    height: auto;
+    display: block;
+    margin: 0px auto;
+}
+
+.more-shows-row time,
+.newest-four time {
+    margin-top: 15px;
+    color: rgb(247, 58, 76);
+    display: block;
+}
+
+.more-shows-row h5.show-title {
+    margin-top: 10px;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.more-shows-row .show-stars {
+    display: flex;
+    justify-content: space-around;
+    color: gold;
+    margin-bottom: 35px;
+}
+
+.more-shows-row h5.show-title a {
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+
+.more-shows-row p.show-plot {
+    line-height: 1.375;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgb(177, 182, 184);
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    margin: 0px 0px 20px;
+    overflow: hidden;
+}
+
+
+/*
+* @section More shows
+*/
+
+.shows-other {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: linear-gradient(rgba(247, 58, 76, 0.8), rgba(247, 58, 76, 0.8)) 0% 0% / cover, url(https://s-media-cache-ak0.pinimg.com/originals/15/a7/ac/15a7ac39b1f549372563a48572e428e1.jpg) center top no-repeat;
+}
+
+.shows-other .more-shows-row {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+
+/*
+* @page Newest TV-Shows
+*/
+
+.newest-four {
+    background: #1f2324;
+}
+
+.newest-four .newest-title,
+.schedule-title {
+    font-size: 35px;
+    line-height: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+@media (min-width: 992px) {
+    .newest-four .newest-title,
+    .schedule-title {
+        font-size: 42px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .newest-four .newest-title,
+    .schedule-title {
+        font-size: 60px;
+        line-height: 53px;
+    }
+}
+
+.newest-four .newest-four-container {
+    margin-top: 50px;
+}
+
+.newest-four .show-poster img {
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+
+.newest-four .show-numbers {
+    position: relative;
+    bottom: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.newest-four .show-numbers:before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    top: -60px;
+    z-index: 0;
+    -webkit-box-shadow: inset 0px -58px 21px 0px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: inset 0px -58px 21px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: inset 0px -58px 21px 0px rgba(0, 0, 0, 0.7);
+}
+
+.newest-four .newest-four-single {
+    margin-bottom: 45px;
+}
+
+.newest-four h5.show-title {
+    font-size: 24px;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .newest-four h5.show-title {
+        margin-top: 0;
+    }
+}
+
+.newest-four p.show-plot {
+    line-height: 1.375;
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #b1b6b8;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    margin: 0px 0px 20px;
+    overflow: hidden;
+}
+
+.newest-four .btn {
+    display: block;
+    text-align: center;
+    font-weight: 300;
+    border-radius: 42px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 190px;
+    min-width: 190px;
+    background: #f73a4c;
+    border-color: #f73a4c;
+    border-style: solid;
+    color: white;
+    font-size: 13px;
+    line-height: 1;
+    /*padding: 13px 0px;*/
+    padding: 25px 0px;
+    margin: 5px auto;
+    border-width: 1px;
+}
+
+.newest-four ul.show-stars {
+    margin: 10px auto;
+    text-align: center;
+}
+
+.newest-four ul.show-stars li {
+    display: inline-block;
+    word-spacing: normal;
+    color: gold;
+}
+
+
+/*
+* @page Schedule
+*/
+
+.schedule-title {
+    color: ghostwhite;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+
+.schedule {
+    background: linear-gradient(rgba(10, 8, 6, 0.5), rgba(0, 8, 6, 0.2)) 0% 0% / cover, url(http://wallpaper-gallery.net/images/grey-and-red-wallpaper/grey-and-red-wallpaper-3.jpg);
+    background-size: cover;
+    background-blend-mode: hard-light;
+    padding: 30px 0;
+}
+
+.schedule .seven-cols {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.seven-cols .col-lg-1 {
+    display: inline-block;
+    padding: 1px;
+    float: none;
+    text-align: center;
+    background: black;
+    margin-top: 10px;
+    outline: 3px dashed grey;
+}
+
+@media (max-width: 360px) {
+    .seven-cols .col-lg-1 {
+        min-height: 200px;
+        width: 85%;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+}
+
+@media (min-width: 361px) and (max-width: 767px) {
+    .seven-cols .col-lg-1 {
+        width: 130px;
+        height: 200px;
+        margin: 2px;
+        margin-top: 10px;
+    }
+}
+
+.seven-cols .col-lg-1.even {
+    outline-width: 2px;
+    outline-color: darkgrey;
+}
+
+@media (min-width: 768px) {
+    .seven-cols .col-lg-1 {
+        width: 13.2%;
+        min-height: 220px;
+        margin: 0.5px;
+        outline-width: 4px;
+    }
+    .seven-cols .col-lg-1.even {
+        outline-width: 3px;
+    }
+}
+
+@media (min-width: 992px) {
+    .seven-cols .col-lg-1 {
+        width: 13.4%;
+        min-height: 280px;
+        margin: 2px;
+        outline-width: 6px;
+    }
+    .seven-cols .col-lg-1.even {
+        outline-width: 5px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .seven-cols .col-lg-1 {
+        width: 13.5%;
+        min-height: 350px;
+        margin: 2px;
+        outline-width: 6px;
+    }
+    .seven-cols .col-lg-1.even {
+        outline-width: 5px;
+    }
+    .schedule-title {
+        padding-top: 25px;
+        padding-bottom: 30px;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+.schedule .day-name h3 {
+    font-size: 19px;
+    margin: 0;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    color: white;
+    border-bottom: 2px solid dimgrey;
+}
+
+.schedule .day-name time {
+    padding: 3px;
+    color: rgb(247, 58, 76);
+    font-style: italic;
+    font-size: 15px;
+    display: block;
+    border-bottom: 2px solid dimgrey;
+}
+
+@media (min-width: 1200px) {
+    .schedule .day-name h3 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+}
+
+.dayly-show a {
+    display: inherit;
+}
+
+.dayly-show img {
+    display: inherit;
+    padding: 5px;
+    padding-top: 7px;
+    max-height: 60px;
+    margin: 0 auto;
 }

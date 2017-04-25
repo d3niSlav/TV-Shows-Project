@@ -1,0 +1,84 @@
+<section class="schedule well-md">
+    <div class="container">
+        <h2 class="text-center schedule-title">This week's shows schedule</h2>
+        <div class="row seven-cols">
+            <div class="col-lg-1 col-sm-2 ">
+                <div class="day-name">
+                    <h3>Sunday</h3>
+                    <time>{{sundayDate}}</time>
+                    <div class="shows-for-day">
+                        <div class="dayly-show" ng-repeat="show in sundayShows" title="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}">
+                            <a href="/show/{{show.id}}"><img src="{{show.logo}}" alt="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-sm-2 even">
+                <div class="day-name">
+                    <h3>Monday</h3>
+                    <time>{{mondayDate}}</time>
+                    <div class="shows-for-day">
+                        <div class="dayly-show" ng-repeat="show in mondayShows" title="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}">
+                            <a href="/show/{{show.id}}"><img src="{{show.logo}}" alt="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-sm-2">
+                <div class="day-name">
+                    <h3>Tuesday</h3>
+                    <time>{{tuesdayDate}}</time>
+                    <div class="shows-for-day">
+                        <div class="dayly-show" ng-repeat="show in tuesdayShows" title="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}">
+                            <a href="/show/{{show.id}}"><img src="{{show.logo}}" alt="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-sm-2 even">
+                <div class="day-name">
+                    <h3>Wednesday</h3>
+                    <time>{{wednesdayDate}}</time>
+                    <div class="shows-for-day">
+                        <div class="dayly-show" ng-repeat="show in wednesdayShows" title="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}">
+                            <a href="/show/{{show.id}}"><img src="{{show.logo}}" alt="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-sm-2">
+                <div class="day-name">
+                    <h3>Thursday</h3>
+                    <time>{{thursdayDate}}</time>
+                    <div class="shows-for-day">
+                        <div class="dayly-show" ng-repeat="show in thursdayShows" title="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}">
+                            <a href="/show/{{show.id}}"> <img src="{{show.logo}}" alt="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-sm-2 even">
+                <div class="day-name">
+                    <h3>Friday</h3>
+                    <time>{{fridayDate}}</time>
+                    <div class="shows-for-day">
+                        <div class="dayly-show" ng-repeat="show in fridayShows" title="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}">
+                            <a href="/show/{{show.id}}"><img src="{{show.logo}}" alt="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-sm-2">
+                <div class="day-name">
+                    <h3>Saturday</h3>
+                    <time>{{saturdayDate}}</time>
+                    <div class="shows-for-day">
+                        <div class="dayly-show" ng-repeat="show in saturdayShows" title="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}">
+                            <a href="/show/{{show.id}}"><img src="{{show.logo}}" alt="{{show.title}} - S{{show.seasonNo}}E{{show.episodeNo}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

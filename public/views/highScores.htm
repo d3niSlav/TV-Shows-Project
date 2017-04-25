@@ -1,0 +1,86 @@
+<div class="high-scores-container">
+    <div class="shows-top-three-title">
+        Top 3 TV-Shows of all time!
+    </div>
+    <div class="top-three-wrapper">
+        <div class="show-places">
+            <img src="../images/winners.png">
+            <ol>
+                <li class="show-place" ng-repeat="show in topThreeShows">
+                    <img alt="#1" src="{{show.medal}}">
+                    <div class="show-place-info">
+                        <div class="show-place-logo">
+                            <img ng-src="{{show.logo}}" alt="{{show.title}}" title="{{show.title}}">
+                        </div>
+                        <div class="show-air-date">
+                            <span title="Release date"><i class="fa fa-calendar" aria-hidden="true"></i> {{show.released}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="focus-movie">
+            <section class="focus-details">
+                <div class="poster">
+                    <img alt="The 100" ng-src="{{topThreeShows[0].poster}}">
+                </div>
+                <section class="main-info">
+                    <div class="title">
+                        <h2>
+                            <a ng-href="/show/{{topThreeShows[0]._id}}">{{topThreeShows[0].title}}</a>
+                        </h2>
+                    </div>
+                    <div class="movie-info">
+                        <p>{{topThreeShows[0].plot}}</p>
+                    </div>
+                    <div class="movie-score-medal">
+                        <img src="../images/gold-medal.png">
+                    </div>
+                    <div class="movie-score-container">
+                        <div class="movie-score-info">
+                            <h3>Score:</h3>
+                            <span class="movie-score-points">{{topThreeShows[0].imdbRating}}</span> out of
+                            <span class="movie-score-max"> 10</span>
+                        </div>
+                        <div class="btn-container">
+                            <a ng-href="/show/{{topThreeShows[0]._id}}">View show</a>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="next-three-shows">
+    <div class="container">
+        <h2 class="text-center next-three-title">More from the ranklist</h2>
+        <div class="row more-shows-row">
+            <div class="col-xs-12 col-sm-4" ng-repeat="show in nextThreeShows">
+                <div>
+                    <img src="{{show.poster}}" alt="{{show.title}}">
+                </div>
+                <time class="text-center">{{show.released}}</time>
+                <h5 class="show-title text-center"><a href="/show/{{show._id}}">{{show.title}}</a></h5>
+                <div class="show-plot-container">
+                    <p class="show-plot">{{show.plot}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shows-other">
+    <div class="container">
+        <h2 class="text-center next-three-title">Other popular tv-shows</h2>
+        <div class="row more-shows-row">
+            <div class="col-xs-6 col-sm-3" ng-repeat="show in otherShows">
+                <div>
+                    <img src="{{show.poster}}" alt="{{show.title}}">
+                </div>
+                <h5 class="show-title text-center"><a href="/show/{{show._id}}">{{show.title}}</a></h5>
+                <ul class="inline-list show-stars">
+                    <i class="fa fa-{{starClass}}" aria-hidden="true" ng-repeat="starClass in show.stars track by $index"></i>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,10 @@ angular.module('AllShowsService', []).factory('AllShows', ['$http', function($ht
     return {
         getAllShows: function() {
             return $http.get('/api/shows');
+        },
+
+        getAllShowsByDate: function() {
+            return $http.get('/api/shows/newest');
         }
     }
 }]);
