@@ -2031,6 +2031,53 @@ section.movie-cast .actors li p.character {
 
 
 /*
+* @subsection Trailer
+*/
+
+.trailer-video-container {
+    padding-top: 80px;
+    background: url(https://theamazingworldofpsychiatry.files.wordpress.com/2010/09/istock_000009307982large.jpg);
+    background-size: cover;
+    min-height: 250px;
+}
+
+@media (min-width: 992px) {
+    .trailer-video-container {
+        min-height: 600px;
+    }
+}
+
+.trailer-video-container .videoWrapper {
+    position: relative;
+    padding-bottom: 5vw;
+}
+
+@media (min-width: 992px) {
+    .trailer-video-container .videoWrapper {
+        padding-top: 25px;
+        padding-bottom: 38vw;
+        height: 0;
+    }
+}
+
+.trailer-video-container .videoWrapper iframe {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 56.25vw;
+    max-width: 340px;
+    max-height: 191.25px;
+}
+
+@media (min-width: 992px) {
+    .trailer-video-container .videoWrapper iframe {
+        max-width: 800px;
+        max-height: 450px;
+    }
+}
+
+
+/*
 * @page High Scores Page
 */
 
@@ -2771,4 +2818,9 @@ img {
     padding-top: 7px;
     max-height: 60px;
     margin: 0 auto;
+}
+
+max-height: 60px;
+margin: 0 auto;
+
 }

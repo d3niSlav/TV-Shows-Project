@@ -1,5 +1,8 @@
 angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope', '$routeParams', 'SingleShow', function($scope, $routeParams, SingleShow) {
 
+    $('#show-comments').hide();
+    $('#show-trailer').hide();
+
     SingleShow.getShowData($routeParams.showId)
         .then(function(res) {
             $scope.show = res.data;
