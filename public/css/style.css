@@ -1445,6 +1445,14 @@ section.movie-details .main-info ul.actions li.round-button {
     box-shadow: 0 0 3px gray;
 }
 
+section.movie-details .main-info ul.actions li.round-button.active {
+    background: crimson;
+}
+
+section.movie-details .main-info ul.actions li.round-button.active:hover {
+    background: darkred;
+}
+
 @media (min-width: 1024px) {
     section.movie-details .main-info ul.actions li.round-button {
         width: 45px;

@@ -16,37 +16,40 @@
                             <li class="chart">
                                 <div class="text">Imdb<br>Score</div>
                             </li>
-                            <li class="round-button" title="Mark as Favorite" data-role="tooltip">
-                                <a id="favourite"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                            <li id="favoritesBtn" class="round-button" title="Mark as Favorite">
+                                <a id="favourite" href ng-click="addToFavorites()"><i class="fa fa-heart" aria-hidden="true"></i></a>
                             </li>
-                            <li class="round-button" title="Add to your watchlist" data-role="tooltip">
-                                <a id="watchlist"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <li id="watchlistBtn" class="round-button" title="Add to your watchlist">
+                                <a id="watchlist" href ng-click="addToWatchlist()"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             </li>
-                            <li class="round-button" title="View comments">
-                                <a><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+                            <li id="goToComments" class="round-button" title="View comments">
+                                <a href ng-click="navigateToComments()"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
                             </li>
-                            <li>
-                                <a><i class="fa fa-play-circle-o round-button" aria-hidden="true"></i> Play Trailer</a>
+                            <li id="goToSeasonsInfo" class="round-button active" title="Add to your watchlist">
+                                <a href ng-click="navigateToSeasons()"><i class="fa fa-info " aria-hidden="true "></i></a>
+                            </li>
+                            <li id="goToTrailer" class="round-button play-trailer" title="View the movie trailer">
+                                <a id="trailer" href ng-click="navigateToTrailer()"><i class="fa fa-youtube-play" aria-hidden="true"></i></i></a>
                             </li>
                         </ul>
-                        <div class="movie-overview">
+                        <div class="movie-overview ">
                             <h3>Plot</h3>
-                            <div class="movie-plot">
+                            <div class="movie-plot ">
                                 <p>{{show.plot}}</p>
                             </div>
                         </div>
                     </section>
                 </section>
-                <section class="movie-cast" ng-if="show.actors.length">
+                <section class="movie-cast " ng-if="show.actors.length ">
                     <h3>Main Cast</h3>
-                    <ol class="actors">
-                        <li ng-repeat="actor in show.actors" class="col-xs-6">
+                    <ol class="actors ">
+                        <li ng-repeat="actor in show.actors " class="col-xs-6 ">
                             <a>
-                                <img alt="{{actor.name}}" ng-src="{{actor.actorImage}}">
+                                <img alt="{{actor.name}} " ng-src="{{actor.actorImage}} ">
                             </a>
                             <div>
                                 <p><a>{{actor.name}}</a></p>
-                                <p class="character">{{actor.character}}</p>
+                                <p class="character ">{{actor.character}}</p>
                             </div>
                         </li>
                     </ol>
@@ -54,41 +57,49 @@
             </div>
         </div>
     </div>
-    <div class="movie-seasons" ng-if="show.seasons">
-        <div class="seasons-information">
-            <section class="season-details">
-                <img alt="Season + {{show.seasons.length}}" ng-src="{{currentSeason.poster}}">
-                <div class="details">
-                    <div class="seasons-list">
-                        <ul>
-                            <li><strong>Season</strong></li>
-                            <li ng-repeat="seasonNo in show.seasons"><a href ng-click="changeSeason($index)">{{$index+1}}</a></li>
-                        </ul>
-                    </div>
-                    <h2>Season {{currentSeason.number}}</h2>
-                    <h4>{{currentSeason.releaseYear}} | {{currentSeason.episodes.length}} Episodes</h4>
-                    <div class="season_overview">
-                        <p>{{currentSeason.description}}</p>
-                    </div>
-                    <p class="button">
-                        <a href ng-click="showEpisodes()" ng-class="showEpisodesClass">Show Episodes</a>
-                        <a href ng-click="hideEpisodes()" ng-class="hideEpisodesClass">Hide Episodes</a>
-                    </p>
+    <div id="show-sections">
+        <div id="show-seasons">
+            <div class="movie-seasons" ng-if="show.seasons">
+                <div class="seasons-information ">
+                    <section class="season-details ">
+                        <img alt="Season + {{show.seasons.length}} " ng-src="{{currentSeason.poster}} ">
+                        <div class="details">
+                            <div class="seasons-list ">
+                                <ul>
+                                    <li><strong>Season</strong></li>
+                                    <li ng-repeat="seasonNo in show.seasons "><a href ng-click="changeSeason($index) ">{{$index+1}}</a></li>
+                                </ul>
+                            </div>
+                            <h2>Season {{currentSeason.number}}</h2>
+                            <h4>{{currentSeason.releaseYear}} | {{currentSeason.episodes.length}} Episodes</h4>
+                            <div class="season_overview ">
+                                <p>{{currentSeason.description}}</p>
+                            </div>
+                            <p class="button">
+                                <a ng-click="showEpisodes() " ng-class="showEpisodesClass ">Show Episodes</a>
+                                <a href ng-click="hideEpisodes() " ng-class="hideEpisodesClass ">Hide Episodes</a>
+                            </p>
+                        </div>
+                    </section>
                 </div>
-            </section>
-        </div>
-    </div>
-    <section class="movie-episodes" ng-class="hideEpisodesClass">
-        <div class="title-episode col-xs-12 col-sm-6 col-md-4" ng-repeat="episode in currentSeason.episodes">
-            <div class="title-episode-wrapper">
-                <span class="title-episode-gradient"></span>
-                <span class="title-episode-number">&#35{{episode.number}}</span>
-                <img class="title-episode-img" alt="{{episode.title}}" ng-src="{{episode.screenshot}}">
             </div>
-            <h3 title="{{episode.title}}" class="title-episode-name">{{episode.title}}</h3>
-            <span class="title-episode-runtime"><i class="fa fa-clock-o" aria-hidden="true"></i> {{episode.runtime}}</span>
-            <a class="title-episode-raiting" title="View IDBM page" ng-href="http://www.imdb.com/title/{{episode.imdbID}}"><i class="fa fa-line-chart" aria-hidden="true"></i> {{episode.imdbRating}}</a>
-            <p class="title-episode-synopsis">{{episode.plot}}</p>
+            <div id="show-episodes">
+                <section class="movie-episodes " ng-class="hideEpisodesClass ">
+                    <div class="title-episode col-xs-12 col-sm-6 col-md-4 " ng-repeat="episode in currentSeason.episodes ">
+                        <div class="title-episode-wrapper ">
+                            <span class="title-episode-gradient "></span>
+                            <span class="title-episode-number ">&#35{{episode.number}}</span>
+                            <img class="title-episode-img " alt="{{episode.title}} " ng-src="{{episode.screenshot}} ">
+                        </div>
+                        <h3 title="{{episode.title}} " class="title-episode-name ">{{episode.title}}</h3>
+                        <span class="title-episode-runtime "><i class="fa fa-clock-o " aria-hidden="true "></i> {{episode.runtime}}</span>
+                        <a class="title-episode-raiting " title="View IDBM page " ng-href="http://www.imdb.com/title/{{episode.imdbID}} "><i class="fa fa-line-chart " aria-hidden="true "></i> {{episode.imdbRating}}</a>
+                        <p class="title-episode-synopsis ">{{episode.plot}}</p>
+                    </div>
+                </section>
+            </div>
         </div>
-    </section>
+        <div id="show-comments"></div>
+        <div id="show-trailer"></div>
+    </div>
 </section>
