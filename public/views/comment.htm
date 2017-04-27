@@ -1,4 +1,140 @@
-<div>
-    <span>Name {{user.name}}</span>
-    <img ng-src="{{user.profileImg}}">
-</div>
+<style>
+    .background {
+        background: radial-gradient(at 10% 30%, rgba(39, 74, 97, 0.9) 0%, rgba(197, 54, 26, 1) 100%), url(../images/moviesBackground.jpg) no-repeat top;
+        filter: 90%;
+        background-size: cover;
+    }
+    
+    .d-inline-block {
+        /*from Bootstrap 4*/
+        display: inline-block;
+    }
+    
+    #comments-section {
+        padding-top: 40px;
+        color: white;
+    }
+    
+    .comments-title {
+        font-weight: 600;
+        line-height: 1.3em;
+        font-size: 1.3em;
+        margin-bottom: 8px;
+        border-bottom: 1.5px solid rgba(100.00%, 100.00%, 100.00%, 0.30);
+    }
+    
+    #comment {
+        color: #ccc;
+        margin-bottom: 10px;
+    }
+    
+    .commentWrapper {
+        margin: 0 auto;
+    }
+    
+    .comment-layout {
+        background-color: #fff;
+        color: #000;
+        padding: 15px;
+        margin: 15px 0;
+        border: 1px solid #888;
+        border-radius: 3px;
+    }
+    
+    .comment-layout a {
+        color: darkred;
+    }
+    
+    .comment-layout hr {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    
+    .comment-layout img {
+        width: 40px;
+        margin-right: 5px;
+    }
+    
+    .stats .stat-item .icon {
+        margin-right: 8px;
+    }
+    
+    #date {
+        font-size: 0.7em;
+        color: #888;
+    }
+</style>
+
+<!-- Comments -->
+<section id="comments-section" class="background">
+    <div class="info-container">
+        <div>
+            <div class="row">
+                <h3 class="comments-title">Discuss</h3>
+            </div>
+        </div>
+        <!-- write comment -->
+        <div class="container">
+            <div class="commentWrapper">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <form id="comment-input">
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <textarea class="form-control" rows="3" id="comment">Write your comment here...</textarea>
+                                <button class="btn btn-default">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ng-repeat to display all comments -->
+                <div class="container">
+
+                    <div class="row" ng-repeat="comment in allComments">
+                        <div class="comment-layout col-md-6 col-sm-8">
+                            <img ng-src="{{users.$index.profileImg}}">
+                            <span><a href="#">{{users.$index.name}}</a></span>
+                            <span id="date"> {{comment.date}} </span>
+                            <hr>
+                            <p>{{comment.text}}</p>
+                           <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam excepturi unde vero ut quisquam
+                                iste itaque dignissimos maxime nostrum voluptates et eaque harum accusantium, eos, incidunt
+                                eveniet debitis, omnis ad!</p>-->
+                            <div class="d-inline-block stats">
+                                <a href="#" class="btn stat-item" ng-click="addLike()">
+                                    <i class="glyphicon glyphicon-thumbs-up icon"></i>{{comment.likes}}
+                                </a>
+                            </div>
+                            <div class="d-inline-block pull-right">
+                                <a href="#" class="btn stat-item">
+                                    <i class="glyphicon glyphicon-comment icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="row">
+                        <div class="comment-layout col-md-6 col-sm-8 col-xs-6">
+                            <img ng-src="{{user.profileImg}}">
+                            <span><a href="#">{{user.name}}</a></span>
+                            <span id="date"> May 8, 2017 </span>
+                            <hr>
+                            <p>{{comment.text}}</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam excepturi unde vero ut eos,
+                                incidunt eveniet debitis, omnis ad!</p>
+                            <div class="d-inline-block stats">
+                                <a href="#" class="btn stat-item">
+                                    <i class="glyphicon glyphicon-thumbs-up icon"></i>18
+                                </a>
+                            </div>
+                            <div class="d-inline-block pull-right">
+                                <a href="#" class="btn stat-item">
+                                    <i class="glyphicon glyphicon-comment icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+</section>
