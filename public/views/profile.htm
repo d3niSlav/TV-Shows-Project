@@ -1,4 +1,292 @@
-<div>
-    <span>Name</span><span>{{user.name}}</span>
-    <span>Profile Image</span><img ng-src="{{user.profileImg}}">
+<style>
+    #profile-body {
+        background: radial-gradient(at 10% 30%, rgba(16, 63, 63, 0.9) 0%, rgba(139, 0, 0, 0.8) 100%), url(../images/film-reel-desktop-background-filmreel1.jpg) no-repeat top;
+        filter: 90%;
+        background-size: cover;
+        color: #fff;
+    }
+    
+    #user-info {
+        margin-top: 30px;
+        padding: 15px;
+        background-color: rgba(100, 100, 100, 0.3);
+        color: #ccc;
+        border-radius: 5px;
+    }
+    
+    #user-title {
+        color: #fff;
+        margin-top: 0px;
+    }
+    
+    img.avatar {
+        border: 1px solid #333;
+        width: 110px;
+        display: block;
+        margin: auto;
+    }
+    
+    .activity-mini {
+        padding-right: 15px;
+        float: left;
+    }
+    
+    .btn-movies {
+        border: 2px solid #fff;
+        border-radius: 5px;
+        transition: linear .1s;
+        background-color: white;
+        border-color: white;
+        color: #302621;
+        font-weight: 600;
+        padding: 6px 10px;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+    
+    .btn-movies a,
+    a:hover,
+    a:focus {
+        text-decoration: none;
+        background-color: #302621;
+        border-color: #302621;
+        color: white;
+    }
+    
+    .btn-movies-default {
+        background-color: darkred;
+        color: #fff;
+        border: 1px solid darkred;
+    }
+    
+    .muted-icon {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .movie-list {
+        margin-top: 10px;
+        text-align: justify;
+        font-size: 0.8em;
+    }
+    
+    .movie-list img {
+        width: 60px;
+        float: left;
+        padding-right: 10px;
+    }
+    
+    .movie-list h4,
+    a {
+        display: inline;
+        text-align: left;
+    }
+    
+    .movie-list p {
+        color: #aaa;
+    }
+    
+    #editProfileSection {
+        display: none;
+    }
+</style>
+
+<div id="profile-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="user-info">
+                    <div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <img class="img-circle avatar avatar-original" src="https://media.creativemornings.com/uploads/user/avatar/2279/kim_face_circle.jpeg">
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2 id="user-title">Welcome, {{user.name}}</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="text-muted">Email:</span> tedi@mail.bg<br>
+                                        <span class="text-muted">Location:</span> Sofia, Bulgaria<br>
+                                        <small class="text-muted">Member since: 08.12.2015</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="activity-mini">
+                                            <i class="fa fa-eye text-muted" title="# Watched Movies" data-role="tooltip"></i>                                            38
+                                        </div>
+                                        <div class="activity-mini">
+                                            <i class="fa fa-heart text-muted" title="# Favorite Movies" data-role="tooltip"></i>                                            20
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="col-md-10 pull-right">
+                                    <br/><br/>
+                                    <li><a href="#" class="btn-movies btn-lg btn-block">My Schedule</a></li>
+                                    <li><a href ng-click="editProfile()" class="btn-movies btn-lg btn-block">Edit Profile</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- List of watched movies -->
+        <div class="col-md-6">
+            <section id="userWatchedList" class="movie-cast">
+                <h3><i class="fa fa-eye muted-icon"></i> Watched Movies</h3>
+                <div class="col-md-12 movie-list">
+                    <h4><a href="#">Agent Carter</a></h4>
+                    <img src="https://image.tmdb.org/t/p/original/mQWBExOnHrGVsjkpWczJjo6bhZy.jpg" alt="post img" class="pull-left img-responsive ">
+
+                    <article>
+                        <p>
+                            The war is over and almost everyone has experienced a loss. Agent Peggy Carter has lost the love of her life. To top it off,
+                            when billionaire Howard Stark is accused of Treason...
+                        </p>
+                        <hr>
+                    </article>
+                </div>
+                <div class="col-md-12 movie-list">
+                    <h4><a href="#">Bitten</a></h4>
+                    <img src="https://image.tmdb.org/t/p/original/a98Kr3wdnSbK0RSvFh9pb3lfeu6.jpg" alt="post img" class="pull-left img-responsive ">
+
+                    <article>
+                        <p>
+                            When she left Stonehaven - 'for good this time' - Elena Michaels thought she had left the world of supernatural behind. Until
+                            the night she got a mysterious call from her pack leader asking...
+                        </p>
+                        <hr>
+                    </article>
+                </div>
+                <div class="col-md-12 movie-list">
+                    <h4><a href="#">Legends of Tomorrow</a></h4>
+                    <img src="https://image.tmdb.org/t/p/original/jw0txL021CLRFMlCzC0XcONw9fQ.jpg" alt="post img" class="pull-left img-responsive ">
+
+                    <article>
+                        <p>
+                            When heroes alone are not enough... the world needs legends. Having seen the future, Rip Hunter will desperately try to prevent
+                            certain events from happening, by time-traveling;...
+                        </p>
+                        <hr>
+                    </article>
+                </div>
+                <div class="col-md-12 movie-list">
+                    <h4><a href="#">Under the Dome</a></h4>
+                    <img src="https://image.tmdb.org/t/p/original/iFnCH70twxNDICQlDuCcoEt4Jma.jpg" alt="post img" class="pull-left img-responsive ">
+
+                    <article>
+                        <p>
+                            An invisible and mysterious force field descends upon a small actual town of Chester's Mill, Maine, USA, trapping residents
+                            inside, cut off from the rest of civilization...
+                        </p>
+                        <hr>
+                    </article>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-6">
+            <!-- List of Favorite Movies -->
+            <section id="userFavoriteList" class="movie-cast">
+                <h3><i class="fa fa-heart muted-icon"></i> Favorite Movies</h3>
+                <div class="col-md-12 movie-list">
+                    <h4><a href="#">Agent Carter</a></h4>
+                    <img src="https://image.tmdb.org/t/p/original/mQWBExOnHrGVsjkpWczJjo6bhZy.jpg" alt="post img" class="pull-left img-responsive ">
+
+                    <article>
+                        <p>
+                            The war is over and almost everyone has experienced a loss. Agent Peggy Carter has lost the love of her life. To top it off,
+                            when billionaire Howard Stark is accused of Treason...
+                        </p>
+                        <hr>
+                    </article>
+                </div>
+                <div class="col-md-12 movie-list">
+                    <h4><a href="#">Legends of Tomorrow</a></h4>
+                    <img src="https://image.tmdb.org/t/p/original/jw0txL021CLRFMlCzC0XcONw9fQ.jpg" alt="post img" class="pull-left img-responsive ">
+
+                    <article>
+                        <p>
+                            When heroes alone are not enough... the world needs legends. Having seen the future, Rip Hunter will desperately try to prevent
+                            certain events from happening, by time-traveling;...
+                        </p>
+                        <hr>
+                    </article>
+                </div>
+                <div class="col-md-12 movie-list">
+                    <h4><a href="#">Under the Dome</a></h4>
+                    <img src="https://image.tmdb.org/t/p/original/iFnCH70twxNDICQlDuCcoEt4Jma.jpg" alt="post img" class="pull-left img-responsive ">
+
+                    <article>
+                        <p>
+                            An invisible and mysterious force field descends upon a small actual town of Chester's Mill, Maine, USA, trapping residents
+                            inside, cut off from the rest of civilization...
+                        </p>
+                        <hr>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <!-- Edit Profile Form -->
+        <div class="row">
+            <section id="editProfileSection" class="movie-cast">
+                <div class="container">
+                    <h3>Edit Profile</h3>
+                    <br/>
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Username:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control" type="text" value="{{user.name}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Email:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control" type="text" value="tedi@mail.bg">
+                                    <!--{{user.email}}-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Password:</label>
+                                <div class="col-md-4">
+                                    <input class="form-control" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Confirm password:</label>
+                                <div class="col-md-4">
+                                    <input class="form-control" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"></label>
+                                <div class="col-md-4">
+                                    <div class="pull-right">
+                                        <input type="button" class="btn btn-movies-default" value="Save Changes">
+                                        <span></span>
+                                        <input type="reset" class="btn btn-movies-default" value="Reset">
+                                        <span></span>
+                                        <input type="button" ng-click="cancelEditProfile()" class="btn btn-default" value="Cancel">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+</div>
 </div>
