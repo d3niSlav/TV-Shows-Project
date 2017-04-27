@@ -8,7 +8,7 @@ angular.module('UsersCtrl', []).controller('UsersController', ['$scope', '$locat
         if (!$.isEmptyObject($scope.formData)) {
             Users.create($scope.formData).then(function() {
                 clearErrorsAndFields();
-                $location.path('/');
+                $location.path('/login');
             }).catch(function(e) {
                 $scope.errors = e.data.error;
                 $scope.errorClass = {
@@ -24,7 +24,10 @@ angular.module('UsersCtrl', []).controller('UsersController', ['$scope', '$locat
         if (!$.isEmptyObject($scope.formData)) {
             Users.logIn($scope.formData).then(function(data) {
                 clearErrorsAndFields();
-                $location.path('/');
+                Main.getLoggedUserId().then(function(res) {
+                    $scope.$parent.user.id = JSON.parse(res.data).userId;
+                    $location.path('/');
+                });
             }).catch(function(e) {
                 $scope.errors = e.data.error;
                 $scope.errorClass = {

@@ -1,12 +1,13 @@
-angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope', '$routeParams', 'SingleShow', function($scope, $routeParams, SingleShow) {
+angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope', '$sce', '$routeParams', 'SingleShow', function($scope, $sce, $routeParams, SingleShow) {
 
     $('#show-comments').hide();
     $('#show-trailer').hide();
 
     SingleShow.getShowData($routeParams.showId)
         .then(function(res) {
+            console.log(res.data);
             $scope.show = res.data;
-            $scope.currentSeason = res.data.seasons[res.data.seasons.length - 1];
+            $scope.trailerVideo = $sce.trustAsHtml('<iframe width="560" height="349" src=" ' + res.data.trailer + '" frameborder="0" allowfullscreen></iframe>');
         });
 
     $scope.showEpisodesClass = "";

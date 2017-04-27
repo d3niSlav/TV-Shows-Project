@@ -35,13 +35,6 @@ passport.use('local.signup', new LocalStrategy({
         newUser.save((err) => {
             return done(null, newUser);
         });
-
-        req.logIn(newUser, function(err) {
-            if (err) {
-                return done(err);
-            }
-            return done(null, newUser);
-        });
     });
 }));
 

@@ -4,10 +4,8 @@ angular.module('MainCtrl', []).controller('MainController', ['$scope', '$route',
     };
 
     Main.getLoggedUserId().then(function(res) {
-        $timeout(function() {
-            $scope.user.id = JSON.parse(res.data).userId;
-        }, 1000);
-        console.log(JSON.parse(res.data).userId);
+        $scope.user.id = JSON.parse(res.data).userId;
+        console.log($scope.user.id);
     });
 
     $scope.mobileButtonClick = function() {
