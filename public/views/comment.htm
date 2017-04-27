@@ -92,12 +92,12 @@
 
                     <div class="row" ng-repeat="comment in allComments">
                         <div class="comment-layout col-md-6 col-sm-8">
-                            <img ng-src="{{users.$index.profileImg}}">
-                            <span><a href="#">{{users.$index.name}}</a></span>
+                            <img ng-src="{{comment.user.profileImg}}">
+                            <span><a href="#">{{comment.user.name}}</a></span>
                             <span id="date"> {{comment.date}} </span>
                             <hr>
                             <p>{{comment.text}}</p>
-                           <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam excepturi unde vero ut quisquam
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam excepturi unde vero ut quisquam
                                 iste itaque dignissimos maxime nostrum voluptates et eaque harum accusantium, eos, incidunt
                                 eveniet debitis, omnis ad!</p>-->
                             <div class="d-inline-block stats">
