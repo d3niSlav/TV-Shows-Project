@@ -4,53 +4,53 @@ var User = require('./models/user');
 var Profile = require('./models/profile');
 var Comments = require('./models/comments');
 
-module.exports = function(app, passport) {
+module.exports = function (app, passport) {
 
     // server routes ===========================================================
-    app.get('/api/shows', function(req, res) {
+    app.get('/api/shows', function (req, res) {
         Show.
-        find().
-        sort('title').
-        exec(function(err, shows) {
-            if (err) {
-                res.send(err);
-            }
+            find().
+            sort('title').
+            exec(function (err, shows) {
+                if (err) {
+                    res.send(err);
+                }
 
-            res.json(shows);
-        });
+                res.json(shows);
+            });
     });
 
-    app.get('/api/shows/newest', function(req, res) {
+    app.get('/api/shows/newest', function (req, res) {
         Show.
-        find().
-        sort('-releasedDate').
-        exec(function(err, shows) {
-            if (err) {
-                res.send(err);
-            }
+            find().
+            sort('-releasedDate').
+            exec(function (err, shows) {
+                if (err) {
+                    res.send(err);
+                }
 
-            res.json(shows);
-        });
+                res.json(shows);
+            });
     });
 
-    app.get('/api/shows/top-ten-shows', function(req, res) {
+    app.get('/api/shows/top-ten-shows', function (req, res) {
         Show.
-        find().
-        sort('-imdbRating').
-        limit(10).
-        select('title imdbRating plot logo poster released').
-        exec(function(err, shows) {
-            if (err) {
-                res.send(err);
-            }
+            find().
+            sort('-imdbRating').
+            limit(10).
+            select('title imdbRating plot logo poster released').
+            exec(function (err, shows) {
+                if (err) {
+                    res.send(err);
+                }
 
-            res.json(shows);
-        });
+                res.json(shows);
+            });
     });
 
-    app.get('/api/show/:id', function(req, res) {
+    app.get('/api/show/:id', function (req, res) {
         Show.findOne({ "_id": req.params.id },
-            function(err, show) {
+            function (err, show) {
                 if (err) {
                     res.send(err);
                 }
@@ -60,8 +60,8 @@ module.exports = function(app, passport) {
         );
     });
 
-    app.get('/api/users', function(req, res) {
-        User.find(function(err, users) {
+    app.get('/api/users', function (req, res) {
+        User.find(function (err, users) {
             if (err) {
                 res.send(err);
             }
@@ -69,8 +69,8 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.get('/api/profiles', function(req, res) {
-        Profile.find(function(err, profiles) {
+    app.get('/api/profiles', function (req, res) {
+        Profile.find(function (err, profiles) {
             if (err) {
                 res.send(err);
             }
@@ -79,18 +79,18 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.get('/api/profile', function(req, res) {
-        Profile.findOne({ 'userId': "58f71dd06a8569285c8ba973" }, function(err, profiles) {
+    app.get('/api/profile/:id', function (req, res) {
+        Profile.findOne({ 'userId': req.params.id }, function (err, profile) {
             if (err) {
                 res.send(err);
             }
 
-            res.json(profiles);
+            res.json(profile);
         });
     });
 
-    app.post('/register', validateDataRegistration, function(req, res, next) {
-        passport.authenticate('local.signup', function(err, user, info) {
+    app.post('/register', validateDataRegistration, function (req, res, next) {
+        passport.authenticate('local.signup', function (err, user, info) {
             if (err) {
                 return next(err)
             }
@@ -106,21 +106,21 @@ module.exports = function(app, passport) {
             res.locals.user = user;
             return next();
         })(req, res, next);
-    }, function(req, res, next) {
+    }, function (req, res, next) {
 
         var userProfile = new Profile();
         userProfile.userId = res.locals.user._id;
         userProfile.name = res.locals.user.username;
 
-        userProfile.save((err) => {
+        userProfile.save(function (err) {
             return next(err);
         });
 
         return res.status(201).json({ message: 'User successfully created.' });
     });
 
-    app.post('/login', validateDataLogin, function(req, res, next) {
-        passport.authenticate('local.login', function(err, user, info) {
+    app.post('/login', validateDataLogin, function (req, res, next) {
+        passport.authenticate('local.login', function (err, user, info) {
             if (err) {
                 return next(err)
             }
@@ -144,8 +144,8 @@ module.exports = function(app, passport) {
         })(req, res, next);
     });
 
-    app.get('/api/comments', function(req, res) {
-        Comments.find(function(err, comments) {
+    app.get('/api/comments', function (req, res) {
+        Comments.find(function (err, comments) {
             if (err) {
                 res.send(err);
             }
@@ -153,7 +153,7 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.get('/api/logged', function(req, res) {
+    app.get('/api/logged', function (req, res) {
         var user = {
             userId: ""
         }
@@ -165,15 +165,15 @@ module.exports = function(app, passport) {
         res.json(JSON.stringify(user));
     });
 
-    app.get('/logout', function(req, res) {
+    app.get('/logout', function (req, res) {
         req.logout();
-        req.session.destroy((err) => {
+        req.session.destroy(function (err) {
             res.status(200).json({ message: 'Logout succes!' });
         });
     });
 
     // frontend routes =========================================================
-    app.get('*', function(req, res) {
+    app.get('*', function (req, res) {
         res.sendFile('index.html', { root: path.join(__dirname, '../public/views/') });
     });
 };
@@ -196,7 +196,7 @@ function validateDataRegistration(req, res, next) {
             confirmPassword: []
         }
 
-        errors.forEach((error) => {
+        errors.forEach(function (error) {
             switch (error.param) {
                 case 'email':
                     messages.email.push(error.msg);
@@ -228,7 +228,7 @@ function validateDataLogin(req, res, next) {
             password: ""
         }
 
-        errors.forEach((error) => {
+        errors.forEach(function (error) {
             switch (error.param) {
                 case 'email':
                     messages.email = error.msg;

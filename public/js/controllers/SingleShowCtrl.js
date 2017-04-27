@@ -5,8 +5,8 @@ angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope
 
     SingleShow.getShowData($routeParams.showId)
         .then(function(res) {
-            console.log(res.data);
             $scope.show = res.data;
+            $scope.currentSeason = res.data.seasons[res.data.seasons.length - 1];
             $scope.trailerVideo = $sce.trustAsHtml('<iframe width="560" height="349" src=" ' + res.data.trailer + '" frameborder="0" allowfullscreen></iframe>');
         });
 

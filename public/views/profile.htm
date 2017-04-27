@@ -109,16 +109,16 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <span class="text-muted">Email:</span> tedi@mail.bg<br>
+                                        <span class="text-muted">Email:</span> {{user.email}}<br>
                                         <span class="text-muted">Location:</span> Sofia, Bulgaria<br>
-                                        <small class="text-muted">Member since: 08.12.2015</small>
+                                        <small class="text-muted">Member since: {{user.date}}</small>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="activity-mini">
-                                            <i class="fa fa-eye text-muted" title="# Watched Movies" data-role="tooltip"></i>                                            38
+                                            <i class="fa fa-eye text-muted" title="# Watched Movies" data-role="tooltip"></i> {{user.watchList.length}}
                                         </div>
                                         <div class="activity-mini">
-                                            <i class="fa fa-heart text-muted" title="# Favorite Movies" data-role="tooltip"></i>                                            20
+                                            <i class="fa fa-heart text-muted" title="# Favorite Movies" data-role="tooltip"></i> {{user.favorites.length}}
                                         </div>
                                     </div>
                                 </div>
@@ -142,19 +142,17 @@
         <div class="col-md-6">
             <section id="userWatchedList" class="movie-cast">
                 <h3><i class="fa fa-eye muted-icon"></i> Watched Movies</h3>
-                <div class="col-md-12 movie-list">
-                    <h4><a href="#">Agent Carter</a></h4>
-                    <img src="https://image.tmdb.org/t/p/original/mQWBExOnHrGVsjkpWczJjo6bhZy.jpg" alt="post img" class="pull-left img-responsive ">
+
+                <div class="col-md-12 movie-list" ng-repeat="show in user.watchedShows">
+                    <h4><a href="/show/{{show._id}}">{{show.title}}</a></h4>
+                    <img ng-src="{{show.poster}}" alt="{{show.title}}" class="pull-left img-responsive ">
 
                     <article>
-                        <p>
-                            The war is over and almost everyone has experienced a loss. Agent Peggy Carter has lost the love of her life. To top it off,
-                            when billionaire Howard Stark is accused of Treason...
-                        </p>
+                        <p>{{show.plot}}</p>
                         <hr>
                     </article>
                 </div>
-                <div class="col-md-12 movie-list">
+               <!-- <div class="col-md-12 movie-list">
                     <h4><a href="#">Bitten</a></h4>
                     <img src="https://image.tmdb.org/t/p/original/a98Kr3wdnSbK0RSvFh9pb3lfeu6.jpg" alt="post img" class="pull-left img-responsive ">
 
@@ -189,26 +187,24 @@
                         </p>
                         <hr>
                     </article>
-                </div>
+                </div>-->
             </section>
         </div>
         <div class="col-md-6">
             <!-- List of Favorite Movies -->
             <section id="userFavoriteList" class="movie-cast">
                 <h3><i class="fa fa-heart muted-icon"></i> Favorite Movies</h3>
-                <div class="col-md-12 movie-list">
-                    <h4><a href="#">Agent Carter</a></h4>
-                    <img src="https://image.tmdb.org/t/p/original/mQWBExOnHrGVsjkpWczJjo6bhZy.jpg" alt="post img" class="pull-left img-responsive ">
+
+                <div class="col-md-12 movie-list" ng-repeat="show in user.favoriteShows">
+                    <h4><a href="/show/{{show._id}}">{{show.title}}</a></h4>
+                    <img ng-src="{{show.poster}}" alt="{{show.poster}}" class="pull-left img-responsive ">
 
                     <article>
-                        <p>
-                            The war is over and almost everyone has experienced a loss. Agent Peggy Carter has lost the love of her life. To top it off,
-                            when billionaire Howard Stark is accused of Treason...
-                        </p>
+                        <p>{{show.plot}}</p>
                         <hr>
                     </article>
                 </div>
-                <div class="col-md-12 movie-list">
+                <!--<div class="col-md-12 movie-list">
                     <h4><a href="#">Legends of Tomorrow</a></h4>
                     <img src="https://image.tmdb.org/t/p/original/jw0txL021CLRFMlCzC0XcONw9fQ.jpg" alt="post img" class="pull-left img-responsive ">
 
@@ -231,7 +227,7 @@
                         </p>
                         <hr>
                     </article>
-                </div>
+                </div>-->
             </section>
         </div>
 
