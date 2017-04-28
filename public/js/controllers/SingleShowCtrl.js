@@ -1,14 +1,21 @@
-angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope', '$sce', '$routeParams', 'SingleShow', function($scope, $sce, $routeParams, SingleShow) {
+angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope', '$location', '$sce', '$routeParams', 'SingleShow', 'Main', 'Profiles', function($scope, $location, $sce, $routeParams, SingleShow, Main, Profiles) {
 
     $('#show-comments').hide();
     $('#show-trailer').hide();
 
-    SingleShow.getShowData($routeParams.showId)
-        .then(function(res) {
-            $scope.show = res.data;
-            $scope.currentSeason = res.data.seasons[res.data.seasons.length - 1];
-            $scope.trailerVideo = $sce.trustAsHtml('<iframe width="560" height="349" src=" ' + res.data.trailer + '" frameborder="0" allowfullscreen></iframe>');
+    SingleShow.getShowData($routeParams.showId).then(function(res) {
+        $scope.show = res.data;
+        $scope.currentSeason = res.data.seasons[res.data.seasons.length - 1];
+        $scope.trailerVideo = $sce.trustAsHtml('<iframe width="560" height="349" src=" ' + res.data.trailer + '" frameborder="0" allowfullscreen></iframe>');
+
+        Main.getLoggedUserId().then(function(res) {
+            if (JSON.parse(res.data).userId) {
+                SingleShow.checkShowForTheUser(JSON.parse(res.data).userId, $routeParams.showId);
+            } else {
+                SingleShow.clearUserData();
+            }
         });
+    });
 
     $scope.showEpisodesClass = "";
     $scope.hideEpisodesClass = "hide";
@@ -35,8 +42,7 @@ angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope
         $('#show-seasons').show();
         $('#show-seasons').siblings().hide();
         $('#goToSeasonsInfo').addClass('active');
-        $('#goToComments').removeClass('active');
-        $('#goToTrailer').removeClass('active');
+        $('#goToSeasonsInfo').siblings().removeClass('active');
         $('html,body').animate({ scrollTop: $("#show-seasons").offset().top }, 'slow');
     }
 
@@ -44,8 +50,7 @@ angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope
         $('#show-comments').show();
         $('#show-comments').siblings().hide();
         $('#goToComments').addClass('active');
-        $('#goToSeasonsInfo').removeClass('active');
-        $('#goToTrailer').removeClass('active');
+        $('#goToComments').siblings().removeClass('active');
         $('html,body').animate({ scrollTop: $("#show-comments").offset().top }, 'slow');
     }
 
@@ -53,16 +58,29 @@ angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope
         $('#show-trailer').show();
         $('#show-trailer').siblings().hide();
         $('#goToTrailer').addClass('active');
-        $('#goToComments').removeClass('active');
-        $('#goToSeasonsInfo').removeClass('active');
+        $('#goToTrailer').siblings().removeClass('active');
         $('html,body').animate({ scrollTop: $("#show-trailer").offset().top }, 'slow');
     }
 
     $scope.addToFavorites = function() {
-        $('#favoritesBtn').toggleClass('active');
+        Main.getLoggedUserId().then(function(res) {
+            if (JSON.parse(res.data).userId) {
+                SingleShow.favoritesAction(JSON.parse(res.data).userId, $routeParams.showId)
+                $('#favoritesBtn').toggleClass('favorite');
+            } else {
+                $location.path('/login');
+            }
+        });
     }
 
     $scope.addToWatchlist = function() {
-        $('#watchlistBtn').toggleClass('active');
+        Main.getLoggedUserId().then(function(res) {
+            if (JSON.parse(res.data).userId) {
+                SingleShow.watchlistAction(JSON.parse(res.data).userId, $routeParams.showId)
+                $('#watchlistBtn').toggleClass('watched');
+            } else {
+                $location.path('/login');
+            }
+        });
     }
 }]);

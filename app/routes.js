@@ -4,53 +4,55 @@ var User = require('./models/user');
 var Profile = require('./models/profile');
 var Comments = require('./models/comments');
 
-module.exports = function (app, passport) {
+module.exports = function(app, passport) {
 
     // server routes ===========================================================
-    app.get('/api/shows', function (req, res) {
-        Show.
-            find().
-            sort('title').
-            exec(function (err, shows) {
-                if (err) {
-                    res.send(err);
-                }
 
-                res.json(shows);
-            });
+    /* SHOW Get all shows, Get newest shows, Get top 10 shows, Get single show */
+    app.get('/api/shows', function(req, res) {
+        Show.
+        find().
+        sort('title').
+        exec(function(err, shows) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(shows);
+        });
     });
 
-    app.get('/api/shows/newest', function (req, res) {
+    app.get('/api/shows/newest', function(req, res) {
         Show.
-            find().
-            sort('-releasedDate').
-            exec(function (err, shows) {
-                if (err) {
-                    res.send(err);
-                }
+        find().
+        sort('-releasedDate').
+        exec(function(err, shows) {
+            if (err) {
+                res.send(err);
+            }
 
-                res.json(shows);
-            });
+            res.json(shows);
+        });
     });
 
-    app.get('/api/shows/top-ten-shows', function (req, res) {
+    app.get('/api/shows/top-ten-shows', function(req, res) {
         Show.
-            find().
-            sort('-imdbRating').
-            limit(10).
-            select('title imdbRating plot logo poster released').
-            exec(function (err, shows) {
-                if (err) {
-                    res.send(err);
-                }
+        find().
+        sort('-imdbRating').
+        limit(10).
+        select('title imdbRating plot logo poster released').
+        exec(function(err, shows) {
+            if (err) {
+                res.send(err);
+            }
 
-                res.json(shows);
-            });
+            res.json(shows);
+        });
     });
 
-    app.get('/api/show/:id', function (req, res) {
+    app.get('/api/show/:id', function(req, res) {
         Show.findOne({ "_id": req.params.id },
-            function (err, show) {
+            function(err, show) {
                 if (err) {
                     res.send(err);
                 }
@@ -60,8 +62,10 @@ module.exports = function (app, passport) {
         );
     });
 
-    app.get('/api/users', function (req, res) {
-        User.find(function (err, users) {
+    /* USER Get all users */
+
+    app.get('/api/users', function(req, res) {
+        User.find(function(err, users) {
             if (err) {
                 res.send(err);
             }
@@ -69,8 +73,10 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.get('/api/profiles', function (req, res) {
-        Profile.find(function (err, profiles) {
+    /* USER PROFILES Get all profiles, Get profile by user ID, */
+
+    app.get('/api/profiles', function(req, res) {
+        Profile.find(function(err, profiles) {
             if (err) {
                 res.send(err);
             }
@@ -79,8 +85,8 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.get('/api/profile/:id', function (req, res) {
-        Profile.findOne({ 'userId': req.params.id }, function (err, profile) {
+    app.get('/api/profile/:id', function(req, res) {
+        Profile.findOne({ 'userId': req.params.id }, function(err, profile) {
             if (err) {
                 res.send(err);
             }
@@ -89,38 +95,56 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/register', validateDataRegistration, function (req, res, next) {
-        passport.authenticate('local.signup', function (err, user, info) {
-            if (err) {
-                return next(err)
-            }
+    /* SHOW Favorites / Watchlist */
 
-            if (!user) {
-                var messages = {
-                    email: ['This e-mail is already registered!'],
-                    password: [],
-                    confirmPassword: []
+    app.put('/api/profile/addToFavorites', function(req, res) {
+        Profile.update({ userId: req.body.userId }, { $push: { favorites: req.body.showId } },
+            function(err) {
+                if (err) {
+                    res.send(err);
                 }
-                return res.status(409).json({ error: messages });
-            }
-            res.locals.user = user;
-            return next();
-        })(req, res, next);
-    }, function (req, res, next) {
 
-        var userProfile = new Profile();
-        userProfile.userId = res.locals.user._id;
-        userProfile.name = res.locals.user.username;
-
-        userProfile.save(function (err) {
-            return next(err);
-        });
-
-        return res.status(201).json({ message: 'User successfully created.' });
+                res.status(200).json({ message: 'Show successfully added!' });
+            });
     });
 
-    app.post('/login', validateDataLogin, function (req, res, next) {
-        passport.authenticate('local.login', function (err, user, info) {
+    app.put('/api/profile/removeFromFavorites', function(req, res) {
+        Profile.update({ userId: req.body.userId }, { $pull: { favorites: req.body.showId } },
+            function(err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.status(200).json({ message: 'Show successfully removed!' });
+            });
+    });
+
+    app.put('/api/profile/addToWatchlist', function(req, res) {
+        Profile.update({ userId: req.body.userId }, { $push: { watchList: req.body.showId } },
+            function(err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.status(200).json({ message: 'Show successfully added!' });
+            });
+    });
+
+    app.put('/api/profile/removeFromWatchlist', function(req, res) {
+        Profile.update({ userId: req.body.userId }, { $pull: { watchList: req.body.showId } },
+            function(err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.status(200).json({ message: 'Show successfully removed!' });
+            });
+    });
+
+    /* USER Login, Get logged user, Logout and Registration */
+
+    app.post('/login', validateDataLogin, function(req, res, next) {
+        passport.authenticate('local.login', function(err, user, info) {
             if (err) {
                 return next(err)
             }
@@ -144,16 +168,8 @@ module.exports = function (app, passport) {
         })(req, res, next);
     });
 
-    app.get('/api/comments', function (req, res) {
-        Comments.find(function (err, comments) {
-            if (err) {
-                res.send(err);
-            }
-            res.json(comments);
-        });
-    });
 
-    app.get('/api/logged', function (req, res) {
+    app.get('/api/logged', function(req, res) {
         var user = {
             userId: ""
         }
@@ -165,15 +181,56 @@ module.exports = function (app, passport) {
         res.json(JSON.stringify(user));
     });
 
-    app.get('/logout', function (req, res) {
+    app.get('/logout', function(req, res) {
         req.logout();
-        req.session.destroy(function (err) {
+        req.session.destroy(function(err) {
             res.status(200).json({ message: 'Logout succes!' });
         });
     });
 
+    app.post('/register', validateDataRegistration, function(req, res, next) {
+        passport.authenticate('local.signup', function(err, user, info) {
+            if (err) {
+                return next(err)
+            }
+
+            if (!user) {
+                var messages = {
+                    email: ['This e-mail is already registered!'],
+                    password: [],
+                    confirmPassword: []
+                }
+                return res.status(409).json({ error: messages });
+            }
+            res.locals.user = user;
+            return next();
+        })(req, res, next);
+    }, function(req, res, next) {
+
+        var userProfile = new Profile();
+        userProfile.userId = res.locals.user._id;
+        userProfile.email = res.locals.user.email;
+        userProfile.name = res.locals.user.username;
+
+        userProfile.save(function(err) {
+            return next(err);
+        });
+
+        return res.status(201).json({ message: 'User successfully created.' });
+    });
+
+    /* COMMENTS Get all comments */
+    app.get('/api/comments', function(req, res) {
+        Comments.find(function(err, comments) {
+            if (err) {
+                res.send(err);
+            }
+            res.json(comments);
+        });
+    });
+
     // frontend routes =========================================================
-    app.get('*', function (req, res) {
+    app.get('*', function(req, res) {
         res.sendFile('index.html', { root: path.join(__dirname, '../public/views/') });
     });
 };
@@ -196,7 +253,7 @@ function validateDataRegistration(req, res, next) {
             confirmPassword: []
         }
 
-        errors.forEach(function (error) {
+        errors.forEach(function(error) {
             switch (error.param) {
                 case 'email':
                     messages.email.push(error.msg);
@@ -228,7 +285,7 @@ function validateDataLogin(req, res, next) {
             password: ""
         }
 
-        errors.forEach(function (error) {
+        errors.forEach(function(error) {
             switch (error.param) {
                 case 'email':
                     messages.email = error.msg;

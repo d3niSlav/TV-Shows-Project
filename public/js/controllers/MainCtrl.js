@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', ['$scope', '$route', '$timeout', 'Main', function($scope, $route, $timeout, Main) {
+angular.module('MainCtrl', []).controller('MainController', ['$scope', '$route', '$location', 'Main', 'SingleShow', function($scope, $route, $location, Main, SingleShow) {
     $scope.user = {
         id: ""
     };
@@ -17,14 +17,22 @@ angular.module('MainCtrl', []).controller('MainController', ['$scope', '$route',
     $('#logoutBtn').click(function() {
         Main.logoutUser().then(function(res) {
             $scope.user.id = "";
-            // userId = "";
+            SingleShow.clearUserData();
+
+            if ($location.path().includes('/profile')) {
+                $location.path('/');
+            }
         });
     });
 
     $('#mobileLogoutBtn').click(function() {
         Main.logoutUser().then(function(res) {
             $scope.user.id = "";
-            // userId = "";
+            SingleShow.clearUserData();
+
+            if ($location.path().includes('/profile')) {
+                $location.path('/');
+            }
         });
     });
 }]);

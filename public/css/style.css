@@ -1445,11 +1445,15 @@ section.movie-details .main-info ul.actions li.round-button {
     box-shadow: 0 0 3px gray;
 }
 
-section.movie-details .main-info ul.actions li.round-button.active {
+section.movie-details .main-info ul.actions li.round-button.active,
+section.movie-details .main-info ul.actions li.round-button.favorite,
+section.movie-details .main-info ul.actions li.round-button.watched {
     background: crimson;
 }
 
-section.movie-details .main-info ul.actions li.round-button.active:hover {
+section.movie-details .main-info ul.actions li.round-button.active:hover,
+section.movie-details .main-info ul.actions li.round-button.favorite:hover,
+section.movie-details .main-info ul.actions li.round-button.watched:hover {
     background: darkred;
 }
 
