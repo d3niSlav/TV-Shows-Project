@@ -2149,6 +2149,10 @@ section.movie-cast .actors li p.character {
     display: block;
 }
 
+.show-places ol li {
+    cursor: pointer;
+}
+
 @media (min-width: 640px) and (max-width: 992px) {
     .show-places ol {
         margin: 0;

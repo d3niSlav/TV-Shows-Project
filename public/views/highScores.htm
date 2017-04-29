@@ -6,7 +6,7 @@
         <div class="show-places">
             <img src="../images/winners.png">
             <ol>
-                <li class="show-place" ng-repeat="show in topThreeShows">
+                <li class="show-place" ng-repeat="show in topThreeShows" ng-click="changeShow($index)">
                     <img alt="#1" src="{{show.medal}}">
                     <div class="show-place-info">
                         <div class="show-place-logo">
@@ -19,31 +19,32 @@
                 </li>
             </ol>
         </div>
-        <div class="focus-movie">
+
+        <div class="focus-movie" ng-mouseover="pauseCarousel()" ng-mouseleave="startCarousel()">
             <section class="focus-details">
                 <div class="poster">
-                    <img alt="The 100" ng-src="{{topThreeShows[0].poster}}">
+                    <img alt="{{showOnFokus.title}}" ng-src="{{showOnFokus.poster}}">
                 </div>
                 <section class="main-info">
                     <div class="title">
                         <h2>
-                            <a ng-href="/show/{{topThreeShows[0]._id}}">{{topThreeShows[0].title}}</a>
+                            <a ng-href="/show/{{showOnFokus._id}}">{{showOnFokus.title}}</a>
                         </h2>
                     </div>
                     <div class="movie-info">
-                        <p>{{topThreeShows[0].plot}}</p>
+                        <p>{{showOnFokus.plot}}</p>
                     </div>
                     <div class="movie-score-medal">
-                        <img src="../images/gold-medal.png">
+                        <img src="{{showOnFokus.medalToken}}">
                     </div>
                     <div class="movie-score-container">
                         <div class="movie-score-info">
                             <h3>Score:</h3>
-                            <span class="movie-score-points">{{topThreeShows[0].imdbRating}}</span> out of
+                            <span class="movie-score-points">{{showOnFokus.imdbRating}}</span> out of
                             <span class="movie-score-max"> 10</span>
                         </div>
                         <div class="btn-container">
-                            <a ng-href="/show/{{topThreeShows[0]._id}}">View show</a>
+                            <a ng-href="/show/{{showOnFokus._id}}">View show</a>
                         </div>
                     </div>
                 </section>
