@@ -99,7 +99,49 @@
                 </section>
             </div>
         </div>
-        <div id="show-comments"></div>
+        <div id="show-comments">
+            <section id="comments-section" class="background">
+                <div class="info-container">
+                    <div>
+                        <h3 class="comments-title">Discuss</h3>
+                    </div>
+
+                    <div class="commentWrapper">
+                        <div class="col-xs-12">
+                            <form id="comment-input">
+                                <div class="form-group">
+                                    <label for="comment">Comment:</label>
+                                    <textarea class="form-control" rows="3" id="comment">Write your comment here...</textarea>
+                                    <button class="btn btn-default">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="comments-list">
+                            <div ng-repeat="comment in allComments | orderBy:comment.date">
+                                <div class="comment-layout col-sm-12">
+                                    <img ng-src="{{comment.user.profileImg}}">
+                                    <span><a href="#">{{comment.user.name}}</a></span>
+                                    <span id="date"> {{comment.datePosted}} </span>
+                                    <hr>
+                                    <p>{{comment.text}}</p>
+                                    <div class="d-inline-block stats">
+                                        <a href="#" class="btn stat-item" ng-click="addLike()">
+                                            <i class="glyphicon glyphicon-thumbs-up icon"></i>{{comment.likes}}
+                                        </a>
+                                    </div>
+                                    <div class="d-inline-block pull-right">
+                                        <a href="#" class="btn stat-item">
+                                            <i class="glyphicon glyphicon-comment icon"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
         <div id="show-trailer">
             <div class="trailer-video-container">
                 <div ng-bind-html="trailerVideo" class="videoWrapper"></div>

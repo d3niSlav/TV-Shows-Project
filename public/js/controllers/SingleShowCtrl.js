@@ -1,4 +1,4 @@
-angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope', '$location', '$sce', '$routeParams', 'SingleShow', 'Main', 'Profiles', function($scope, $location, $sce, $routeParams, SingleShow, Main, Profiles) {
+angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope', '$location', '$sce', '$routeParams', 'SingleShow', 'Main', 'Comments', 'Profiles', function($scope, $location, $sce, $routeParams, SingleShow, Main, Comments, Profiles) {
 
     $('#show-comments').hide();
     $('#show-trailer').hide();
@@ -15,6 +15,23 @@ angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope
                 SingleShow.clearUserData();
             }
         });
+    });
+
+    Comments.getComments().then(function(res) {
+        var comments = res.data;
+
+        function assignUserToComment(index, userId) {
+            Profiles.getUserProfile(userId).then(function(res) {
+                $scope.allComments[index].user = res.data;
+            });
+        }
+
+        for (var index = 0; index < comments.length; index++) {
+            comments[index].datePosted = new Date(comments[index].date).toUTCString().slice(4, 22);
+            assignUserToComment(index, comments[index].userId);
+        }
+
+        $scope.allComments = comments;
     });
 
     $scope.showEpisodesClass = "";

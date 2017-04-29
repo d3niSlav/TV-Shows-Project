@@ -1,6 +1,6 @@
 <style>
     .background {
-        background: radial-gradient(at 10% 30%, rgba(39, 74, 97, 0.9) 0%, rgba(197, 54, 26, 1) 100%), url(../images/moviesBackground.jpg) no-repeat top;
+        background: radial-gradient(at 10% 30%, rgba(39, 74, 97, 0.5) 0%, rgba(197, 54, 26, 0.7) 100%), url(http://orig09.deviantart.net/f693/f/2011/173/6/c/box_background_by_vampyra_drake-d3jot4j.png) repeat top;
         filter: 90%;
         background-size: cover;
     }
@@ -31,6 +31,11 @@
     
     .commentWrapper {
         margin: 0 auto;
+        max-width: 700px;
+    }
+    
+    .commentWrapper>div {
+        float: none;
     }
     
     .comment-layout {
@@ -40,6 +45,7 @@
         margin: 15px 0;
         border: 1px solid #888;
         border-radius: 3px;
+        float: none;
     }
     
     .comment-layout a {
@@ -69,18 +75,18 @@
     .comments-list {
         width: 100%;
         height: auto;
+        padding: 0 15px;
     }
 </style>
 
-<!-- Comments -->
 <section id="comments-section" class="background">
     <div class="info-container">
         <div>
             <h3 class="comments-title">Discuss</h3>
         </div>
-        <!-- write comment -->
+
         <div class="commentWrapper">
-            <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="col-xs-12">
                 <form id="comment-input">
                     <div class="form-group">
                         <label for="comment">Comment:</label>
@@ -89,10 +95,10 @@
                     </div>
                 </form>
             </div>
-            <!-- ng-repeat to display all comments -->
+
             <div class="comments-list">
                 <div ng-repeat="comment in allComments">
-                    <div class="comment-layout col-md-6 col-sm-8">
+                    <div class="comment-layout col-sm-12">
                         <img ng-src="{{comment.user.profileImg}}">
                         <span><a href="#">{{comment.user.name}}</a></span>
                         <span id="date"> {{comment.date}} </span>
