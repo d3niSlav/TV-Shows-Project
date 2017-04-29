@@ -755,10 +755,16 @@ a:focus {
 
 .movies-wrapper .movies-title {
     margin: 0 0 20px 0;
-    font-size: 12px;
+    font-size: 1.8em;
     font-weight: 500;
     text-transform: uppercase;
     color: #fff;
+    float: left;
+}
+
+.movies-wrapper hr {
+    display: block;
+    width: 100%;
 }
 
 .movies-wrapper .posters-container {

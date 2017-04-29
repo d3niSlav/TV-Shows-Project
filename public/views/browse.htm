@@ -1,20 +1,148 @@
+<style>
+    .category-item {
+        padding-left: 10%;
+    }
+    
+    .categories-list {
+        display: none;
+    }
+    
+    .checkbox label {
+        color: white;
+        font-size: 1.3em;
+        line-height: 1em;
+    }
+    
+    .checkbox.checkbox-circle label::before {
+        border-radius: 50%;
+    }
+    
+    .checkbox input[type="checkbox"] {
+        opacity: 0;
+    }
+    
+    .checkbox input[type="checkbox"]:checked+label::after {
+        font-family: 'FontAwesome';
+        content: "\f00c";
+    }
+    
+    .checkbox label::after {
+        display: inline-block;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        left: 0;
+        top: 0;
+        margin-left: -20px;
+        padding-left: 3px;
+        padding-top: 1px;
+        font-size: 11px;
+        color: #555555;
+    }
+    
+    .checkbox label::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        left: 0;
+        margin-left: -20px;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        background-color: #fff;
+        -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+        -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+        transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    }
+    
+    .sort-menu ul {
+        float: right;
+        margin: 0 auto;
+        color: darkgrey;
+    }
+    
+    @media (max-width: 767px) {
+        .sort-menu ul,
+        .movies-wrapper .movies-title {
+            display: block;
+            width: 100%;
+            text-align: center;
+            float: none;
+        }
+    }
+    
+    .sort-menu ul li {
+        display: inline-block;
+        padding: 3px 10px;
+        cursor: pointer;
+    }
+    
+    .sort-menu ul li.active {
+        border: 2px solid darkgrey;
+        border-radius: 10px;
+    }
+    
+    .sort-menu ul li:hover,
+    .sort-menu ul li.active,
+    .sort-menu ul li.show-categories-btn.open {
+        border-color: white;
+        color: white;
+    }
+</style>
+
 <section id="all-movies">
     <div class="movies-wrapper">
         <h4 class="movies-title">All tv shows</h4>
+        <div class="sort-menu">
+            <ul>
+                <li ng-click="orderByTitleAsc()" class="order-by-title-asc active" title="Sort by title A-Z">
+                    <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                </li>
+                <li ng-click="orderByTitleDesc()" class="order-by-title-desc" title="Sort by title Z-A">
+                    <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+                </li>
+                <li ng-click="orderByRating()" class="order-by-rating" title="Sort by rating">
+                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                </li>
+                <li ng-click="orderByDate()" class="order-by-date" title="Sort by newest first">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </li>
+                <li ng-click="switchCategories()" class="show-categories-btn" title="Choose categories">
+                    <span class="open-categories"> Categories <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                    <span class="close-categories hide"> Categories <i class="fa fa-chevron-up" aria-hidden="true"></i></span>
+                </li>
+            </ul>
+        </div>
         <hr>
+        <div class="categories-list">
+            <div class="row text-sm-left ">
+                <div>
+                    <ul class="marked-list wow fadeInLeft  animated">
+                        <li class="col-sm-3 col-xs-6 category-item" ng-repeat="category in categoriesArray">
+                            <div class="checkbox checkbox-circle">
+                                <input type="checkbox" id="{{category.name.toLowerCase()}}" ng-model="category.on">
+                                <label for="{{category.name.toLowerCase()}}">{{category.name}}</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
         <div class="posters-container row">
-            <div class="cleared-col movie-data  col-md-3 col-sm-4 col-xs-6" ng-repeat="show in shows" id='{{show._id}}'>
-                <div class="movie-poster">
-                    <a ng-href="/show/{{show._id}}">
-                        <img ng-src="{{show.poster}}">
+            <div class="cleared-col movie-data  col-md-3 col-sm-4 col-xs-6" id="show{{show._id}}" ng-repeat="show in shows | filter:categoryFilter | orderBy: orderCriteria" id='{{show._id}}'>
+                <div class=" movie-poster ">
+                    <a ng-href="/show/{{show._id}} ">
+                        <img ng-src="{{show.poster}} ">
                     </a>
                 </div>
-                <div class="movie-information">
+                <div class="movie-information ">
                     <h3>{{show.title}}</h3>
                     <p>
                         <span>Year: {{show.year}}</span>
                     </p>
-                    <a class="movie-info-button" ng-href="/show/{{show._id}}">More info</a>
+                    <a class="movie-info-button " ng-href="/show/{{show._id}} ">More info</a>
                 </div>
             </div>
         </div>
