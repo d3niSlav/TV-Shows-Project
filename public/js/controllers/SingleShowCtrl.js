@@ -17,22 +17,41 @@ angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope
         });
     });
 
-    Comments.getComments().then(function(res) {
+    Comments.getComments($routeParams.showId).then(function(res) {
         var comments = res.data;
-
-        function assignUserToComment(index, userId) {
-            Profiles.getUserProfile(userId).then(function(res) {
-                $scope.allComments[index].user = res.data;
-            });
-        }
 
         for (var index = 0; index < comments.length; index++) {
             comments[index].datePosted = new Date(comments[index].date).toUTCString().slice(4, 22);
             assignUserToComment(index, comments[index].userId);
         }
 
+        Main.getLoggedUserId().then(function(res) {
+            var userId = JSON.parse(res.data).userId;
+            if (userId) {
+                for (var index = 0; index < comments.length; index++) {
+                    loadLikeButton(comments[index], userId);
+                }
+            }
+        });
+
         $scope.allComments = comments;
     });
+
+    function assignUserToComment(index, userId) {
+        Profiles.getUserProfile(userId).then(function(res) {
+            $scope.allComments[index].user = res.data;
+        });
+    }
+
+    function loadLikeButton(comment, userId) {
+        if (comment.likes.includes(userId)) {
+            $('#' + comment._id + '-full').show();
+            $('#' + comment._id + '-empty').hide();
+        } else {
+            $('#' + comment._id + '-full').hide();
+            $('#' + comment._id + '-empty').show();
+        }
+    }
 
     $scope.showEpisodesClass = "";
     $scope.hideEpisodesClass = "hide";
@@ -82,7 +101,7 @@ angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope
     $scope.addToFavorites = function() {
         Main.getLoggedUserId().then(function(res) {
             if (JSON.parse(res.data).userId) {
-                SingleShow.favoritesAction(JSON.parse(res.data).userId, $routeParams.showId)
+                SingleShow.favoritesAction(JSON.parse(res.data).userId, $routeParams.showId);
                 $('#favoritesBtn').toggleClass('favorite');
             } else {
                 $location.path('/login');
@@ -93,8 +112,59 @@ angular.module('SingleShowCtrl', []).controller('SingleShowController', ['$scope
     $scope.addToWatchlist = function() {
         Main.getLoggedUserId().then(function(res) {
             if (JSON.parse(res.data).userId) {
-                SingleShow.watchlistAction(JSON.parse(res.data).userId, $routeParams.showId)
+                SingleShow.watchlistAction(JSON.parse(res.data).userId, $routeParams.showId);
                 $('#watchlistBtn').toggleClass('watched');
+            } else {
+                $location.path('/login');
+            }
+        });
+    }
+
+    $scope.addComment = function(commentId) {
+        Main.getLoggedUserId().then(function(res) {
+            var userId = JSON.parse(res.data).userId;
+
+            var text = $('textarea#comment').val();
+            if (text.trim()) {
+                if (userId) {
+                    Comments.addComment(userId, $routeParams.showId, text).then(function(res) {
+                        $scope.allComments.unshift(res.data);
+                        $scope.allComments[0].datePosted = new Date($scope.allComments[0].date).toUTCString().slice(4, 22);
+                        $('textarea#comment').val('');
+                        assignUserToComment(0, userId);
+                    });
+                } else {
+                    $location.path('/login');
+                }
+            }
+        });
+    }
+
+    $scope.likeAction = function(comment) {
+        Main.getLoggedUserId().then(function(res) {
+            var userId = JSON.parse(res.data).userId;
+            if (userId) {
+                if (comment.likes.includes(userId)) {
+                    Comments.removeLikeAction(userId, comment._id).then(
+                        function(res) {
+                            if (res.data == 'likeRemoved') {
+                                console.log("Stana R");
+                                comment.likes.splice(comment.likes.indexOf(userId), 1);
+                                $('#' + comment._id + '-full').hide(500);
+                                $('#' + comment._id + '-empty').show(500);
+                            }
+                        });
+                } else {
+                    Comments.addLikeAction(userId, comment._id).then(
+                        function(res) {
+                            if (res.data == 'likeAdded') {
+                                console.log("Stana A");
+                                comment.likes.push(userId);
+                                $('#' + comment._id + '-full').show(500);
+                                $('#' + comment._id + '-empty').hide(500);
+                            }
+                        });
+                }
             } else {
                 $location.path('/login');
             }

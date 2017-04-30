@@ -108,17 +108,17 @@
 
                     <div class="commentWrapper">
                         <div class="col-xs-12">
-                            <form id="comment-input">
+                            <form id="comment-input" method="POST">
                                 <div class="form-group">
                                     <label for="comment">Comment:</label>
-                                    <textarea class="form-control" rows="3" id="comment">Write your comment here...</textarea>
-                                    <button class="btn btn-default">Submit</button>
+                                    <textarea class="form-control" rows="3" id="comment" placeholder="Write your comment here..."></textarea>
+                                    <button class="btn btn-default" ng-click="addComment()">Submit</button>
                                 </div>
                             </form>
                         </div>
 
                         <div class="comments-list">
-                            <div ng-repeat="comment in allComments | orderBy:comment.date">
+                            <div ng-repeat="comment in allComments">
                                 <div class="comment-layout col-sm-12">
                                     <img ng-src="{{comment.user.profileImg}}">
                                     <span><a href="#">{{comment.user.name}}</a></span>
@@ -126,8 +126,9 @@
                                     <hr>
                                     <p>{{comment.text}}</p>
                                     <div class="d-inline-block stats">
-                                        <a href="#" class="btn stat-item" ng-click="addLike()">
-                                            <i class="glyphicon glyphicon-thumbs-up icon"></i>{{comment.likes}}
+                                        <a href="#" class="btn stat-item" ng-click="likeAction(comment)">
+                                            <i id="{{comment._id}}-empty" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                            <i id="{{comment._id}}-full" class="fa fa-thumbs-up" aria-hidden="true"></i> {{comment.likes.length}}
                                         </a>
                                     </div>
                                     <div class="d-inline-block pull-right">
@@ -136,6 +137,9 @@
                                         </a>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="no-comments" ng-if="!allComments.length">
+                                <span>There are no discussions about this tv show yet. Be the first and leave a comment.</span>
                             </div>
                         </div>
                     </div>

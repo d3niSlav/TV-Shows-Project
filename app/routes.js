@@ -229,6 +229,67 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/api/comment/:id', function(req, res) {
+        Comments.findById(req.params.id, function(err, comment) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(comment);
+        });
+    });
+
+    app.get('/api/comments/:showId', function(req, res) {
+        Comments
+            .find({ "showId": req.params.showId })
+            .sort('-date')
+            .exec(function(err, comments) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(comments);
+            });
+    });
+
+    app.post('/api/comments', function(req, res) {
+
+        var newComment = new Comments();
+        newComment.userId = req.body.userId;
+        newComment.showId = req.body.showId;
+        newComment.text = req.body.text;
+
+        newComment.save(function(err) {
+            if (err) {
+                res.send(err);
+            }
+
+            return res.status(200).json(newComment);
+        });
+    });
+
+    app.put('/api/comments/addLike', function(req, res) {
+        Comments.findByIdAndUpdate(req.body.commentId, { $push: { likes: req.body.userId } },
+            function(err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.status(200).json('likeAdded');
+            });
+    });
+
+    app.put('/api/comments/removeLike', function(req, res) {
+        Comments.findByIdAndUpdate(req.body.commentId, { $pull: { likes: req.body.userId } },
+            function(err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.status(200).json('likeRemoved');
+            });
+    });
+
     // frontend routes =========================================================
     app.get('*', function(req, res) {
         res.sendFile('index.html', { root: path.join(__dirname, '../public/views/') });
