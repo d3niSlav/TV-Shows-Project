@@ -145,6 +145,9 @@
                     <a class="movie-info-button " ng-href="/show/{{show._id}} ">More info</a>
                 </div>
             </div>
+            <div class="no-results" ng-if="!(shows | filter:categoryFilter).length">
+                <span>There are no TV-shows from the selected categories. Choose something else.</span>
+            </div>
         </div>
     </div>
 </section>

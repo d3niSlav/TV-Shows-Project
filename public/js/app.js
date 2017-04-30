@@ -9,5 +9,6 @@ angular.module('tvShowsApp', [
     'SingleShowCtrl', 'SingleShowService',
     'RankingCtrl', 'RankingService',
     'NewestShowsCtrl',
+    'SearchCtrl',
     'ScheduleCtrl'
 ]);

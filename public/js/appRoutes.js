@@ -44,6 +44,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         .when('/comment', {
             templateUrl: 'views/comment.htm',
             controller: 'CommentsController'
+        }).when('/search', {
+            templateUrl: 'views/search.htm',
+            controller: 'SearchController'
         });
     $locationProvider.html5Mode(true);
 }]);

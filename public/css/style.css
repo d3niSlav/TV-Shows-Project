@@ -2920,13 +2920,122 @@ img {
     padding: 0 15px;
 }
 
-.no-comments {
-    border-top: 1px solid #888;
+.no-results {
     text-align: center;
-    color: lightsteelblue;
+    color: #eee;
     font-size: 1em;
 }
 
+.comments-list .no-results {
+    border-top: 1px solid #eee;
+}
+
 .fa.fa-thumbs-up {
+    display: none;
+}
+
+
+/*
+* @page Search
+*/
+
+.search-bar {
+    padding-top: 30px;
+}
+
+.search-result {
+    padding: 30px 0;
+}
+
+
+/*
+* @page Profile page
+*/
+
+#profile-body {
+    background: radial-gradient(at 10% 30%, rgba(16, 63, 63, 0.9) 0%, rgba(139, 0, 0, 0.8) 100%), url(../images/film-reel-desktop-background-filmreel1.jpg) no-repeat top;
+    filter: 90%;
+    background-size: cover;
+    color: #fff;
+}
+
+#user-info {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: rgba(100, 100, 100, 0.3);
+    color: #ccc;
+    border-radius: 5px;
+}
+
+#user-title {
+    color: #fff;
+    margin-top: 0px;
+}
+
+img.avatar {
+    border: 1px solid #333;
+    width: 110px;
+    display: block;
+    margin: auto;
+}
+
+.activity-mini {
+    padding-right: 15px;
+    float: left;
+}
+
+.btn-movies {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    transition: linear .1s;
+    background-color: white;
+    border-color: white;
+    color: #302621;
+    font-weight: 600;
+    padding: 6px 10px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.btn-movies-default {
+    background-color: darkred;
+    color: #fff;
+    border: 1px solid darkred;
+}
+
+.muted-icon {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.movie-list {
+    margin-top: 10px;
+    text-align: justify;
+    font-size: 0.8em;
+}
+
+.movie-list img {
+    width: 60px;
+    float: left;
+    padding-right: 10px;
+}
+
+.movie-list h4,
+a {
+    display: inline;
+    text-align: left;
+}
+
+.movie-list p {
+    color: #aaa;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 0px 0px 20px;
+    overflow: hidden;
+    height: 55px;
+}
+
+#editProfileSection {
     display: none;
 }
