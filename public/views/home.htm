@@ -2,3 +2,24 @@
     <img class="hello-image main-image" src="./images/welcomeImage.jpg" alt=" ">
     <img class="hello-image main-image-mobile" src="./images/welcomeMobile.jpg" alt=" ">
 </div>
+
+<section id="slick-content" ng-controller="CarouselController">
+    <div class="slider">
+        <div ng-repeat="show in shows">
+            <div class="poster-slide">
+                <a href="/show/{{show._id}}">
+                    <img src="{{show.poster}}">
+                </a>
+                <div class="poster-content">
+                    <h3>{{show.title}}</h3>
+                    <div class="information">
+                        <p data-reactid="365">
+                            <span class="u-separator">{{show.released}}</span>
+                        </p>
+                    </div>
+                    <a class="btn btn-primary" href="/show/{{show._id}}">More info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

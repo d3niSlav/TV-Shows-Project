@@ -20,9 +20,9 @@ angular.module('AllShowsCtrl', []).controller('AllShowsController', ['$scope', '
 
             if (selectedCategories.length) {
                 for (category in $scope.categoriesArray) {
-                    var t = $scope.categoriesArray[category];
-                    if (t.on) {
-                        if (a.genre.indexOf(t.name) < 0) {
+                    var genre = $scope.categoriesArray[category];
+                    if (genre.on) {
+                        if (a.genre.indexOf(genre.name) < 0) {
                             return false;
                         }
                     }

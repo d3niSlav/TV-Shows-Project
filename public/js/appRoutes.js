@@ -41,9 +41,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             templateUrl: 'views/profile.htm',
             controller: 'ProfilesController'
         })
-        .when('/comment', {
-            templateUrl: 'views/comment.htm',
-            controller: 'CommentsController'
+        .when('/contacts', {
+            templateUrl: 'views/contactUs.htm',
+            controller: 'ContactUsController'
         }).when('/search', {
             templateUrl: 'views/search.htm',
             controller: 'SearchController'

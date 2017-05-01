@@ -14,11 +14,17 @@
     <link href="./libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="./css/style.css" rel="stylesheet" type="text/css">
 
+
     <!-- JS -->
-    <script src="./libs/angular/angular.min.js"></script>
-    <script src="./libs/angular-route/angular-route.min.js"></script>
-    <script src="./libs/jquery/dist/jquery.min.js"></script>
-    <script src="./libs/bootstrap/js/dropdown.js"></script>
+    <script type="text/javascript" src="./libs/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./libs/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="./libs/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="./libs/bootstrap/js/dropdown.js"></script>
+
+    <!-- SLICK -->
+    <link href="./libs/slick-carousel/slick/slick.css" rel="stylesheet" type="text/css">
+    <link href="./libs/slick-carousel/slick/slick-theme.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./libs/slick-carousel/slick/slick.min.js"></script>
 
     <!-- ANGULAR CUSTOM -->
     <script src="./js/controllers/MainCtrl.js"></script>
@@ -34,10 +40,13 @@
     <script src="./js/controllers/NewestShowsCtrl.js"></script>
     <script src="./js/controllers/SingleShowCtrl.js"></script>
     <script src="./js/services/SingleShowService.js"></script>
+    <script src="./js/controllers/ContactUsCtrl.js"></script>
+    <script src="./js/services/ContactUsService.js"></script>
     <script src="./js/controllers/RankingCtrl.js"></script>
     <script src="./js/services/RankingService.js"></script>
     <script src="./js/controllers/SearchCtrl.js"></script>
     <script src="./js/controllers/ScheduleCtrl.js"></script>
+    <script src="./js/controllers/CarouselCtrl.js"></script>
     <script src="./js/appRoutes.js"></script>
     <script src="./js/app.js"></script>
 </head>
@@ -76,7 +85,7 @@
                                         <a title="Request a show" href="#">Request a Show</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a title="Contact us" href="#">Contact us</a>
+                                        <a title="Contact us" href="/contacts">Contact us</a>
                                     </li>
                                 </ul>
                             </div>
@@ -189,7 +198,7 @@
                                 <a href="#" ng-click="mobileButtonClick()">Request a Show</a>
                             </li>
                             <li>
-                                <a href="#" ng-click="mobileButtonClick()">Contact us</a>
+                                <a href="/contacts" ng-click="mobileButtonClick()">Contact us</a>
                             </li>
                         </ul>
                     </nav>

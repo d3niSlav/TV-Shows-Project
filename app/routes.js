@@ -3,6 +3,7 @@ var Show = require('./models/show');
 var User = require('./models/user');
 var Profile = require('./models/profile');
 var Comments = require('./models/comments');
+var Messages = require('./models/messages');
 
 module.exports = function(app, passport) {
 
@@ -288,6 +289,23 @@ module.exports = function(app, passport) {
 
                 res.status(200).json('likeRemoved');
             });
+    });
+
+    /* Messages */
+    app.post('/api/messages', function(req, res) {
+
+        var newMessage = new Messages();
+        newMessage.name = req.body.name;
+        newMessage.email = req.body.email;
+        newMessage.message = req.body.message;
+
+        newMessage.save(function(err) {
+            if (err) {
+                res.send(err);
+            }
+
+            return res.status(200).json(newMessage);
+        });
     });
 
     // frontend routes =========================================================

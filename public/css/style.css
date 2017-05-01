@@ -1382,6 +1382,7 @@ section.movie-details .main-info .title h2 span {
 @media (max-width: 768px) {
     section.movie-details .main-info .title h2 span {
         display: block;
+        text-align: center;
     }
     section.movie-details .main-info .title h2 {
         white-space: nowrap;
@@ -3038,4 +3039,267 @@ a {
 
 #editProfileSection {
     display: none;
+}
+
+
+/*
+* @section Main page carousel
+*/
+
+.poster-slide {
+    text-align: center;
+}
+
+.poster-content {
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.poster-content h3 {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -.03em;
+    color: whitesmoke;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.poster-content .information {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.poster-content p {
+    color: #eef;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0 0 1em;
+    line-height: 1.75em;
+}
+
+#slick-content {
+    background: linear-gradient(to bottom, rgba(12, 12, 12, 0.7) 0%, rgba(20, 20, 20, 0.7) 100%), url(https://cdn.shutterstock.com/shutterstock/videos/20866684/thumb/1.jpg) no-repeat 0 0;
+    background-size: cover;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.slick-center .slide-h3 {
+    color: #FFF;
+}
+
+.slider {
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.slide-h3 {
+    margin: 10% 0 10% 0;
+    padding: 40% 20%;
+    background: #008ed6;
+}
+
+.slider div {
+    margin-right: 5px;
+}
+
+.slick-slide {
+    opacity: .6;
+    padding-top: 25px;
+}
+
+.slick-current {
+    padding: 0;
+}
+
+.slider .btn-primary:hover {
+    color: #fff;
+    background-color: darkred;
+    border-color: darkred;
+}
+
+.slider .btn-primary {
+    color: #fff;
+    background-color: firebrick;
+    border-color: firebrick;
+}
+
+@media (max-width: 480px),
+(min-width: 800px) {
+    .slick-current h3 {
+        font-size: 25px;
+    }
+    .slick-current p {
+        font-size: 20px;
+    }
+    .slick-current .poster-content a {
+        padding: 10px 35px;
+    }
+}
+
+.slick-center {
+    display: block;
+    max-width: 10% !important;
+    max-height: 20% !important;
+    opacity: 1;
+}
+
+
+/*
+* @page Contact us page
+*/
+
+.contact-us-wrapper {
+    padding-top: 70px;
+    padding-bottom: 30px;
+    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(https://www.walldevil.com/wallpapers/a87/wallpapers-desktop-red-abstract-wallpaper-backgrounds-black-computer-digital-graphic.jpg) no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.form-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-width: 300px;
+}
+
+@media (min-width: 768px) {
+    .form-container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .form-container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .form-container {
+        width: 1200px;
+    }
+}
+
+.form-container h2 {
+    font-size: 50px;
+    line-height: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.form-inputs {
+    margin: 0 auto;
+}
+
+.mail-form {
+    position: relative;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+}
+
+.form-column {
+    min-height: 1px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    padding-right: 15px;
+}
+
+@media (min-width: 992px) {
+    .form-column {
+        width: 50%;
+        float: left;
+    }
+}
+
+.form-column-big {
+    margin-top: 30px;
+    min-height: 1px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    padding-right: 15px;
+}
+
+input {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+input:first-child {
+    margin-top: 0;
+}
+
+@media (max-width: 1365px) {
+    .mailform input {
+        margin-top: 30px;
+    }
+}
+
+@media (min-width: 768px) {
+    .mailform {
+        margin-top: 48px;
+    }
+}
+
+input,
+textarea {
+    display: block;
+    font-size: 16px;
+    padding: 15px 20px 15px 10px;
+    line-height: 22px;
+    color: lightgray;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #31383a;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 992px) {
+    textarea {
+        padding-top: 88px;
+    }
+}
+
+.form-controlls {
+    margin-top: 35px;
+    word-spacing: 10px;
+    text-align: center;
+}
+
+.btn-send-mail {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    padding: 20px 0px;
+    font-size: 16px;
+    line-height: 1;
+    border: 1px solid white;
+    border-radius: 40px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 190px;
+    background: none;
+    color: white;
+}
+
+.btn-send-mail:hover {
+    color: #fff;
+    background: darkred;
+    border-color: darkred;
 }
