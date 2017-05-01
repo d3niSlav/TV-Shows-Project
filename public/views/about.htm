@@ -1,0 +1,170 @@
+<style>
+    .header-image {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: url('images/tv-shows-imgs-1900.jpg') no-repeat center center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+    }
+    
+    .headline {
+        padding: 120px 0;
+    }
+    
+    .headline h1 {
+        font-size: 130px;
+        background: rgba(139, 0, 0, 0.8);
+        color: #fff;
+    }
+    
+    .section-title {
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        margin: 80px 0 40px 0;
+    }
+    
+    .slide-divider {
+        margin: 60px 0;
+        border-color: #777;
+    }
+    
+    .slide {
+        overflow: hidden;
+    }
+    
+    .slide-image.pull-left {
+        margin-right: 40px;
+    }
+    
+    .slide-image.pull-right {
+        margin-left: 40px;
+    }
+    
+    .slide-heading {
+        font-size: 50px;
+    }
+    
+    .slide-image {
+        width: 200px;
+    }
+    
+    @media(max-width:1200px) {
+        .headline h1 {
+            font-size: 140px;
+        }
+        .slide-divider {
+            margin: 40px 0;
+        }
+        .slide-image.pull-left {
+            margin-right: 20px;
+        }
+        .slide-image.pull-right {
+            margin-left: 20px;
+        }
+        .slide-heading {
+            font-size: 35px;
+        }
+    }
+    
+    @media(max-width:991px) {
+        .headline h1 {
+            font-size: 105px;
+        }
+        .slide-divider {
+            margin: 20px 0;
+        }
+        .slide-image {
+            max-width: 50%;
+        }
+        .slide-image.pull-left {
+            margin-right: 10px;
+        }
+        .slide-image.pull-right {
+            margin-left: 10px;
+        }
+        .slide-heading {
+            font-size: 30px;
+        }
+    }
+    
+    @media(max-width:768px) {
+        .container {
+            margin: 0 15px;
+        }
+        .slide-divider {
+            margin: 30px 0;
+        }
+        .slide-heading {
+            font-size: 25px;
+        }
+    }
+    
+    @media(max-width:668px) {
+        .headline h1 {
+            font-size: 70px;
+        }
+        .slide-divider {
+            margin: 20px 0;
+        }
+    }
+    
+    @media(max-width:640px) {
+        .headline {
+            padding: 75px 0 25px 0;
+        }
+        .headline h1 {
+            font-size: 60px;
+        }
+    }
+    
+    @media(max-width:375px) {
+        .slide-divider {
+            margin: 10px 0;
+        }
+        .slide-image {
+            max-width: 80%;
+        }
+        .slide-image.pull-left {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+        .slide-image.pull-right {
+            margin-bottom: 10px;
+            margin-left: 0;
+        }
+    }
+</style>
+
+<header class="header-image">
+    <div class="headline">
+        <div class="container">
+            <h1>TV Shows Project</h1>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <h2 class="slide-heading section-title">About us</h2>
+
+    <div class="slide" id="about-deni">
+        <img class="slide-image img-circle img-responsive pull-left" src="images/default-user.png">
+        <h2 class="slide-heading text-muted">Denislav Enchev</h2>
+        <p class="lead">Few words about me here. 
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur fugit atque, tempora
+            error aperiam, cum quia quasi eius eligendi architecto quas ipsam consectetur esse, repellendus placeat maxime
+            at quos ab.</p>
+    </div>
+
+    <hr class="slide-divider">
+
+    <div class="slide" id="about-tedi">
+        <img class="slide-image img-circle img-responsive pull-right" src="images/default-user.png">
+        <h2 class="slide-heading text-muted">Teodora Nikolova</h2>
+        <p class="lead">Few words about me here. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur fugit atque, tempora
+            error aperiam, cum quia quasi eius eligendi architecto quas ipsam consectetur esse, repellendus placeat maxime
+            at quos ab.</p>
+    </div>
+</div>

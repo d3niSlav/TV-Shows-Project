@@ -47,6 +47,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         }).when('/search', {
             templateUrl: 'views/search.htm',
             controller: 'SearchController'
+        })
+         .when('/about', {
+            templateUrl: 'views/about.htm'
         });
     $locationProvider.html5Mode(true);
 }]);
