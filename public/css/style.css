@@ -1379,7 +1379,7 @@ section.movie-details .main-info .title h2 span {
     font-weight: 400;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     section.movie-details .main-info .title h2 span {
         display: block;
         text-align: center;
@@ -2946,6 +2946,10 @@ img {
 
 .search-result {
     padding: 30px 0;
+}
+
+.form-control {
+    margin: 0;
 }
 
 
