@@ -1,0 +1,77 @@
+.newest-top-section {
+    background: $color-light-black;
+
+    .newest-top-container {
+        margin-top: 50px;
+    }
+
+    .show-poster {
+        text-align: center;
+
+        .poster-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+            @include transition-duration(0.3s);
+        }
+    }
+
+    .show-numbers {
+        position: relative;
+            bottom: 20px;
+        margin: 0 auto;
+        text-align: center;
+
+        &:before {
+            content: "";
+            position: absolute;
+                top: -60px;
+                left: 0;
+                right: 0;
+                bottom: -20px;
+                z-index: 0;
+            @include box-shadow(true, 0, -58px, 21px, 0, rgba($color-black, 0.7));
+        }
+    }
+
+    .newest-top-single-show {
+        margin-bottom: 45px;
+    }
+
+    .show-title {
+        margin: 20px 0;
+        @include font-source-sans($font-24, $color-white, bold, $font-28);
+
+        @media (min-width: $break-point-medium) {
+            margin-top: 0;
+        }
+    }
+
+    .show-release-date {
+        display: block;
+        margin-top: 15px;
+        color: $color-coral;
+    }
+
+    .show-plot {
+        @include multi-line-ellipsis($font-20, 7);
+        @include font-source-sans($font-16, $color-light-gray, 300, $font-20);
+        overflow: hidden;
+        margin: 0 0 20px;
+        text-overflow: ellipsis;
+    }
+
+    .btn {
+        @extend .button-oval;
+    }
+
+    .show-stars {
+        margin: 10px auto;
+        text-align: center;
+
+        li {
+            display: inline-block;
+            color: $color-gold;
+        }
+    }
+}

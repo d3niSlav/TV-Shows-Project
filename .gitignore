@@ -2,6 +2,8 @@
 node_modules
 npm-debug.log
 libs
-
-# Database connection link
-db.js
+styles.css
+main.min.js
+config/db.js
+config/mail-authentication.js
+public/images/uploads/*

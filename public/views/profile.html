@@ -1,0 +1,237 @@
+<div class="profile-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="user-info">
+                    <div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <div class="avatar-container" ng-class="isImageEditFired ? (isImageUploadedSuccessfully ? 'success' : 'error') : ''">
+                                    <img class="avatar avatar-original" alt="{{user.name}}" ng-src="{{user.profileImg}}" error-source="../images/default_user.png"/>
+                                    <input
+                                        id="imageUpload"
+                                        type="file"
+                                        accept="image/*"
+                                        style="display: none"
+                                        file-model="profileImage.file"
+                                    />
+                                    <div class="change-avatar-button" ng-if="isEditProfileOpen && !isImageEditFired">
+                                        <label for="imageUpload" class="change-avatar-text">Change</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-8 profile-information">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2 class="user-title">Welcome, {{user.name}}</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <div>
+                                            <span class="text-muted">Email:</span> {{user.email}}
+                                        </div>
+                                        <div>
+                                            <span class="text-muted">Location:</span> {{currentLocation}}
+                                        </div>
+                                        <div>
+                                            <span class="text-muted">Member since:</span> {{user.date}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="activity-mini">
+                                            <i class="fa fa-eye text-muted" title="Watched Movies"></i> {{user.watchList.length}}
+                                        </div>
+                                        <div class="activity-mini">
+                                            <i class="fa fa-heart text-muted" title="Favorite Movies"></i> {{user.favorites.length}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="col-md-10">
+                                    <li><button class="btn-movies btn-lg btn-block" ng-click="toggleShowsProgress()">{{isProgressTrackerOpen ? 'Go Back' : 'My Shows'}}</button></li>
+                                    <li><button class="btn-movies btn-lg btn-block" ng-click="toggleEditProfile()">{{isEditProfileOpen ? 'Go Back' : 'Edit Profile'}}</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="personal-collections" ng-if="!(isEditProfileOpen || isProgressTrackerOpen)">
+            <div class="col-md-6">
+                <section class="user-favorite-list" class="movie-cast">
+                    <div class="show-collection-title"><i class="fa fa-heart muted-icon"></i> Favorite Movies</div>
+                    <div class="col-md-12 movie-list" ng-repeat="show in user.favoriteShows">
+                        <h4 class="show-title"><a href="/show/{{show._id}}">{{show.title}}</a></h4>
+                        <img class="show-poster" ng-src="{{show.poster}}" alt="{{show.poster}}" class="pull-left img-responsive" />
+                        <article>
+                            <p class="show-plot">{{show.plot}}</p>
+                            <hr/>
+                        </article>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section class="user-watched-list" class="movie-cast">
+                    <div class="show-collection-title"><i class="fa fa-eye muted-icon"></i> Watched Movies</div>
+                    <div class="col-md-12 movie-list" ng-repeat="show in user.watchedShows">
+                        <h4 class="show-title"><a href="/show/{{show._id}}">{{show.title}}</a></h4>
+                        <img class="show-poster pull-left img-responsive" alt="{{show.title}}" ng-src="{{show.poster}}" />
+                        <article>
+                            <p class="show-plot">{{show.plot}}</p>
+                            <hr/>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="row edit-profile" ng-if="isEditProfileOpen">
+            <section class="edit-profile-section" class="movie-cast">
+                <div class="container">
+                    <div class="show-collection-title">Edit Profile</div>
+                    <div class="row">
+                        <form class="form-horizontal edit-fields" role="form">
+                            <hr/>
+                            <div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Name:</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" ng-model="formData.name" />
+                                    </div>
+                                    <div class="edit-message-container col-sm-6">
+                                        <span class="edit-message" ng-class="{ 'message-error': messages.name.isError }" ng-if="messages.name.text">{{messages.name.text}}</span>
+                                    </div>
+                                </div>
+                                <div class="edit-buttons-container">
+                                    <button class="btn button-movies-default" ng-click="changeName()">Save name</button>
+                                    <button class="btn btn-default" ng-click="resetName()">Reset name</button>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Email:</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" ng-model="formData.email" />
+                                    </div>
+                                    <div class="edit-message-container col-sm-6">
+                                        <span class="edit-message" ng-class="{ 'message-error': messages.email.isError }" ng-if="messages.email.text">{{messages.email.text}}</span>
+                                    </div>
+                                </div>
+                                <div class="edit-buttons-container">
+                                    <button class="btn button-movies-default" ng-click="changeEmail()">Save e-mail</button>
+                                    <button class="btn btn-default" ng-click="resetEmail()">Reset field</button>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">New password:</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="password" ng-model="formData.password" />
+                                    </div>
+                                    <div class="edit-message-container col-sm-6">
+                                        <span class="edit-message" ng-class="{ 'message-error': messages.password.isError }" ng-if="messages.password.text">{{messages.password.text}}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Confirm password:</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="password" ng-model="formData.passwordConfirm" />
+                                    </div>
+                                    <div class="edit-message-container col-sm-6">
+                                        <span class="edit-message" ng-class="{ 'message-error': messages.passwordConfirm.isError }" ng-if="messages.passwordConfirm.text">{{messages.passwordConfirm.text}}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Old password:</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="password" ng-model="formData.passwordOld" />
+                                    </div>
+                                    <div class="edit-message-container col-sm-6">
+                                        <span class="edit-message" ng-class="{ 'message-error': messages.passwordOld.isError }" ng-if="messages.passwordOld.text">{{messages.passwordOld.text}}</span>
+                                    </div>
+                                </div>
+                                <div class="edit-buttons-container">
+                                    <button class="btn button-movies-default" ng-click="changePassword()">Save password</button>
+                                    <button class="btn btn-default" ng-click="clearPasswordFields()">Clear fields</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div ng-if="isProgressTrackerOpen">
+            <div class="personal-shows-container">
+                <div class="single-watched-show" ng-repeat="show in myWatchedShowsProgress track by $index">
+                    <div class="main-information pull-left">
+                        <show-status current-status="{{show.status}}"></show-status>
+                        <div class="current-show-logo pull-left">
+                            <a class="show-logo-container" href="/show/{{show._id}}">
+                                <img class="logo-image" src="{{show.logo}}" alt="{{show.title}}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="shows-divider">
+                        <button class="more-information-button hide"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+                        <button class="more-information-button hide"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="more-information-container">
+                        <div class="progress-information">
+                            <div class="show-progress col-xs-6 col-sm-6">
+                                <div class="progress-title">
+                                    <span>Current progress</span>
+                                </div>
+                                <div class="progress-data">
+                                    <span>Season: </span>
+                                    <span ng-if="!show.isEditActive">{{show.currentSeason}}</span>
+                                    <select class="select-progress" ng-if="show.isEditActive" ng-model="show.selectedSeason" ng-options="season for season in generateNumbersFromTo(1, show.totalSeasons)" ng-change="changeNumberOfEpisodes(show.selectedSeason, $index)">
+                                    </select>
+                                </div>
+                                <div class="progress-data">
+                                    <span>Episode: </span>
+                                    <span ng-if="!show.isEditActive">{{show.currentEpisode}}</span>
+                                    <select class="select-progress" ng-if="show.isEditActive" ng-model="show.selectedEpisode" ng-options="episode for episode in generateNumbersFromTo(1, show.totalEpisodes)">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="show-progress col-xs-6 col-sm-6">
+                                <div class="progress-title">
+                                    <span>Latest episode</span>
+                                </div>
+                                <div class="progress-data">
+                                    <span>Season: </span>
+                                    <span>{{show.latestSeason}}</span>
+                                </div>
+                                <div class="progress-data">
+                                    <span>Episode: </span>
+                                    <span>{{show.latestEpisode}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-show-actions">
+                        <div class="single-action-container">
+                            <button class="action-button" ng-click="moveCurrentProgressToNextEpisode($index)">Switch to next episode <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="single-action-container">
+                            <button class="action-button" ng-click="openEditProgress($index, show._id)" ng-if="!show.isEditActive">Change your progress <i class="fa fa-cog" aria-hidden="true"></i></button>
+                            <div ng-if="show.isEditActive">
+                                <button class="change-action-button" ng-click="changeCurrentProgress($index)">Save</button>
+                                <button class="change-action-button middle-action" ng-click="resetProgressBackToCurrent($index)">Reset</button>
+                                <button class="change-action-button" ng-click="hideChangeProgressOption($index)">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

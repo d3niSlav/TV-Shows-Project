@@ -1,0 +1,202 @@
+.all-movies {
+    margin-top: 80px;
+
+    @media (min-width: $break-point-large) {
+        margin-top: 100px;
+    }
+}
+
+.movies-wrapper {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    &:after {
+        content: " ";
+        display: block;
+        clear: both;
+    }
+
+    .movies-title {
+        float: left;
+        margin: 0 0 20px 0;
+        @include font-source-sans($font-28, $color-white, 500);
+        text-transform: uppercase;
+    }
+
+    .categories-divider {
+        display: block;
+        width: 100%;
+    }
+
+    .posters-container {
+        margin-left: -20px;
+        margin-right: -18px;
+        padding: 2.5rem 0;
+    }
+
+    .movie-information {
+        width: 100%;
+        padding: 2.5rem 0 .625rem;
+        text-align: center;
+
+        .show-title {
+            max-width: 250px;
+            margin: 0 auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            @include font-source-sans($font-20, $color-white, 900, $font-28);
+            letter-spacing: -.03em;
+            white-space: nowrap;
+
+            @media (min-width: 64em) {
+                font-size: $font-24;
+            }
+        }
+
+        .show-information {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0 auto;
+            padding: 10px 0;
+            white-space: nowrap;
+
+            .show-year {
+                @include font-source-sans($font-12, $color-light-gray, 500);
+                text-transform: uppercase;
+
+                @media (min-width: 64em) {
+                    font-size: $font-14;
+                }
+            }
+        }
+    }
+}
+
+.category-item {
+    padding-left: 10%;
+}
+
+.checkbox {
+    .category-label {
+        @include font-source-sans($font-20, $color-white, normal, $font-16);
+
+        &::after {
+            position: absolute;
+                top: 0;
+                left: 0;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: -20px;
+            padding-top: 1px;
+            padding-left: 3px;
+            @include font-source-sans($font-12, $color-gray);
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+                left: 0;
+            display: inline-block;
+            width: 17px;
+            height: 17px;
+            margin-left: -20px;
+            background-color: $color-white;
+            border: 1px solid $color-light-gray;
+            border-radius: 3px;
+            -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+            -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+            transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+        }
+    }
+
+    &.checkbox-circle label::before {
+        border-radius: 50%;
+    }
+
+    .category-checkbox {
+        opacity: 0;
+
+        &:checked + label::after {
+            font-family: "FontAwesome";
+            content: "\f00c";
+        }
+    }
+}
+
+.sort-menu {
+    min-height: 25px;
+
+    ul {
+        float: right;
+        margin: 0 auto;
+        color: $color-light-gray;
+
+        li {
+            display: inline-block;
+            padding: 3px 10px;
+            cursor: pointer;
+
+            &.active {
+                border: 2px solid $color-light-gray;
+                border-radius: 10px;
+            }
+
+            &:hover,
+            &.active,
+            &.show-categories-button.open {
+                border-color: $color-white;
+                color: $color-white;
+            }
+        }
+    }
+}
+
+@media (max-width: $break-point-medium) {
+    .sort-menu ul,
+    .movies-wrapper .movies-title {
+        display: block;
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.movie-data {
+    margin-bottom: 100px;
+    padding: 0 1.25rem;
+
+    @media (min-width: 64em) {
+        margin-bottom: 80px;
+        padding: 0 1.5625rem;
+    }
+}
+
+.movie-poster .poster-image {
+    width: 100%;
+    height: auto;
+}
+
+.movie-info-button {
+    display: inline-block;
+    padding: 12px 24px;
+    letter-spacing: -0.04em;
+    @include font-source-sans($font-16, $color-white, 600);
+    text-align: center;
+    vertical-align: middle;
+    background-color: $color-crimson;
+    border-radius: 38px;
+    border: 2px solid transparent;
+    transition: all 150ms ease-in-out;
+
+    @media (min-width: 30em) {
+        padding: 10px 30px;
+        font-size: $font-20;
+    }
+
+    &:hover {
+        background-color: $color-dark-red;
+    }
+}

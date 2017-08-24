@@ -6,208 +6,192 @@
     <base href="/">
     <title>TV Shows for U</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
 
     <!-- CSS -->
-    <link href="./css/reset.css" rel="stylesheet" type="text/css">
-    <link href="./libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="./libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="./css/style.css" rel="stylesheet" type="text/css">
-
+    <link href="./libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="./libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="./css/styles.css" rel="stylesheet" type="text/css" />
 
     <!-- JS -->
     <script type="text/javascript" src="./libs/angular/angular.min.js"></script>
     <script type="text/javascript" src="./libs/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="./libs/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="./libs/bootstrap/js/dropdown.js"></script>
 
     <!-- SLICK -->
-    <link href="./libs/slick-carousel/slick/slick.css" rel="stylesheet" type="text/css">
-    <link href="./libs/slick-carousel/slick/slick-theme.css" rel="stylesheet" type="text/css">
+    <link href="./libs/slick-carousel/slick/slick.css" rel="stylesheet" type="text/css" />
+    <link href="./libs/slick-carousel/slick/slick-theme.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="./libs/slick-carousel/slick/slick.min.js"></script>
 
-    <!-- ANGULAR CUSTOM -->
-    <script src="./js/controllers/MainCtrl.js"></script>
-    <script src="./js/services/MainService.js"></script>
-    <script src="./js/controllers/AllShowsCtrl.js"></script>
-    <script src="./js/services/AllShowsService.js"></script>
-    <script src="./js/controllers/UsersCtrl.js"></script>
-    <script src="./js/services/UsersService.js"></script>
-    <script src="./js/controllers/ProfilesCtrl.js"></script>
-    <script src="./js/services/ProfilesService.js"></script>
-    <script src="./js/controllers/CommentsCtrl.js"></script>
-    <script src="./js/services/CommentsService.js"></script>
-    <script src="./js/controllers/NewestShowsCtrl.js"></script>
-    <script src="./js/controllers/SingleShowCtrl.js"></script>
-    <script src="./js/services/SingleShowService.js"></script>
-    <script src="./js/controllers/ContactUsCtrl.js"></script>
-    <script src="./js/services/ContactUsService.js"></script>
-    <script src="./js/controllers/RankingCtrl.js"></script>
-    <script src="./js/services/RankingService.js"></script>
-    <script src="./js/controllers/SearchCtrl.js"></script>
-    <script src="./js/controllers/ScheduleCtrl.js"></script>
-    <script src="./js/controllers/CarouselCtrl.js"></script>
-    <script src="./js/appRoutes.js"></script>
-    <script src="./js/app.js"></script>
+    <!-- CUSTOM JS -->
+    <script type="text/javascript" src="./javascripts/main.min.js"></script>
 </head>
 
-<body ng-app="tvShowsApp" ng-controller="MainController">
-    <div class="navbar-fixed-top">
-        <div class="topBar">
-            <div class="container">
-                <div class="row">
-                    <div class="logo pull-left">
-                        <a href="/">
-                            <img id="logo" title="Keep your schedule of TV shows in shape" src="./images/logo-white.png" alt="Logo">
-                        </a>
-                    </div>
-                    <div class="pull-right content">
-                        <div class="login" ng-show="!user.id">
-                            <a href="/login" title="Login">
-                                <div class="btn btn-login">Log In</div>
+<body ng-app="tvShowsApp" ng-controller="MainController" ng-class="{ 'popup-open': isPopUpBoxOpen }">
+    <div ng-class="{ blur: isPopUpBoxOpen }">
+        <div class="navbar-fixed-top">
+            <div class="top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="logo pull-left">
+                            <a class="logo-home" href="/">
+                                <img class="logo-desktop-image" alt="TV-Shows Logo" src="./images/logo_white.png">
                             </a>
                         </div>
-                        <div class="logout" ng-show="user.id">
-                            <a title="Logout" id="logoutBtn">
-                                <div class="btn btn-logout">Log out</div>
-                            </a>
-                        </div>
-                        <div class="links">
-                            <div class="menu-top-menu-container">
-                                <ul id="menu-top-menu" class="top-menu">
-                                    <li class="search menu-item">
-                                        <a title="Search" href="/search">Search</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Information about the site" href="/about">About the Site</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Request a show" href="#">Request a Show</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Contact us" href="/contacts">Contact us</a>
-                                    </li>
-                                </ul>
+                        <div class="pull-right content">
+                            <div class="login" ng-show="!userId">
+                                <a href="/login" title="Login">
+                                    <div class="btn button-login">Log In</div>
+                                </a>
+                            </div>
+                            <div class="logout" ng-show="userId">
+                                <a id="logout-button" title="Logout" ng-click="logoutAction()">
+                                    <div class="btn button-logout">Log out</div>
+                                </a>
+                            </div>
+                            <div class="links">
+                                <div class="menu-top-menu-container">
+                                    <ul class="menu-top-menu" class="top-menu" navigation-menu="active">
+                                        <li class="search menu-item">
+                                            <a class="menu-link" href="/search" title="Search">Search</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/about" title="About the site">About the Site</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/futureDev" title="Future development">Future development</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="/contacts" title="Contact us">Contact us</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bottom-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="navigation-spacing">
-                        <div class="pull-right" ng-show="!user.id" id="navigation-register-desktop">
-                            <a class="btn-get-started-nav pull-right" title="Get Started" href="/register"> Register </a>
-                        </div>
-                        <div class="pull-right" ng-show="user.id" id="navigation-register-desktop">
-                            <a class="btn-subscribtions pull-right" id="myProfile" href="/profile/{{userId}}" title="My personal profile"> My Profile Page </a>
-                        </div>
-                        <nav class="pull-right">
-                            <div id="menu-wrap-primary">
-                                <ul class="menu menu-horizontal no-js" id="menu-primary">
-                                    <li class="menu-item">
-                                        <a href="/" class="title menu-link" title="Home">Home</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="/newest" class="title menu-link" title="List of new shows">New Shows</a>
-                                    </li>
-                                    <li class=" item menu-flyout menu-item">
-                                        <a href="/browse" class="title menu-link" title="Browse all TV shows">Browse A-Z</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="#" class="title menu-link" title="List of shows yet to be released">Coming Soon</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="/ranking" class="title menu-link" title="List of all shows by their raiting">High Scores</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="/schedule" class="title menu-link" title="Schedule for the week">This Week</a>
-                                    </li>
-                                </ul>
+            <div class="bottom-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="navigation-spacing">
+                            <div class="pull-right" ng-show="!userId">
+                                <a class="button-get-started-nav pull-right" href="/register" title="Get Started">Register</a>
                             </div>
-                        </nav>
+                            <div class="pull-right" ng-show="userId">
+                                <a class="button-subscriptions pull-right" href="/profile" title="My profile">My Profile Page</a>
+                            </div>
+                            <nav class="pull-right">
+                                <div class="menu-wrap-primary">
+                                    <ul class="menu-primary" navigation-menu="active">
+                                        <li class="menu-item">
+                                            <a class="title menu-link" href="/" title="Home">Home</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="title menu-link" href="/newest" title="List of new shows">New Shows</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="title menu-link" href="/browse" title="Browse all TV shows">Browse A-Z</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="title menu-link" href="#" title="List of shows yet to be released">Coming Soon</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="title menu-link" href="/ranking" title="List of all shows by their rating">High Scores</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="title menu-link" href="/schedule" title="Schedule for the week">This Week</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="mobile-nav">
-            <div id="mobile-logo" class="mobile-flag pull-left">
-                <a href="/" title="Your favourite tv shows on one place.">
-                    <img id="logo" title="Keep your schedule of TV shows in shape" src="./images/logo-white.png" alt="Logo">
-                </a>
+            <div class="mobile-nav">
+                <div class="mobile-logo mobile-flag pull-left">
+                    <a href="/" title="Your favourite tv shows on one place.">
+                        <img class="mobile-logo-image" src="./images/logo_white.png" alt="TV-Shows Logo" />
+                    </a>
+                </div>
+                <button class="mobile-nav-button" ng-class="{ 'is-active': isMobileMenuOpen }" ng-click="toggleMobileMenu()">
+                <div class="menu-button">
+                    <span class="menu-button-bar menu-button-bar-top"></span>
+                    <span class="menu-button-bar menu-button-bar-middle"></span>
+                    <span class="menu-button-bar menu-button-bar-bottom"></span>
+                </div>
+            </button>
             </div>
-            <a href id="mobile-nav-btn" ng-click="mobileButtonClick()">
-                <div class="menu-btn">
-                    <span class="menu-btn-bar menu-btn-bar-top"></span>
-                    <span class="menu-btn-bar menu-btn-bar-middle"></span>
-                    <span class="menu-btn-bar menu-btn-bar-bottom"></span>
-                </div>
-            </a>
         </div>
-    </div>
-    <div id="mobile-menu" class="hide">
-        <div class="container">
-            <section>
-                <div class="logo-container">
-                    <img id="logo" src="./images/logo-mobile.png" alt="">
-                </div>
+        <div class="mobile-menu" ng-if="isMobileMenuOpen">
+            <div class="container">
                 <section>
-                    <div class="btn-container" ng-show="!user.id" id="mobileLoginGroup">
-                        <a class="btn white" ng-click="mobileButtonClick()" href="/register">Register to our site</a>
-                        <a class="btn" ng-click="mobileButtonClick()" href="/login">Login with E-mail</a>
+                    <div>
+                        <img class="mobile-logo-image" src="./images/logo_mobile.png" alt="TV-Shows-Logo" />
                     </div>
-                    <div class="btn-container" ng-show="user.id" id="mobileProfileGroup">
-                        <a class="btn white" ng-click="mobileButtonClick()" href="/profile/{{userId}}">My Profile Page</a>
-                        <a class="btn" ng-click="mobileButtonClick()" id="mobileLogoutBtn" href="/">Log out</a>
-                    </div>
+                    <section>
+                        <div class="button-container" ng-show="!userId">
+                            <a class="btn white" href="/register" ng-click="toggleMobileMenu()">Register to our site</a>
+                            <a class="btn" href="/login" ng-click="toggleMobileMenu()">Login with E-mail</a>
+                        </div>
+                        <div class="button-container" ng-show="userId">
+                            <a class="btn white" href="/profile" ng-click="toggleMobileMenu()">My Profile Page</a>
+                            <a class="btn" href="/" ng-click="logoutAction()">Log out</a>
+                        </div>
+                    </section>
+                    <section class="mobile-links">
+                        <nav class="nav-menu-mobile">
+                            <div class="line-divider"></div>
+                            <ul class="primary" navigation-menu="active">
+                                <li>
+                                    <a class="single-mobile-link" href="/" title="Home" ng-click="toggleMobileMenu()">Home</a>
+                                </li>
+                                <li>
+                                    <a class="single-mobile-link" href="/newest" title="List of new shows" ng-click="toggleMobileMenu()">New Shows</a>
+                                </li>
+                                <li>
+                                    <a class="single-mobile-link" href="/browse" title="Browse all TV shows" ng-click="toggleMobileMenu()">Browse A-Z</a>
+                                </li>
+                                <li>
+                                    <a class="single-mobile-link" href="#" title="List of shows yet to be released" ng-click="toggleMobileMenu()">Coming Soon</a>
+                                </li>
+                                <li>
+                                    <a class="single-mobile-link" href="/ranking" title="List of all shows by their rating" ng-click="toggleMobileMenu()">High Scores</a>
+                                </li>
+                                <li>
+                                    <a class="single-mobile-link" href="/schedule" title="Schedule for the week" ng-click="toggleMobileMenu()">This Week</a>
+                                </li>
+                            </ul>
+                            <div class="line-divider"></div>
+                            <ul class="secondary" navigation-menu="active">
+                                <li>
+                                    <a class="single-mobile-link" href="/about" ng-click="toggleMobileMenu()">About the Site</a>
+                                </li>
+                                <li>
+                                    <a class="single-mobile-link" href="/search" ng-click="toggleMobileMenu()">Look for a Show</a>
+                                </li>
+                                <li>
+                                    <a class="single-mobile-link" href="/futureDev" ng-click="toggleMobileMenu()">Future development</a>
+                                </li>
+                                <li>
+                                    <a class="single-mobile-link" href="/contacts" ng-click="toggleMobileMenu()">Contact us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </section>
                 </section>
-                <section id="mobile-links">
-                    <nav class="nav-menu-mobile">
-                        <div class="line-divider"></div>
-                        <ul class="primary">
-                            <li>
-                                <a href="/" ng-click="mobileButtonClick()" title="Home">Home</a>
-                            </li>
-                            <li>
-                                <a href="/newest" ng-click="mobileButtonClick()" title="List of new shows">New Shows</a>
-                            </li>
-                            <li>
-                                <a href="/browse" ng-click="mobileButtonClick()" title="Browse all TV shows">Browse A-Z</a>
-                            </li>
-                            <li>
-                                <a href="#" ng-click="mobileButtonClick()" title="List of shows yet to be released">Coming Soon</a>
-                            </li>
-                            <li>
-                                <a href="/ranking" ng-click="mobileButtonClick()" title="List of all shows by their raiting">High Scores</a>
-                            </li>
-                            <li>
-                                <a href="/schedule" ng-click="mobileButtonClick()" title="Schedule for the week">This Week</a>
-                            </li>
-                        </ul>
-                        <div class="line-divider"></div>
-                        <ul class="secondary">
-                            <li>
-                                <a href="#" ng-click="mobileButtonClick()">About the Site</a>
-                            </li>
-                            <li>
-                                <a href="/search" ng-click="mobileButtonClick()">Look for a Show</a>
-                            </li>
-                            <li>
-                                <a href="#" ng-click="mobileButtonClick()">Request a Show</a>
-                            </li>
-                            <li>
-                                <a href="/contacts" ng-click="mobileButtonClick()">Contact us</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
-            </section>
+            </div>
         </div>
+
+        <!-- ANGULAR DYNAMIC CONTENT -->
+        <div ng-view class="page-content" autoscroll="true"></div>
     </div>
-    <!-- ANGULAR DYNAMIC CONTENT -->
-    <div ng-view class="page-content" autoscroll="true"></div>
+
+    <div class="popup-box" ng-if="isPopUpBoxOpen">
+        <login ng-if="isLoginPopupOpen"></login>
+        <register ng-if="!isLoginPopupOpen"></register>
+    </div>
 </body>
 
 </html>

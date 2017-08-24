@@ -1,0 +1,697 @@
+.movie-desktop {
+    margin-top: 53px;
+    padding-bottom: 5px;
+    background: $color-light-gray;
+
+    @media (min-width: $break-point-large) {
+        margin-top: 70px;
+    }
+}
+
+.movie-background {
+    background: radial-gradient(at 10% 30%, rgba(39, 74, 97, 0.9) 0%, rgba(197, 54, 26, 1) 100%), url($path-images + "movies_background.jpg") no-repeat top;
+    background-size: cover;
+}
+
+.movie-main-info {
+    padding-top: 40px;
+    padding-bottom: 20px;
+    color: $color-white;
+
+    @media (min-width: $break-point-large) {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+}
+
+.info-container {
+    position: relative;
+    margin: 0 auto;
+
+    @media (min-width: $break-point-medium) {
+        width: 700px;
+    }
+
+    @media (min-width: $break-point-large) {
+        width: 1000px;
+    }
+}
+
+.movie-details {
+    min-height: 600px;
+    text-align: center;
+
+    @media (min-width: $break-point-medium) {
+        min-height: 355px;
+        text-align: left;
+    }
+
+    @media (min-width: $break-point-large) {
+        min-height: 450px;
+    }
+
+    .poster {
+        display: block;
+        width: 300px;
+        height: 450px;
+        margin: 0 auto;
+        padding-top: 95px;
+
+        @media (min-width: $break-point-medium) {
+            position: absolute;
+                left: 0;
+            float: left;
+            width: 225px;
+            height: auto;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (min-width: $break-point-large) {
+            width: 300px;
+            height: 450px;
+        }
+
+        .poster-image {
+            width: 100%;
+        }
+    }
+}
+
+.main-info-container {
+    width: 300px;
+    margin: -470px auto 0;
+    box-sizing: border-box;
+
+    @media (min-width: $break-point-medium) {
+        position: relative;
+            top: 0;
+            left: 0;
+        display: inline-block;
+        float: right;
+        margin: 0;
+        width: 450px;
+    }
+
+    @media (min-width: $break-point-large) {
+        width: 650px;
+    }
+
+    .title-information {
+        margin-bottom: 5px;
+
+        @media (min-width: $break-point-large) {
+            margin-bottom: 10px;
+        }
+
+        .title {
+            display: inline;
+            @include font-source-sans($font-28, $color-white, 700, $font-28);
+
+            @media (max-width: $break-point-medium) {
+                display: block;
+                overflow: hidden;
+                margin: 0 auto;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            @media (min-width: $break-point-large) {
+                font-size: $font-35;
+            }
+
+            .lifespan {
+                @include font-source-sans($font-24, $color-white, 400);
+                opacity: 0.6;
+                display: block;
+                text-align: center;
+
+                @media (min-width: $break-point-medium) {
+                    display: inline;
+                    text-align:left;
+                }
+
+                @media (min-width: $break-point-large) {
+                    font-size: $font-28;
+                }
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 45px;
+        margin-bottom: 10px;
+
+        @media (min-width: $break-point-large) {
+            height: 68px;
+            margin-bottom: 30px;
+        }
+
+        li {
+            margin-right: 15px;
+
+            @media (min-width: $break-point-large) {
+                margin-right: 20px;
+            }
+
+            &.chart .rating-text {
+                @include font-source-sans($font-14, $color-white, normal, $font-16);
+
+                @media (min-width: $break-point-large) {
+                    @include font-source-sans($font-20, $color-white, normal, $font-24);
+                }
+            }
+
+            &.round-button {
+                .tv-show-action {
+                    width: 30px;
+                    height: 30px;
+                    padding-top: 1px;
+                    overflow: hidden;
+                    font-size: $font-16;
+                    background: $color-light-grey-blue;
+                    border: 2px solid $color-light-gray;
+                    border-radius: 50%;
+                    box-shadow: 0 0 3px $color-gray;
+
+                    &:hover {
+                        background: $color-grey-blue;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                    @media (min-width: $break-point-large) {
+                        width: 45px;
+                        height: 45px;
+                        padding-top: 2px;
+                        font-size: $font-24;
+                    }
+
+                    &.active {
+                        background: $color-crimson;
+                    }
+                }
+
+                &.favorite .tv-show-action,
+                &.watched .tv-show-action {
+                    background: $color-crimson;
+                }
+
+                .tv-show-action.active:hover,
+                &.favorite .tv-show-action:hover,
+                &.watched .tv-show-action:hover {
+                    background: $color-dark-red;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    .movie-overview {
+        margin-top: 465px;
+        text-align: left;
+
+        @media (min-width: $break-point-medium) {
+            margin: 0;
+            text-align: left;
+        }
+
+        .show-plot-title {
+            margin-top: 0;
+            margin-bottom: 5px;
+            @include font-source-sans($font-20, $color-white, 600, $font-20);
+
+            @media (min-width: $break-point-large) {
+                margin-bottom: 8px;
+            }
+        }
+    }
+
+    .show-plot {
+        @include font-source-sans($font-14, $color-white, normal, $font-18);
+
+        @media (min-width: $break-point-large) {
+            @include font-source-sans($font-16, $color-white, normal, $font-24);
+        }
+    }
+
+    .movie-actions {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 13px;
+        margin-bottom: 0;
+        border-top: 1px solid rgba($color-gray, 0.3);
+        box-sizing: border-box;
+    }
+}
+
+.movie-cast {
+    padding-top: 0;
+    text-align: center;
+
+    @media (min-width: $break-point-large) {
+        padding-top: 40px;
+    }
+
+    .show-actors-title {
+        margin-top: 0;
+        margin-bottom: 8px;
+        @include font-source-sans($font-20, $color-white, 600, $font-35);
+        border-bottom: 2px solid rgba($color-white, 0.7);
+
+        @media (min-width: $break-point-medium) {
+            text-align: left;
+        }
+    }
+
+    .actors {
+        display: inline-block;
+        width: 250px;
+        margin-top: 10px;
+
+        @media (min-width: $break-point-medium) {
+            display: flex;
+            justify-content: space-between;
+            width: auto;
+            margin-top: 15px;
+        }
+
+        @media (min-width: $break-point-large) {
+            margin-top: 30px;
+        }
+
+        li {
+            height: auto;
+            margin: 0 auto 20px;
+            text-align: center;
+
+            &:last-child {
+                @media (max-width: $break-point-medium) {
+                    float: none;
+                    text-align: center;
+                }
+            }
+
+            .actor-image {
+                width: 100%;
+                height: auto;
+                border: 2px solid $color-white;
+                border-radius: 50%;
+
+                @media (min-width: $break-point-medium) {
+                    width: 100px;
+                    height: 100px;
+                }
+
+                @media (min-width: $break-point-large) {
+                    width: 132px;
+                    height: 132px;
+                }
+            }
+
+            .actor-name {
+                margin: 0;
+                overflow: hidden;
+                @include font-source-sans($font-14, $color-white, normal, $font-24);
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                @media (min-width: $break-point-large) {
+                    font-size: $font-16;
+                }
+
+                &.character {
+                    font-size: $font-11;
+
+                    @media (min-width: $break-point-large) {
+                        font-size: $font-14;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.movie-seasons {
+    height: auto;
+    margin: 60px 0;
+    padding-bottom: 25px;
+    color: $color-white;
+    background: linear-gradient(to bottom left, rgba(197, 54, 26, 0.9), rgba(39, 74, 97, 1));
+    text-align: center;
+
+    @media (min-width: $break-point-medium) {
+        height: 270px;
+        padding-bottom: 60px;
+        text-align: left;
+    }
+
+    @media (min-width: $break-point-large) {
+        height: 390px;
+    }
+
+    .seasons-information {
+        width: auto;
+        padding-top: 30px;
+
+        @media (min-width: $break-point-medium) {
+            position: relative;
+                top: 0;
+                left: 0;
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: $break-point-large) {
+            width: 1000px;
+            padding-top: 50px;
+        }
+    }
+
+    .season-details {
+        min-height: 220px;
+
+        @media (min-width: $break-point-medium) {
+            position: relative;
+                top: 0;
+                left: 0;
+            height: 220px;
+        }
+
+        @media (min-width: $break-point-large) {
+            height: 280px;
+        }
+
+        .season-poster-image {
+            width: 300px;
+            height: 450px;
+            margin: 100px auto 0;
+
+            @media (min-width: $break-point-medium) {
+                position: relative;
+                    top: -65px;
+                    left: 0;
+                width: 225px;
+                height: auto;
+                margin: 0;
+            }
+
+            @media (min-width: $break-point-large) {
+                top: -80px;
+                width: 300px;
+            }
+        }
+    }
+
+    .details {
+        width: 300px;
+        margin: -565px auto 0;
+        text-align: center;
+
+        @media (min-width: $break-point-medium) {
+            position: absolute;
+                top: 0;
+                left: 250px;
+            display: inline-block;
+            width: 450px;
+            height: 100%;
+            margin: 0;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: $break-point-large) {
+            left: 350px;
+            width: 650px;
+        }
+
+        .season-on-focus {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            @include font-source-sans($font-24, $color-white, 700);
+
+            @media (min-width: $break-point-medium) {
+                margin-top: 10px;
+            }
+
+            @media (min-width: $break-point-large) {
+                font-size: $font-28;
+            }
+        }
+
+        .seasons-list {
+            border-bottom: 2px solid $color-light-gray;
+
+            @media (min-width: $break-point-medium) {
+                border: none;
+            }
+
+            .show-seasons-list {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                width: auto;
+                max-width: 300px;
+
+                @media (min-width: $break-point-medium) {
+                    float: right;
+                    justify-content: flex-end;
+                    max-width: 400px;
+                }
+
+                li {
+                    @include font-source-sans($font-14, $color-white, normal, $font-16);
+
+                    @media (min-width: $break-point-medium) {
+                        @include font-source-sans($font-18, $color-white, normal, $font-18);
+                    }
+
+                    @media (min-width: $break-point-large) {
+                        padding-left: 5px;
+                        @include font-source-sans($font-20, $color-white, normal, $font-20);
+                    }
+                }
+            }
+        }
+    }
+
+    .season-number {
+        background: none;
+        border: none;
+        outline: none;
+
+        &:hover, &:focus {
+            background: none;
+            border: none;
+            outline: none;
+        }
+    }
+
+    .episodes-on-focus {
+        @include font-source-sans($font-14, $color-white, 600);
+
+        @media (min-width: $break-point-medium) {
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: $break-point-large) {
+            font-size: $font-18;
+        }
+    }
+
+    .season-overview {
+        overflow: hidden;
+        margin-top: 480px;
+        text-align: left;
+
+        @media (min-width: $break-point-medium) {
+            max-height: 100px;
+            margin: 0;
+        }
+
+        .season-description {
+            @include font-source-sans($font-14, $color-white, normal, $font-18);
+            overflow: hidden;
+            margin: 0;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+
+            @media (min-width: $break-point-large) {
+                @include font-source-sans($font-16, $color-white, normal, $font-20);
+            }
+        }
+    }
+
+    .button {
+        margin-top: 20px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+
+        @media (min-width: $break-point-large) {
+            margin-top: 30px;
+        }
+
+        .more-episodes {
+            width: 150px;
+            padding: 6px 10px;
+            @include font-source-sans($font-14, $color-brown, 600);
+            background-color: $color-white;
+            border: 2px solid $color-white;
+            border-radius: 5px;
+            transition: linear .1s;
+
+            @media (min-width: $break-point-large) {
+                padding: 8px 16px;
+            }
+
+            &:hover {
+                color: $color-white;
+                background-color: $color-brown;
+                border-color: $color-brown;
+            }
+        }
+    }
+}
+
+.movie-episodes {
+    margin: 15px auto;
+}
+
+.title-episode-wrapper {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.title-episode {
+    display: inline-block;
+    margin: 40px 0 0;
+    padding: 0 25px;
+
+    &:focus {
+        position: relative;
+        margin-bottom: 8px;
+    }
+}
+
+.title-episode-gradient {
+    position: absolute;
+        bottom: 0;
+    width: 100%;
+    height: 55px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(5%, rgba($color-black, 0.8)), color-stop(95%, transparent));
+    background-image: -moz-linear-gradient(bottom, rgba($color-black, 0.8) 5%, transparent 95%);
+    background-image: -o-linear-gradient(bottom, rgba($color-black, 0.8) 5%, transparent 95%);
+}
+
+.title-episode-number {
+    position: absolute;
+        left: 2%;
+        bottom: 8%;
+    @include font-source-sans($font-35, $color-white, 500);
+}
+
+.title-episode-img {
+    width: 100%;
+}
+
+.title-episode-name {
+    float: left;
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0 1px;
+    @include font-source-sans($font-16, $color-white, 700);
+    white-space: nowrap;
+
+    @media (min-width: $break-point-medium) {
+        max-width: 55%;
+        font-size: $font-20;
+    }
+}
+
+.additional-episode-data {
+    float: right;
+    max-width: 44%;
+    overflow: hidden;
+}
+
+.title-episode-rating {
+    float: right;
+    color: $color-crimson;
+    font-size: $font-12;
+    font-style: italic;
+
+    @media (min-width: $break-point-medium) {
+        font-size: $font-16;
+    }
+
+    &:hover {
+        color: $color-dark-red;
+    }
+}
+
+.title-episode-runtime {
+    float: right;
+    padding-left: 10px;
+    color: $color-blue;
+    font-size: $font-12;
+    font-style: italic;
+
+    @media (min-width: $break-point-medium) {
+        font-size: $font-16;
+    }
+}
+
+.title-episode-synopsis {
+    clear: both;
+    height: 110px;
+    padding-top: 10px;
+    @include font-source-sans($font-12, $color-light-gray, normal, $font-18);
+
+    @media (min-width: $break-point-medium) {
+        font-size: $font-16;
+    }
+}
+
+.trailer-video-container {
+    min-height: 250px;
+    padding-top: 80px;
+    background: url($path-images + "trailer_background.jpg");
+    background-size: cover;
+
+    @media (min-width: $break-point-large) {
+        min-height: 600px;
+    }
+
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 5vw;
+
+        @media (min-width: $break-point-large) {
+            height: 0;
+            padding-top: 25px;
+            padding-bottom: 38vw;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            max-width: 340px;
+            height: 56.25vh;
+            max-height: 191.25px;
+            margin: 0 auto;
+
+            @media (min-width: $break-point-large) {
+                max-width: 800px;
+                max-height: 450px;
+            }
+        }
+    }
+}

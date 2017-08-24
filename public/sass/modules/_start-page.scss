@@ -1,0 +1,25 @@
+.hello-image {
+    width: 100%;
+
+    &.main-image {
+        display: none;
+
+        @media (min-width: $break-point-medium) {
+            display: block;
+        }
+    }
+
+    &.main-image-mobile {
+        @media (min-width: $break-point-medium) {
+            display: none;
+        }
+    }
+}
+
+.page-content {
+    margin-top: 50px;
+
+    @media (min-width: $break-point-large) {
+        margin-top: 70px;
+    }
+}

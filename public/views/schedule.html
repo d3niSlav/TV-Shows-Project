@@ -1,0 +1,20 @@
+<section class="schedule well-md">
+    <div class="container">
+        <div class="text-center schedule-title section-title">This week's shows schedule</div>
+        <div class="row weekly-schedule-table">
+            <div class="single-day-column col-lg-1 col-sm-2" ng-repeat="dailyShows in weekSchedule">
+                <div class="shows-for-day">
+                    <div class="date-day-name">{{dailyShows.dayName}}</div>
+                    <time class="date-string">{{dailyShows.dateString}}</time>
+                    <div class="shows-for-day">
+                        <div class="daily-show" title="{{show.title}} - S{{show.season}}E{{show.episode}}" ng-repeat="show in dailyShows.episodes">
+                            <a class="show-logo-container" href="/show/{{show._id}}">
+                                <img class="show-logo" src="{{show.logo}}" alt="{{show.title}} - S{{show.season}}E{{show.episode}}"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

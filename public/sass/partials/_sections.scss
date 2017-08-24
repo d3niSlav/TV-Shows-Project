@@ -1,0 +1,70 @@
+.more-shows-container {
+    padding-top: 25px;
+    padding-bottom: 50px;
+}
+
+.more-shows-title {
+    padding-top: 25px;
+    @include font-source-sans($font-35, $color-white, 700, $font-35);
+}
+
+.other-shows-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: linear-gradient(rgba(247, 58, 76, 0.8), rgba(247, 58, 76, 0.8)) 0 0, url($path-images + "more_shows_background.jpg") center top no-repeat;
+
+    .more-shows-row {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+}
+
+.more-shows-row {
+    margin-top: 70px;
+
+    .show-poster {
+        display: block;
+        width: 75%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .show-release-date {
+        display: block;
+        margin-top: 15px;
+        color: $color-coral;
+    }
+
+    .show-title {
+        margin-top: 10px;
+        @include font-source-sans($font-16, $color-white, bold, $font-28);
+
+        @media (min-width: $break-point-small) {
+            font-size: $font-24;
+        }
+    }
+
+    .show-stars {
+        display: flex;
+        justify-content: space-around;
+        color: $color-gold;
+        margin-bottom: 35px;
+
+        @media (max-width: $break-point-extra-small) {
+            font-size: $font-12;
+        }
+    }
+
+    .show-plot {
+        @include multi-line-ellipsis($font-18, 4);
+        @include font-source-sans($font-16, $color-light-gray, 300, $font-18);
+        margin: 0 0 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.no-results {
+    @include font-source-sans($font-16, $color-light-gray);
+    text-align: center;
+}

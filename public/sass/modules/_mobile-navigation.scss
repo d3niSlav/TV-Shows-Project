@@ -1,0 +1,193 @@
+.navbar-fixed-top {
+    @media (max-width: $break-point-large) {
+        height: 53px;
+        border: 0;
+    }
+
+    .mobile-nav {
+        width: 100%;
+        height: 53px;
+        background-color: $color-black;
+
+        .mobile-flag {
+            position: relative;
+                z-index: 1000;
+            width: 120px;
+            height: 100%;
+            padding: 6px 0;
+            text-align: center;
+            background-color: $color-dark-red;
+
+            @media (max-width: $break-point-large) {
+                margin-left: 10px;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                        left: 31px;
+                        bottom: -8px;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 9px 30px 0 30px;
+                    border-color: $color-dark-red transparent transparent transparent;
+                }
+
+                .mobile-logo-image {
+                    height: 100%;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}
+
+.mobile-menu {
+    position: fixed;
+        top: 0;
+        z-index: 10000;
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: $color-black;
+
+    @media only screen and (min-width: $break-point-medium) {
+        display: none;
+    }
+
+    .mobile-logo-image {
+        width: 100%;
+    }
+
+    .container {
+        margin-top: 53px;
+    }
+}
+
+.logo-container {
+    padding: 10px 20px;
+}
+
+.button-container {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 5px;
+
+    .btn {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        @include font-source-sans($font-14, $color-blue, 400, $font-28);
+        text-align: center;
+        font-style: italic;
+        border: 1px solid $color-black;
+        border-radius: 25px;
+
+        &.white {
+            margin-bottom: 5px;
+            padding: 10px 15px;
+            @include font-source-sans($font-18, $color-white, 700);
+            font-style: normal;
+            background-color: $color-crimson;
+        }
+    }
+}
+
+.mobile-links {
+    text-align: center;
+
+    li.active {
+        background-color: $color-blue;
+
+        .single-mobile-link {
+            color: $color-white;
+            font-weight: 900;
+        }
+    }
+
+    .single-mobile-link {
+        @include font-source-sans($font-20, $color-light-grey-blue, normal, $font-28);
+    }
+
+    .primary .single-mobile-link {
+        @include font-source-sans($font-24, $color-white, normal, $font-35);
+    }
+}
+
+.nav-menu-mobile {
+    ul {
+        padding: 5px;
+    }
+}
+
+.line-divider {
+    margin: 0 10px;
+    border-top: 1px dashed $color-gray;
+    border-collapse: collapse;
+}
+
+.mobile-nav-button {
+    float: right;
+    top: 0;
+    left: 8px;
+    width: 53px;
+    height: 53px;
+    padding: 15px 14px;
+    border: 0;
+    background-color: transparent;
+
+    &.is-active {
+        .menu-button-bar {
+            width: 30px;
+        }
+
+        .menu-button-bar-top {
+            transform: translateX(3px) rotate(45deg);
+        }
+
+        .menu-button-bar-middle {
+            top: 45%;
+            transform: scaleX(0);
+        }
+
+        .menu-button-bar-bottom {
+            transform: translateX(3px) rotate(-45deg);
+        }
+    }
+
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    .menu-button {
+        position: relative;
+        height: 100%;
+    }
+}
+
+.menu-button-bar {
+    position: absolute;
+        left: 0;
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: $color-white;
+    border-radius: 1px;
+    transform-origin: left center;
+    @include transition-duration(0.125s);
+}
+
+.menu-button-bar-top {
+    top: 0;
+}
+
+.menu-button-bar-middle {
+    top: 45%;
+    transform-origin: center;
+}
+
+.menu-button-bar-bottom {
+    bottom: 0;
+}

@@ -1,0 +1,25 @@
+<div class="container search-bar">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+            <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <select class="btn btn-default" ng-options="criteria.name for criteria in searchOptions" ng-model="selectedOption" ng-change="changeCriteria()"></select>
+                </div>
+                <input class="form-control" type="text" placeholder="Search term..." ng-model="query[queryBy]"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container search-result">
+    <div class="col-md-12 movie-list" ng-repeat="show in allShows | filter:query">
+        <h4 class="show-title"><a href="/show/{{show._id}}">{{show.title}}</a></h4>
+        <img class="show-poster pull-left" alt="{{show.poster}}" ng-src="{{show.poster}}" >
+        <article>
+            <p class="show-plot">{{show.plot}}</p>
+            <hr/>
+        </article>
+    </div>
+    <div class="no-results" ng-if="!(allShows | filter:query).length">
+        <span>There are no results from your search. Try something else.</span>
+    </div>
+</div>

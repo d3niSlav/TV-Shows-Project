@@ -1,0 +1,340 @@
+.high-scores-container {
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 25px;
+    background: url($path-images + "top_shows_background.jpg");
+    background-size: cover;
+}
+
+.top-shows {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.top-shows-title {
+    padding-top: 10px;
+    color: $color-white;
+    @include font-source-sans($font-35, $color-white, bolder, $font-50);
+    text-align: center;
+
+    @media (min-width: $break-point-medium) {
+        @include font-source-sans($font-50, $color-white, bolder, $font-100);
+    }
+
+    @media (min-width: $break-point-extra-large) {
+        padding: 30px 0;
+    }
+}
+
+.show-places {
+    margin: 0;
+    text-align: center;
+
+    @media (min-width: $break-point-small) and (max-width: $break-point-large) {
+        display: inline-block;
+        width: 100%;
+    }
+
+    @media (min-width: $break-point-large) {
+        float: left;
+        width: 25%;
+    }
+
+    .places-list {
+        display: block;
+        margin-top: 0;
+        margin-bottom: 10px;
+
+        @media (min-width: $break-point-small) and (max-width: $break-point-large - 1px) {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        li {
+            cursor: pointer;
+        }
+    }
+
+    > .ranking-cup-image {
+        height: 100px;
+        margin: 25px auto 0;
+    }
+}
+
+.show-place {
+    display: list-item;
+    width: auto;
+    height: 30vw;
+    margin: 10px;
+    border-radius: 10px;
+    background: radial-gradient(at 50% 20%, rgba(89, 10, 194, 0.4) 0%, rgba(175, 13, 48, 0.2) 100%), url($path-images + "ranking_place_background.jpg");
+    background-size: cover;
+
+    @media (min-width: $break-point-small) and (max-width: $break-point-large - 1px) {
+        display: inline-block;
+        margin: 0;
+        width: 33%;
+    }
+
+    @media (min-width: $break-point-small) {
+        min-height: 60px;
+        max-height: 70px;
+    }
+
+    @media (min-width: $break-point-large) {
+        min-height: 75px;
+        max-height: 97px;
+    }
+
+    .show-place-info {
+        margin-left: 22%;
+
+        .show-place-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 15vw;
+            margin: 0 auto;
+            padding-top: 5px;
+
+            @media (min-width: $break-point-small) {
+                height: 4vw;
+                max-height: 53px;
+            }
+        }
+
+        .show-logo {
+            max-width: 95%;
+            max-height: 100%;
+        }
+    }
+
+    > .show-ribbon-image:first-child {
+        float: left;
+        max-width: 18%;
+        height: auto;
+        max-height: 90%;
+        margin: 2px 6px;
+    }
+
+    .show-air-date {
+        padding-top: 3px;
+
+        .date-string {
+            display: block;
+            margin-right: 10px;
+            padding-top: 10px;
+            @include font-source-sans($font-28, $color-light-gray);
+            font-style: italic;
+            border-top: 2px solid rgba($color-gray, 0.3);
+
+            @media (min-width: $break-point-small) {
+                padding: 0;
+                font-size: $font-14;
+            }
+
+            @media (min-width: $break-point-large) {
+                padding-top: 2px;
+                font-size: $font-20;
+            }
+
+            @media (min-width: $break-point-extra-large) {
+                padding-top: 5px;
+                font-size: $font-24;
+            }
+        }
+    }
+}
+
+.focus-movie {
+    margin: 10px;
+    height: auto;
+    min-height: 360px;
+    color: $color-white;
+    padding-bottom: 10px;
+    background: url($path-images + "focus_show_background.jpg");
+    background-size: cover;
+    border-radius: 10px;
+
+    @media (min-width: $break-point-small) and (max-width: $break-point-large) {
+        display: inline-block;
+        width: 100%;
+        min-height: 0;
+        margin: 10px auto;
+        padding-bottom: 20px;
+    }
+
+    @media (min-width: $break-point-large) {
+        float: left;
+        width: 75%;
+        margin: 10px auto;
+        padding-bottom: 20px;
+    }
+}
+
+.focus-details {
+    .poster {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 10px;
+
+        @media (min-width: $break-point-small) {
+            position: relative;
+                top: 20px;
+                left: 20px;
+            float: left;
+            width: 30%;
+            margin: 0;
+            padding-bottom: 20px;
+        }
+
+        .poster-image {
+            width: 100%;
+        }
+    }
+
+    .main-info {
+        display: inline-block;
+        text-align: center;
+        margin: 0 10px;
+
+        @media (min-width: $break-point-small) {
+            position: relative;
+                top: 20px;
+                left: 0;
+            float: right;
+            width: 62%;
+            margin: 0 20px 20px;
+            text-align: left;
+        }
+
+        .title {
+            margin-bottom: 5px;
+            border-bottom: 1.5px solid rgba($color-gray, 0.3);
+
+            .show-focus-title {
+                display: inline;
+                @include font-source-sans($font-35, $color-white, 700);
+            }
+        }
+
+        .show-focus-plot {
+            height: auto;
+            min-height: 150px;
+            @include font-source-sans($font-16, $color-light-gray, normal, $font-16);
+            text-align: left;
+
+            @media (max-width: $break-point-small) {
+                min-height: 100px;
+                @include font-source-sans($font-16, $color-white, normal, $font-18);
+            }
+
+            @media (min-width: $break-point-large) {
+                min-height: 220px;
+                @include font-source-sans($font-20, $color-white, normal, $font-24);
+            }
+
+            @media (min-width: $break-point-extra-large) {
+                min-height: 190px;
+            }
+        }
+    }
+
+    .movie-score-container {
+        float: right;
+        margin-top: 15px;
+
+        @media (max-width: $break-point-small) {
+            float: left;
+            width: 70%;
+        }
+
+        .movie-score-info {
+            margin-top: 0;
+            margin-bottom: 8px;
+            border-bottom: 1.5px solid rgba($color-gray, 0.3);
+
+            @media (max-width: $break-point-small) {
+                margin-right: 5px;
+                font-size: $font-18;
+            }
+
+            .score-title,
+            .movie-score-points,
+            .movie-score-max {
+                display: inline;
+                @include font-source-sans($font-18, $color-white, 600, $font-28);
+
+                @media (min-width: $break-point-small) {
+                    font-size: $font-24;
+                }
+
+                @media (min-width: $break-point-large) {
+                    font-size: $font-35;
+                }
+            }
+
+            .movie-score-points {
+                color: $color-blue;
+
+                @media (min-width: $break-point-small) {
+                    padding-left: 20px;
+                }
+            }
+
+            .movie-score-max {
+                color: $color-blue;
+            }
+        }
+
+        .button-container {
+            width: 63%;
+            margin: 0 auto;
+            padding-bottom: 5px;
+
+            .button-focus-show {
+                display: inline-block;
+                padding: 6px 20px;
+                color: $color-white;
+                border: 2px solid transparent;
+                font-size: $font-18;
+                letter-spacing: -0.04em;
+                border-radius: 8px;
+                background-color: $color-crimson;
+                text-align: center;
+                vertical-align: middle;
+                transition: all 150ms ease-in-out;
+
+                @media (max-width: $break-point-small) {
+                    font-size: $font-18;
+                }
+
+                @media (min-width: $break-point-large) {
+                    padding: 10px 30px;
+                }
+            }
+        }
+    }
+
+    .movie-score-medal {
+        float: right;
+        width: 27%;
+
+        @media (min-width: $break-point-small) {
+            margin: 0 20px;
+        }
+
+        @media (min-width: $break-point-extra-large) {
+            margin: 0 30px;
+        }
+
+        .show-medal-image {
+            width: 100%;
+            height: auto;
+        }
+    }
+}

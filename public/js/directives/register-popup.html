@@ -1,0 +1,36 @@
+<div class="popup-container">
+    <form class="signup-form" method="POST">
+        <fieldset class="main-signup">
+            <div class="signup-wrapper">
+                <button class="popup-close-button" ng-click="closePopUpBox()"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <a href="/"><div class="logo-container"></div></a>
+                <ul class="form-fields">
+                    <li class="form-email ">
+                        <div class="fieldgroup">
+                            <span class="error error-message">{{errors.email[0]}}</span>
+                            <input class="user-input" name="email" placeholder="Email&nbsp;address" type="text" ng-class="{error: hasError.email}" ng-model="formData.email">
+                        </div>
+                    </li>
+                    <li class="form-password">
+                        <div class="fieldgroup">
+                            <span class="error error-message">{{errors.password[0]}}</span>
+                            <input class="user-input" name="password" placeholder="Password" type="password" ng-class="{error: hasError.password}" ng-model="formData.password">
+                        </div>
+                    </li>
+                    <li class="form-password">
+                        <div class="fieldgroup">
+                            <span class="error error-message">{{errors.confirmPassword[0]}}</span>
+                            <input class="user-input" name="passwordConfirm" placeholder="Confirm Password" type="password" ng-class="{error: hasError.confirmPassword}" ng-model="formData.confirmPassword">
+                        </div>
+                    </li>
+                    <li class="button form-actions">
+                        <div class="form-buttons">
+                            <input class="button-primary" type="submit" value="Sign In" ng-click="createUser()">
+                        </div>
+                        <span class="user-action-message">Already a member? <a class="action-link" ng-click="switchToLogIn()">Log in now</a></span>
+                    </li>
+                </ul>
+            </div>
+        </fieldset>
+    </form>
+</div>

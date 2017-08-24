@@ -2,32 +2,89 @@ var path = require('path');
 var Show = require('./models/show');
 var User = require('./models/user');
 var Profile = require('./models/profile');
-var Comments = require('./models/comments');
-var Messages = require('./models/messages');
+var Comment = require('./models/comment');
+var Message = require('./models/message');
+var validate = require('./validations');
 
 module.exports = function(app, passport) {
-
-    // server routes ===========================================================
-
-    /* SHOW Get all shows, Get newest shows, Get top 10 shows, Get single show */
+    // server api routes ===========================================================
     app.get('/api/shows', function(req, res) {
-        Show.
-        find().
-        sort('title').
-        exec(function(err, shows) {
-            if (err) {
-                res.send(err);
-            }
+        Show
+            .find()
+            .sort('title')
+            .exec(function(err, shows) {
+                if (err) {
+                    res.send(err);
+                }
 
-            res.json(shows);
-        });
+                res.json(shows);
+            });
+    });
+
+    app.get('/api/shows/catalog', function(req, res) {
+        Show
+            .find()
+            .sort('title')
+            .select('title poster released releasedDate year genre plot imdbRating')
+            .exec(function(err, shows) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(shows);
+            });
+    });
+
+    app.post('/api/shows/basic', function(req, res) {
+        Show
+            .find({ '_id': { $in: req.body.showsIds } })
+            .sort('title')
+            .select('title poster plot')
+            .exec(function(err, shows) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(shows);
+            });
     });
 
     app.get('/api/shows/newest', function(req, res) {
-        Show.
-        find().
-        sort('-releasedDate').
-        exec(function(err, shows) {
+        Show
+            .find()
+            .sort('-releasedDate')
+            .select('title poster released plot imdbRating')
+            .exec(function(err, shows) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.json(shows);
+            });
+    });
+
+    app.get('/api/shows/:startDate/:endDate', function(req, res) {
+        Show.aggregate([
+            { $unwind: '$seasons' },
+            { $unwind: '$seasons.episodes' },
+            {
+                $match: {
+                    'seasons.episodes.episodeDate': {
+                        $gte: req.params.startDate,
+                        $lte: req.params.endDate
+                    }
+                }
+            },
+            {
+                $project: {
+                    'title': 1,
+                    'logo': 1,
+                    'season': '$seasons.number',
+                    'episode': '$seasons.episodes.number',
+                    'date': '$seasons.episodes.episodeDate'
+                }
+            }
+        ], function(err, shows) {
             if (err) {
                 res.send(err);
             }
@@ -37,22 +94,22 @@ module.exports = function(app, passport) {
     });
 
     app.get('/api/shows/top-ten-shows', function(req, res) {
-        Show.
-        find().
-        sort('-imdbRating').
-        limit(10).
-        select('title imdbRating plot logo poster released').
-        exec(function(err, shows) {
-            if (err) {
-                res.send(err);
-            }
+        Show
+            .find()
+            .sort('-imdbRating')
+            .limit(10)
+            .select('title poster plot imdbRating logo released')
+            .exec(function(err, shows) {
+                if (err) {
+                    res.send(err);
+                }
 
-            res.json(shows);
-        });
+                res.json(shows);
+            });
     });
 
     app.get('/api/show/:id', function(req, res) {
-        Show.findOne({ "_id": req.params.id },
+        Show.findOne({ '_id': req.params.id },
             function(err, show) {
                 if (err) {
                     res.send(err);
@@ -63,8 +120,6 @@ module.exports = function(app, passport) {
         );
     });
 
-    /* USER Get all users */
-
     app.get('/api/users', function(req, res) {
         User.find(function(err, users) {
             if (err) {
@@ -73,8 +128,6 @@ module.exports = function(app, passport) {
             res.json(users);
         });
     });
-
-    /* USER PROFILES Get all profiles, Get profile by user ID, */
 
     app.get('/api/profiles', function(req, res) {
         Profile.find(function(err, profiles) {
@@ -95,8 +148,6 @@ module.exports = function(app, passport) {
             res.json(profile);
         });
     });
-
-    /* SHOW Favorites / Watchlist */
 
     app.put('/api/profile/addToFavorites', function(req, res) {
         Profile.update({ userId: req.body.userId }, { $push: { favorites: req.body.showId } },
@@ -121,7 +172,15 @@ module.exports = function(app, passport) {
     });
 
     app.put('/api/profile/addToWatchlist', function(req, res) {
-        Profile.update({ userId: req.body.userId }, { $push: { watchList: req.body.showId } },
+        Profile.update({ userId: req.body.userId }, {
+                $push: {
+                    watchList: {
+                        showId: req.body.showId,
+                        currentSeason: 1,
+                        currentEpisode: 1
+                    }
+                }
+            },
             function(err) {
                 if (err) {
                     res.send(err);
@@ -132,7 +191,7 @@ module.exports = function(app, passport) {
     });
 
     app.put('/api/profile/removeFromWatchlist', function(req, res) {
-        Profile.update({ userId: req.body.userId }, { $pull: { watchList: req.body.showId } },
+        Profile.update({ userId: req.body.userId }, { $pull: { watchList: { showId: req.body.showId } } },
             function(err) {
                 if (err) {
                     res.send(err);
@@ -142,18 +201,96 @@ module.exports = function(app, passport) {
             });
     });
 
-    /* USER Login, Get logged user, Logout and Registration */
+    app.put('/api/profile/updateShowProgress', function(req, res) {
+        Profile.update({ userId: req.body.userId, watchList: { $elemMatch: { showId: req.body.showId } } }, { $set: { 'watchList.$.currentSeason': req.body.newSeason, 'watchList.$.currentEpisode': req.body.newEpisode } },
+            function(err, show) {
+                if (err) {
+                    res.send(err);
+                }
 
-    app.post('/login', validateDataLogin, function(req, res, next) {
+                res.status(200).json({ message: 'Show successfully removed!' });
+            });
+    });
+
+    app.put('/api/profile/change/name', validate.validateName, function(req, res) {
+        Profile.update({ userId: req.body.userId }, { $set: { name: req.body.name } },
+            function(err) {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.status(200).json({ name: req.body.name, message: 'Name successfully updated.' });
+            });
+    });
+
+    app.put('/api/profile/change/email', validate.validateEmail,
+        function(req, res, next) {
+            User.findByIdAndUpdate(req.body.userId, { $set: { email: req.body.email } },
+                function(err) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    return next();
+                });
+        },
+        function(req, res) {
+            Profile.update({ userId: req.body.userId }, { $set: { email: req.body.email } },
+                function(err) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    res.status(200).json({ email: req.body.email, message: 'Email successfully updated.' });
+                });
+        });
+
+    app.put('/api/profile/change/password', validate.validatePasswordChange,
+        function(req, res, next) {
+            User.findById(req.body.userId, function(err, user) {
+                if (err) {
+                    return done(err);
+                }
+
+                var messages = {
+                    oldPassword: [],
+                    newPassword: []
+                };
+
+                if (user.isPasswordCorrect(req.body.newPassword) && user.isPasswordCorrect(req.body.oldPassword)) {
+                    return res.status(200).json({ message: 'Password successfully updated.' });
+                }
+
+                if (!user.isPasswordCorrect(req.body.oldPassword)) {
+                    messages.oldPassword.push('Invalid password!');
+                    return res.status(409).json({ error: messages });
+                }
+
+                res.locals.newEncryptedPassword = user.encryptPassword(req.body.newPassword);
+                return next();
+            });
+        },
+        function(req, res) {
+            User.findByIdAndUpdate(req.body.userId, { $set: { password: res.locals.newEncryptedPassword } },
+                function(err) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    res.status(200).json({ message: 'Password successfully updated.' });
+                });
+        }
+    );
+
+    app.post('/login', validate.validateDataLogin, function(req, res, next) {
         passport.authenticate('local.login', function(err, user, info) {
             if (err) {
                 return next(err)
             }
 
             var messages = {
-                email: "",
-                password: ""
-            }
+                email: '',
+                password: ''
+            };
 
             if (!user) {
                 messages.email = 'User with this e-mail is not registered!';
@@ -169,11 +306,10 @@ module.exports = function(app, passport) {
         })(req, res, next);
     });
 
-
     app.get('/api/logged', function(req, res) {
         var user = {
-            userId: ""
-        }
+            userId: ''
+        };
 
         if (req.session.cookie.originalMaxAge !== null) {
             user.userId = req.session.passport.user;
@@ -189,8 +325,8 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.post('/register', validateDataRegistration, function(req, res, next) {
-        passport.authenticate('local.signup', function(err, user, info) {
+    app.post('/register', validate.validateDataRegistration, function(req, res, next) {
+        passport.authenticate('local.signup', function(err, user) {
             if (err) {
                 return next(err)
             }
@@ -200,10 +336,12 @@ module.exports = function(app, passport) {
                     email: ['This e-mail is already registered!'],
                     password: [],
                     confirmPassword: []
-                }
+                };
+
                 return res.status(409).json({ error: messages });
             }
             res.locals.user = user;
+
             return next();
         })(req, res, next);
     }, function(req, res, next) {
@@ -217,21 +355,21 @@ module.exports = function(app, passport) {
             return next(err);
         });
 
-        return res.status(201).json({ message: 'User successfully created.' });
+        return res.status(200).json({ message: 'User successfully created.' });
     });
 
-    /* COMMENTS Get all comments */
     app.get('/api/comments', function(req, res) {
-        Comments.find(function(err, comments) {
+        Comment.find(function(err, comments) {
             if (err) {
                 res.send(err);
             }
+
             res.json(comments);
         });
     });
 
     app.get('/api/comment/:id', function(req, res) {
-        Comments.findById(req.params.id, function(err, comment) {
+        Comment.findById(req.params.id, function(err, comment) {
             if (err) {
                 res.send(err);
             }
@@ -241,8 +379,8 @@ module.exports = function(app, passport) {
     });
 
     app.get('/api/comments/:showId', function(req, res) {
-        Comments
-            .find({ "showId": req.params.showId })
+        Comment
+            .find({ 'showId': req.params.showId })
             .sort('-date')
             .exec(function(err, comments) {
                 if (err) {
@@ -255,7 +393,7 @@ module.exports = function(app, passport) {
 
     app.post('/api/comments', function(req, res) {
 
-        var newComment = new Comments();
+        var newComment = new Comment();
         newComment.userId = req.body.userId;
         newComment.showId = req.body.showId;
         newComment.text = req.body.text;
@@ -270,7 +408,7 @@ module.exports = function(app, passport) {
     });
 
     app.put('/api/comments/addLike', function(req, res) {
-        Comments.findByIdAndUpdate(req.body.commentId, { $push: { likes: req.body.userId } },
+        Comment.findByIdAndUpdate(req.body.commentId, { $push: { likes: req.body.userId } },
             function(err) {
                 if (err) {
                     res.send(err);
@@ -281,7 +419,7 @@ module.exports = function(app, passport) {
     });
 
     app.put('/api/comments/removeLike', function(req, res) {
-        Comments.findByIdAndUpdate(req.body.commentId, { $pull: { likes: req.body.userId } },
+        Comment.findByIdAndUpdate(req.body.commentId, { $pull: { likes: req.body.userId } },
             function(err) {
                 if (err) {
                     res.send(err);
@@ -291,10 +429,9 @@ module.exports = function(app, passport) {
             });
     });
 
-    /* Messages */
     app.post('/api/messages', function(req, res) {
 
-        var newMessage = new Messages();
+        var newMessage = new Message();
         newMessage.name = req.body.name;
         newMessage.email = req.body.email;
         newMessage.message = req.body.message;
@@ -313,70 +450,3 @@ module.exports = function(app, passport) {
         res.sendFile('index.html', { root: path.join(__dirname, '../public/views/') });
     });
 };
-
-function validateDataRegistration(req, res, next) {
-    req.checkBody('email', 'E-mail address is required!').notEmpty();
-    req.checkBody('email', 'Invalid e-mail!').isEmail();
-    req.checkBody('password', 'Password is required!').notEmpty();
-    req.checkBody('password', 'Password must be atleast 6 characters long!').isLength({ min: 6 });
-    req.checkBody('confirmPassword', 'Confirm your password!').notEmpty();
-    req.checkBody('confirmPassword', 'Passwords do not match!').matches(req.body.password);
-
-    errors = req.validationErrors();
-
-
-    if (errors) {
-        var messages = {
-            email: [],
-            password: [],
-            confirmPassword: []
-        }
-
-        errors.forEach(function(error) {
-            switch (error.param) {
-                case 'email':
-                    messages.email.push(error.msg);
-                    break;
-                case 'password':
-                    messages.password.push(error.msg);
-                    break;
-                case 'confirmPassword':
-                    messages.confirmPassword.push(error.msg);
-                    break;
-            }
-        });
-
-        return res.status(400).json({ error: messages });
-    } else {
-        return next();
-    }
-}
-
-function validateDataLogin(req, res, next) {
-    req.checkBody('email', 'E-mail address is required!').notEmpty();
-    req.checkBody('password', 'Password is required!').notEmpty();
-
-    errors = req.validationErrors();
-
-    if (errors) {
-        var messages = {
-            email: "",
-            password: ""
-        }
-
-        errors.forEach(function(error) {
-            switch (error.param) {
-                case 'email':
-                    messages.email = error.msg;
-                    break;
-                case 'password':
-                    messages.password = error.msg;
-                    break;
-            }
-        });
-
-        return res.status(400).json({ error: messages });
-    } else {
-        return next();
-    }
-}

@@ -12,7 +12,6 @@ var MongoStore = require('connect-mongo/es5')(session);
 var passport = require('passport');
 var app = express();
 
-
 // configuration ===========================================
 var db = require('./config/db');
 require('./config/passport');
@@ -21,7 +20,6 @@ var port = process.env.PORT || 8080;
 mongoose.Promise = global.Promise;
 mongoose.connect(db.url);
 
-//app.use(express.favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -40,11 +38,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes ==================================================
+require('./app/progress')(app, mongoose);
 require('./app/routes')(app, passport);
+require('./app/forgotten-password')(app, port);
+require('./app/uploadFile')(app);
 
 // start app ===============================================
 app.listen(port);
 
-console.log("App is listening on port: " + port);
+console.log('App is listening on port: ' + port);
 
 module.exports = app;

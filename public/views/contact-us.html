@@ -1,0 +1,23 @@
+<section class="contact-us-wrapper">
+    <div class="form-container">
+        <div class="mail-title">Mail us</div>
+        <form class="mail-form" method="POST">
+            <fieldset>
+                <div class="form-inputs">
+                    <div class="form-column">
+                        <input class="input-field" type="text" name="name" placeholder="Enter name..." ng-model="formData.name"/>
+                    </div>
+                    <div class="form-column">
+                        <input class="input-field" type="text" name="email" placeholder="Enter e-mail..." ng-model="formData.email"/>
+                    </div>
+                    <div class="form-column-big">
+                        <textarea class="message-field" name="message" placeholder="Enter message..." ng-model="formData.message"></textarea>
+                    </div>
+                    <div class="form-controls ">
+                        <button class="button-send-mail" type="submit" ng-click="createMessage()">Send</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>

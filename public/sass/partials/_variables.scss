@@ -1,0 +1,87 @@
+// Paths
+$path-images: "../images/";
+
+// Font-sizes
+$font-11: 0.7rem;
+$font-12: 0.75rem;
+$font-14: 0.875rem;
+$font-16: 1rem;
+$font-18: 1.125rem;
+$font-20: 1.313rem;
+$font-24: 1.375rem;
+$font-28: 1.8rem;
+$font-35: 2.188rem;
+$font-50: 3.125rem;
+$font-100: 6.25rem;
+$font-130: 8.125rem;
+$font-150: 9.375rem;
+$font-200: 12.5rem;
+
+// Colors
+$color-gold: #FFD700;
+$color-blue: #00b7ba;
+$color-light-blue: #54e2cc;
+$color-white: #FFFFFF;
+$color-coral: #f73a4c;
+$color-crimson: #DC143C;
+$color-green: #228b22;
+$color-dark-red: #8B0000;
+$color-purple: #8B0000;
+$color-brown: #302621;
+$color-light-gray: #eeeeee;
+$color-gray: #888888;
+$color-dark-gray: #333333;
+$color-grey-blue: #344152;
+$color-light-grey-blue: #536878;
+$color-light-black: #1f2324;
+$color-black: #000000;
+
+// Breakpoints
+$break-point-extra-small: 480px;
+$break-point-small: 640px;
+$break-point-medium: 768px;
+$break-point-large: 1024px;
+$break-point-extra-large: 1280px;
+
+// Mixins
+@mixin transition-duration($speed) {
+    -moz-transition: $speed;
+    -o-transition: $speed;
+    -webkit-transition: $speed;
+    transition: $speed;
+}
+
+@mixin box-shadow($inset , $offset-x, $offset-y, $blur-radius, $spread-radius, $color) {
+    @if $inset {
+        -webkit-box-shadow: inset $offset-x $offset-y $blur-radius $spread-radius $color;
+        -moz-box-shadow: inset $offset-x $offset-y $blur-radius $spread-radius $color;
+        box-shadow: inset $offset-x $offset-y $blur-radius $spread-radius $color;
+    } @else {
+        -webkit-box-shadow: $offset-x $offset-y $blur-radius $spread-radius $color;
+        -moz-box-shadow: $offset-x $offset-y $blur-radius $spread-radius $color;
+        box-shadow: $offset-x $offset-y $blur-radius $spread-radius $color;
+    }
+}
+
+@mixin font-source-sans($size: false, $color: false, $weight: false,  $lh: false) {
+    @if $size { font-size: $size; }
+    @if $color { color: $color; }
+    @if $weight { font-weight: $weight; }
+    @if $lh { line-height: $lh; }
+}
+
+@mixin multi-line-ellipsis($lineHeight: $font-16, $lineCount: 1){
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight;
+    max-height: $lineHeight * $lineCount;
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+        content: '...';
+        position: absolute;
+            right: 0;
+            bottom: 0;
+    }
+}

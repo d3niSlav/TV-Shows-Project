@@ -1,12 +1,12 @@
 {
-  "name": "tv-shows",
-  "version": "1.0.0",
-  "dependencies": {
-    "bootstrap": "latest",
-    "font-awesome": "latest",
-    "animate.css": "latest",
-    "angular": "1.6.4",
-    "angular-route": "latest",
-    "slick-carousel": "^1.6.0"
-  }
+    "name": "tv-shows",
+    "version": "1.0.0",
+    "dependencies": {
+        "bootstrap": "latest",
+        "font-awesome": "latest",
+        "animate.css": "latest",
+        "angular": "1.6.5",
+        "angular-route": "1.6.5",
+        "slick-carousel": "^1.6.0"
+    }
 }

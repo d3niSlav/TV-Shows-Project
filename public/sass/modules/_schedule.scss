@@ -1,0 +1,104 @@
+.schedule-title {
+    margin-bottom: 30px;
+
+    @media (min-width: $break-point-large) {
+        font-size: $font-50;
+    }
+
+    @media (min-width: $break-point-extra-large) {
+        padding-top: 25px;
+        padding-bottom: 30px;
+    }
+}
+
+.schedule {
+    @extend .background-cover-full-screen;
+
+    padding: 30px 0;
+    background: linear-gradient(rgba($color-light-black, 0.5), rgba($color-dark-gray, 0.2)) 0 0, url($path-images + "schedule_background.png") center;
+    background-blend-mode: hard-light;
+
+    .weekly-schedule-table {
+        margin: 20px auto;
+        text-align: center;
+    }
+}
+
+.weekly-schedule-table .single-day-column {
+    display: inline-block;
+    float: none;
+    width: 13%;
+    margin-top: 10px;
+    padding: 1px;
+    outline: 3px dashed $color-gray;
+    background: $color-black;
+    text-align: center;
+
+    @media (max-width: $break-point-extra-small) {
+        width: 85%;
+        min-height: 200px;
+        margin: 0 auto 15px;
+    }
+
+    @media (min-width: $break-point-extra-small) and (max-width: $break-point-medium) {
+        width: 130px;
+        height: 200px;
+        margin: 10px 2px 2px;
+    }
+
+    @media (min-width: $break-point-medium) {
+        min-height: 220px;
+        margin: 0.5px;
+        outline-width: 4px;
+    }
+
+    @media (min-width: $break-point-large) {
+        min-height: 280px;
+        margin: 4px;
+        outline-width: 6px;
+    }
+
+    @media (min-width: $break-point-extra-large) {
+        min-height: 350px;
+        margin: 2px;
+    }
+}
+
+.schedule .shows-for-day {
+    .date-day-name {
+        margin: 10px 0 0;
+        padding-bottom: 5px;
+        @include font-source-sans($font-20, $color-white);
+        border-bottom: 2px solid $color-gray;
+
+        @media (min-width: $break-point-extra-large) {
+            @include font-source-sans($font-24, $color-white, bold);
+        }
+    }
+
+    .date-string {
+        display: block;
+        padding: 3px;
+        @include font-source-sans($font-14, $color-coral, bold);
+        font-style: italic;
+        border-bottom: 2px solid $color-gray;
+
+        @media (min-width: $break-point-large) {
+            @include font-source-sans($font-18, $color-coral, bold);
+        }
+    }
+
+}
+
+.daily-show {
+    .show-logo-container {
+        display: block;
+    }
+
+    .show-logo {
+        display: block;
+        max-height: 60px;
+        margin: 0 auto;
+        padding: 7px 5px 5px;
+    }
+}

@@ -1,0 +1,19 @@
+.button-oval {
+    display: block;
+    width: 190px;
+    min-width: 190px;
+    margin: 5px auto;
+    padding: 25px 0;
+    @include font-source-sans($font-14, $color-white, 300, $font-14);
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: $color-crimson;
+    border: 1px solid $color-crimson;
+    border-radius: 42px;
+
+    &:hover {
+        background: $color-dark-red;
+        border-color: $color-dark-red;
+    }
+}

@@ -1,0 +1,305 @@
+.single-watched-show {
+    height: 270px;
+    margin: 15px 0;
+    border: 2px solid white;
+    background-color: rgba(100, 100, 100, 0.3);
+    border-radius: 15px;
+
+    @media (min-width: $break-point-medium) {
+        height: 140px;
+    }
+
+    @media (min-width: $break-point-large) {
+        height: 100px;
+    }
+}
+
+.main-information {
+    width: 100%;
+    height: 80px;
+
+    @media (min-width: $break-point-medium) {
+        width: 300px;
+    }
+
+    @media (min-width: $break-point-large) {
+        width: 360px;
+        height: 100%;
+    }
+}
+
+.show-status {
+    width: 100px;
+    height: 100%;
+    padding: 10px 0;
+    border-top-left-radius: 15px;
+    text-align: center;
+    @include font-source-sans($font-18, $color-white, bold);
+
+    @media (min-width: $break-point-medium) {
+        height: 136px;
+        border-bottom-left-radius: 15px;
+    }
+
+    @media (min-width: $break-point-large) {
+        width: 120px;
+        height: 100%;
+        padding: 5px 0;
+    }
+
+    &.on-air-show {
+        background-color: #008000;
+    }
+
+    &.renewed-show {
+        background-color: #0000ff;
+    }
+
+    &.finished-show {
+        background-color: #551a8b;
+    }
+
+    &.canceled-show {
+        background-color: #8b0000;
+    }
+
+    &.unknown-show {
+        background-color: #ff4500;
+    }
+}
+
+.show-status-icon {
+    margin-top: 10px;
+    @include font-source-sans($font-24, $color-white, bold);
+
+    @media (min-width: $break-point-medium) {
+        margin-top: 15px;
+        font-size: $font-35;
+    }
+
+    @media (min-width: $break-point-large) {
+        @include font-source-sans($font-35, $color-white, bold);
+    }
+}
+
+.current-show-logo {
+    width: calc(100% - 100px);
+    text-align: center;
+    height: 100%;
+
+    @media (min-width: $break-point-medium) {
+        width: 200px;
+    }
+
+    @media (min-width: $break-point-large) {
+        width: 240px;
+    }
+
+    .show-logo-container {
+        display: block;
+        height: 100%;
+        width: 100%;
+
+        .logo-image {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-height: 80px;
+            padding: 5px;
+
+            @media (min-width: $break-point-large) {
+                max-width: 240px;
+                max-height: 100px;
+                padding: 10px 20px;
+            }
+        }
+    }
+}
+
+.shows-divider {
+    width: 100%;
+    margin-top: 80px;
+    text-align: center;
+    border-top: 2px solid $color-white;
+
+    @media (min-width: $break-point-medium) {
+        display: none;
+    }
+}
+
+.more-information-button,
+.more-information-button:hover,
+.more-information-button:focus {
+    width: 100%;
+    outline: none;
+    background: none;
+    border: 0;
+}
+
+.progress-information {
+    text-align: center;
+}
+
+.show-progress {
+    width: 50%;
+    text-align: left;
+    @include font-source-sans($font-14, $color-white, bold, $font-12);
+
+    @media (min-width: $break-point-medium) {
+        @include font-source-sans($font-20, $color-white, bold, $font-16);
+    }
+
+    @media (min-width: $break-point-large) {
+        padding: 10px 10px 0 0;
+        @include font-source-sans($font-16, $color-white, bold, $font-12);
+    }
+
+    @media (min-width: $break-point-extra-large) {
+        width: 225px;
+        margin-right: 15px;
+        padding: 0;
+        @include font-source-sans($font-24, $color-white, bold, $font-20);
+
+    }
+}
+
+.progress-title {
+    padding-top: 10px;
+    border-bottom: 2px solid $color-gray;
+}
+
+.progress-data {
+    padding-left: 15px;
+    line-height: $font-24;
+
+    @media (min-width: $break-point-medium) {
+        padding-left: 50px;
+        @include font-source-sans($font-16, $color-white, bold, $font-24);
+
+    }
+
+    @media (min-width: $break-point-large) {
+        padding: 0 10px 0 30px;
+        font-size: $font-16;
+    }
+
+    @media (min-width: $break-point-extra-large) {
+        padding-left: 70px;
+        @include font-source-sans($font-20, $color-white, bold, $font-24);
+    }
+}
+
+.single-show-actions {
+    text-align: center;
+
+    @media (min-width: $break-point-medium) {
+        float: left;
+        width: calc(100% - 100px);
+        margin-left: 100px;
+        padding: 10px 0;
+    }
+
+    @media (min-width: $break-point-large) {
+        float: right;
+        width: 240px;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media (min-width: $break-point-extra-large) {
+        width: 290px;
+    }
+}
+
+.single-action-container {
+    padding: 10px 20px 0;
+
+    @media (min-width: $break-point-medium) {
+        float: left;
+        width: 43%;
+        margin: 0 20px;
+        padding: 0;
+        text-align: center;
+    }
+
+    @media (min-width: $break-point-large) {
+        width: 100%;
+        margin: 0;
+        padding: 10px 0 0;
+    }
+
+    @media (min-width: $break-point-extra-large) {
+        padding: 10px 20px 0;
+    }
+
+    &:first-child .action-button:first-child {
+        margin-top: 10px;
+
+        @media (min-width: $break-point-medium) {
+            margin: 0;
+        }
+    }
+
+    .action-button {
+        width: 215px;
+        height: 32px;
+        text-align: center;
+        background-color: $color-dark-red;
+        border: 1px solid $color-dark-red;
+        border-radius: 5px;
+        @include font-source-sans($font-16, $color-white, bold, $font-16);
+
+        @media (min-width: $break-point-extra-large) {
+            width: 250px;
+            @include font-source-sans($font-18, $color-white, bold, $font-20);
+        }
+    }
+}
+
+.more-information-container {
+    @media (min-width: $break-point-medium) {
+        float: left;
+        width: calc(100% - 300px);
+    }
+    @media (min-width: $break-point-large) {
+        width: calc(100% - 600px);
+    }
+
+    @media (min-width: $break-point-extra-large) {
+        width: calc(100% - 655px);
+    }
+}
+
+
+.select-progress {
+    float: right;
+    width: 40px;
+    height: 20px;
+    margin: 1px 0;
+    @include font-source-sans($font-12, $color-black);
+
+    @media (min-width: $break-point-medium) {
+        width: 50px;
+        font-size: $font-16;
+    }
+}
+
+.change-action-button {
+    width: 65px;
+    height: 32px;
+    color: $color-white;
+    font-weight: bold;
+    text-align: center;
+    background-color: $color-dark-red;
+    border: 1px solid $color-dark-red;
+    border-radius: 5px;
+
+    @media (min-width: $break-point-extra-large) {
+        width: 75px;
+    }
+
+    &.middle-action {
+        margin: 0 5px;
+    }
+}

@@ -1,0 +1,33 @@
+<div class="popup-container">
+    <form class="login-form" method="POST">
+        <fieldset class="main-signin">
+            <div class="signin-wrapper">
+                <button class="popup-close-button" ng-click="closePopUpBox()"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <a href="/" data-dismiss="modal"><div class="logo-container"></div></a>
+                <ul class="form-fields">
+                    <li class="form-email">
+                        <div class="fieldgroup">
+                            <span class="error error-message">{{errors.email}}</span>
+                            <input class="user-input" type="text" placeholder="Email&nbsp;address" ng-class="{error: hasError.email}" ng-model="formData.email">
+                        </div>
+                    </li>
+                    <li class="form-password">
+                        <div class="fieldgroup">
+                            <span class="error error-message">{{errors.password}}</span>
+                            <span class="password-field">
+                                <input class="user-input" type="password" placeholder="Password" ng-class="{error: hasError.password}" ng-model="formData.password">
+                                <a class="forgot-password-link" href="/forgotten-password" target="_blank" title="Forgot your password?" data-dismiss="modal"><i class="fa fa-unlock-alt" aria-hidden="true"></i></a>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="button form-actions">
+                        <div class="form-buttons">
+                            <input class="button-primary" type="submit" value="Sign In" data-dismiss="modal" ng-click="logInUser()">
+                        </div>
+                        <span class="user-action-message">Not a member? <a class="action-link" ng-click="switchToRegister()">Join now</a></span>
+                    </li>
+                </ul>
+            </div>
+        </fieldset>
+    </form>
+</div>

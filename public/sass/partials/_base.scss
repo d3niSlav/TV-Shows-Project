@@ -1,0 +1,54 @@
+body {
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    @include font-source-sans($font-16, $color-dark-gray, normal, $font-24);
+    background: $color-black;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    display: inline;
+    color: $color-white;
+    text-align: left;
+    text-decoration: none;
+
+    &:hover, &:focus {
+        color: $color-white;
+        text-decoration: none;
+    }
+}
+
+* {
+    box-sizing: border-box;
+
+    &:before, &:after {
+        box-sizing: border-box;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.background-cover-full-screen {
+    min-height: calc(100vh - 50px);
+    background-size: cover;
+
+    @media (min-width: $break-point-large) {
+        min-height: calc(100vh - 70px);
+    }
+}
+
+.blur {
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+}
+
+.popup-open {
+    overflow: hidden;
+}

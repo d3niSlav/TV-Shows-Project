@@ -1,0 +1,8 @@
+.section-title {
+    padding-top: 25px;
+    @include font-source-sans($font-35, $color-white, 700, $font-35);
+
+    @media (min-width: $break-point-extra-large) {
+        @include font-source-sans($font-50, $color-white, 700, $font-50);
+    }
+}

@@ -1,0 +1,82 @@
+<div class="high-scores-container">
+    <div class="top-shows-title">Top 3 TV-Shows of all time!</div>
+    <div class="top-shows">
+        <div class="show-places">
+            <img class="ranking-cup-image" alt="Winners gold cup." src="../images/winners.png"/>
+            <ol class="places-list">
+                <li class="show-place" ng-repeat="show in topRatedShows | limitTo: 3 : 0" ng-click="changeShow($index)">
+                    <img class="show-ribbon-image" alt="&#35;{{$index + 1}}" ng-src="{{show.ribbon}}"/>
+                    <div class="show-place-info">
+                        <div class="show-place-logo">
+                            <img class="show-logo" alt="{{show.title}}" title="{{show.title}}" ng-src="{{show.logo}}"/>
+                        </div>
+                        <div class="show-air-date">
+                            <span class="date-string" title="Release date"><i class="fa fa-calendar" aria-hidden="true"></i> {{show.released}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="focus-movie" ng-mouseover="pauseCarousel()" ng-mouseleave="startCarousel()">
+            <section class="focus-details">
+                <div class="poster">
+                    <img class="poster-image" alt="{{showOnFocus.title}}" ng-src="{{showOnFocus.poster}}"/>
+                </div>
+                <section class="main-info">
+                    <div class="title">
+                        <h2 class="show-focus-title"><a ng-href="/show/{{showOnFocus._id}}">{{showOnFocus.title}}</a></h2>
+                    </div>
+                    <div class="movie-info">
+                        <p class="show-focus-plot">{{showOnFocus.plot}}</p>
+                    </div>
+                    <div class="movie-score-medal">
+                        <img class="show-medal-image" alt="Medal image." src="{{showOnFocus.medal}}"/>
+                    </div>
+                    <div class="movie-score-container">
+                        <div class="movie-score-info">
+                            <div class="score-title">Score:</div>
+                            <span class="movie-score-points">{{showOnFocus.imdbRating}}</span>&nbsp;out of&nbsp;
+                            <span class="movie-score-max">10</span>
+                        </div>
+                        <div class="button-container">
+                            <a class="button-focus-show" ng-href="/show/{{showOnFocus._id}}">View show</a>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="more-shows-container">
+    <div class="container">
+        <div class="text-center more-shows-title">More from the rank-list</div>
+        <div class="row more-shows-row">
+            <div class="col-xs-12 col-sm-4" ng-repeat="show in topRatedShows | limitTo: 3 : 3">
+                <div>
+                    <img class="show-poster" ng-src="{{show.poster}}" alt="{{show.title}}"/>
+                </div>
+                <time class="text-center show-release-date">{{show.released}}</time>
+                <h5 class="show-title text-center"><a href="/show/{{show._id}}">{{show.title}}</a></h5>
+                <div class="show-plot-container">
+                    <p class="show-plot">{{show.plot}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="other-shows-container">
+    <div class="container">
+        <div class="text-center more-shows-title">Other popular tv-shows</div>
+        <div class="row more-shows-row">
+            <div class="col-xs-6 col-sm-3" ng-repeat="show in topRatedShows | limitTo: 4 : 6">
+                <div>
+                    <img class="show-poster" ng-src="{{show.poster}}" alt="{{show.title}}"/>
+                </div>
+                <h5 class="show-title text-center"><a href="/show/{{show._id}}">{{show.title}}</a></h5>
+                <ul class="inline-list show-stars">
+                    <i class="fa fa-{{starClass}}" aria-hidden="true" ng-repeat="starClass in show.stars track by $index"></i>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

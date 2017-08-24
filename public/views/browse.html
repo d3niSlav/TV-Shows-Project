@@ -1,0 +1,58 @@
+<section class="all-movies">
+    <div class="movies-wrapper">
+        <div class="movies-title">All tv shows</div>
+        <div class="sort-menu">
+            <ul>
+                <li title="Sort by title A-Z" ng-class="{active: orderCriteria.titleAscending.isActive}" ng-click="orderByTitleAsc()">
+                    <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                </li>
+                <li title="Sort by title Z-A" ng-class="{active: orderCriteria.titleDescending.isActive}" ng-click="orderByTitleDesc()">
+                    <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+                </li>
+                <li title="Sort by rating" ng-class="{active: orderCriteria.rating.isActive}" ng-click="orderByRating()">
+                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                </li>
+                <li title="Sort by newest first" ng-class="{active: orderCriteria.releaseDate.isActive}" ng-click="orderByDate()">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </li>
+                <li class="show-categories-button" title="Choose categories" ng-click="switchCategories()">
+                    <span class="open-categories" ng-if="!isCategoriesMenuOpen">Categories <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                    <span class="close-categories" ng-if="isCategoriesMenuOpen">Categories <i class="fa fa-chevron-up" aria-hidden="true"></i></span>
+                </li>
+            </ul>
+        </div>
+        <hr class="categories-divider"/>
+        <div class="categories-list" ng-if="isCategoriesMenuOpen">
+            <div class="row text-sm-left ">
+                <ul>
+                    <li class="col-sm-3 col-xs-6 category-item" ng-repeat="category in categoriesArray">
+                        <div class="checkbox checkbox-circle">
+                            <input id="{{category.name.toLowerCase()}}" class="category-checkbox" type="checkbox" ng-model="category.on"/>
+                            <label class="category-label" for="{{category.name.toLowerCase()}}">{{category.name}}</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <hr class="categories-divider"/>
+        </div>
+        <div class="posters-container row">
+            <div id="show{{show._id}}" class="cleared-col movie-data col-md-3 col-sm-4 col-xs-6" ng-repeat="show in shows | filter:filterCategories | orderBy: currentOrderCriteria">
+                <div class="movie-poster">
+                    <a ng-href="/show/{{show._id}}">
+                        <img class="poster-image" alt="{{show.title}}" ng-src="{{show.poster}}"/>
+                    </a>
+                </div>
+                <div class="movie-information">
+                    <h3 class="show-title">{{show.title}}</h3>
+                    <p class="show-information">
+                        <span class="show-year">Year: {{show.year}}</span>
+                    </p>
+                    <a class="movie-info-button" ng-href="/show/{{show._id}}">More info</a>
+                </div>
+            </div>
+            <div class="no-results" ng-if="!(shows | filter:categoryFilter).length">
+                <span>There are no TV-shows from the selected categories. Choose something else.</span>
+            </div>
+        </div>
+    </div>
+</section>

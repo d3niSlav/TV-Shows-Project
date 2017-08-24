@@ -4,7 +4,7 @@ var profileSchema = mongoose.Schema({
     userId: { type: String, require: true },
     name: { type: String, require: true },
     email: { type: String, require: true },
-    profileImg: { type: String, default: "/images/default-user.png" },
+    profileImg: { type: String, default: './images/default_user.png' },
     dateCreated: { type: Date, default: Date.now },
     favorites: { type: Array, default: [] },
     watchList: { type: Array, default: [] }

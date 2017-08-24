@@ -1,0 +1,88 @@
+.background {
+    background: radial-gradient(at 10% 30%, rgba(39, 74, 97, 0.5) 0%, rgba(197, 54, 26, 0.7) 100%), url($path-images + "comments_background.png") repeat-y top;
+    background-size: cover;
+}
+
+.comments-section {
+    padding: 40px 0;
+    margin-top: 50px;
+    color: $color-white;
+}
+
+.comments-title {
+    margin-bottom: 8px;
+    padding-left: 15px;
+    @include font-source-sans($font-20, $color-white, 600, $font-20);
+    border-bottom: 1.5px solid rgba($color-white, 0.3);
+}
+
+.comment {
+    margin-bottom: 10px;
+    color: $color-black;
+}
+
+.comment-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+
+    > div {
+        float: none;
+    }
+}
+
+.comment-layout {
+    float: none;
+    margin: 15px 0;
+    padding: 15px;
+    color: $color-black;
+    background-color: $color-white;
+    border: 1px solid $color-gray;
+    border-radius: 3px;
+
+    .user-name-comment {
+        @include font-source-sans($font-24, $color-dark-red, 800);
+        background: none;
+    }
+
+    .like-comment-button {
+        color: $color-dark-red;
+        background: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .comments-divider {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .comment-user-profile-image {
+        width: 40px;
+        margin-right: 5px;
+    }
+
+    .comment-date {
+        padding-left: 10px;
+        @include font-source-sans($font-16, $color-gray);
+    }
+}
+
+.comments-list {
+    width: 100%;
+    height: auto;
+    padding: 0 15px;
+
+    .no-results {
+        border-top: 1px solid $color-light-gray;
+    }
+}
+
+.add-comment-button {
+    margin-top: 10px;
+}
+
+.comment-form-container {
+    height: 120px;
+}

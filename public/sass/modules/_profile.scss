@@ -1,0 +1,212 @@
+.profile-body {
+    @extend .background-cover-full-screen;
+
+    color: $color-white;
+    background: radial-gradient(at 10% 30%, rgba(16, 63, 63, 0.9) 0%, rgba($color-dark-red, 0.8) 100%), url($path-images + "profile_background.jpg") no-repeat top;
+    background-size: cover;
+}
+
+.user-info {
+    margin-top: 30px;
+    padding: 15px;
+    color: $color-light-gray;
+    background-color: rgba($color-gray, 0.3);
+    border-radius: 5px;
+
+    ul {
+        float: right;
+        padding-top: 50px;
+
+        @media (max-width: $break-point-medium) {
+            float: none;
+            max-width: 75%;
+            margin: 0 auto;
+        }
+    }
+}
+
+.user-title {
+    @include font-source-sans($font-28, $color-white, bold, $font-35);
+    margin-top: 0;
+}
+
+.avatar-container {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid $color-dark-gray;
+    border-radius: 50%;
+
+    &.success {
+        outline: none;
+        border-color: #008000;
+        box-shadow: 0 0 30px #ADFF2F;
+    }
+
+    &.error {
+        outline: none;
+        border-color: #8B0000;
+        box-shadow: 0 0 30px #FF0000;
+    }
+
+    .change-avatar-button {
+        position: relative;
+            top: -25px;
+        width: 100%;
+        height: 30px;
+        background-color: $color-white;
+
+        .change-avatar-text {
+            display: block;
+            margin-top: -5px;
+            cursor: pointer;
+            @include font-source-sans($font-14, $color-dark-gray, 900);
+        }
+    }
+}
+
+.avatar {
+    display: block;
+    width: 110px;
+    height: 110px;
+    margin: auto;
+}
+
+.activity-mini {
+    float: left;
+    padding-right: 15px;
+
+    @media (max-width: $break-point-medium) {
+        display: inline;
+        float: none;
+    }
+}
+
+@media (max-width: $break-point-medium) {
+    .profile-information {
+        text-align: center;
+    }
+}
+
+.btn-movies {
+    margin-bottom: 5px;
+    padding: 6px 10px;
+    @include font-source-sans($font-14, $color-brown, 600);
+    border: 2px solid $color-white;
+    border-radius: 5px;
+    background-color: $color-white;
+    transition: linear .1s;
+}
+
+.button-movies-default {
+    color: $color-white;
+    border: 1px solid $color-dark-red;
+    background-color: $color-dark-red;
+}
+
+.muted-icon {
+    color: rgba($color-gray, 0.5);
+}
+
+.show-collection-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    @include font-source-sans($font-24, $color-white, 500);
+}
+
+.movie-list {
+    margin-top: 10px;
+    font-size: $font-16;
+    text-align: justify;
+
+    .show-poster {
+        float: left;
+        width: 60px;
+        padding-right: 10px;
+    }
+
+    .show-title {
+        display: inline;
+        text-align: left;
+    }
+
+    .show-plot {
+        margin: 0 0 20px;
+        overflow: hidden;
+        @include multi-line-ellipsis($font-18, 6);
+        @include font-source-sans($font-12, $color-gray, 500, $font-18);
+        height: 55px;
+        text-overflow: ellipsis;
+    }
+}
+
+.form-group {
+    height: 77px;
+    margin-bottom: 5px;
+
+    @media (min-width: $break-point-medium) {
+        height: 55px;
+    }
+}
+
+.edit-fields {
+    padding-bottom: 20px;
+}
+
+.edit-buttons-container {
+    display: block;
+    padding-top: 10px;
+    text-align: center;
+
+    .button-movies-default {
+        width: 130px;
+
+        &:hover,
+        &:focus {
+            color: $color-white;
+            outline: none;
+        }
+
+        &:hover {
+            background-color: $color-crimson;
+            border-color: $color-crimson;
+        }
+
+        &:focus {
+            background-color: $color-dark-red;
+            border-color: $color-dark-red;
+        }
+    }
+
+    .btn-default {
+        width: 100px;
+    }
+}
+
+.edit-message-container {
+    @media (min-width: $break-point-medium) {
+        width: 100%;
+    }
+}
+
+.edit-message {
+    display: block;
+    float: none;
+    margin: 0 auto;
+    @include font-source-sans($font-14, $color-white, bold, $font-20);
+    text-align: center;
+    background-color: $color-green;
+    border-radius: 15px 15px 30px 30px;
+    border-color: $color-green;
+
+    @media (min-width: $break-point-medium) {
+        width: 47%;
+        border-radius: 0 0 30px 30px;
+    }
+}
+
+.message-error {
+    background-color: $color-dark-red;
+    border-color: $color-dark-red;
+}

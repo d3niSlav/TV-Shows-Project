@@ -1,0 +1,95 @@
+.poster-slide {
+    text-align: center;
+}
+
+.poster-content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 0;
+
+    .carousel-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @include font-source-sans($font-18, $color-light-gray, 900);
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+    }
+
+    .carousel-date {
+        margin: 0 0 1em;
+        @include font-source-sans($font-16, $color-light-gray, 400, $font-20);
+    }
+
+    .information {
+        font-size: $font-12;
+        text-transform: uppercase;
+    }
+}
+
+.slick-content {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    background: linear-gradient(to bottom, rgba(12, 12, 12, 0.7) 0%, rgba(20, 20, 20, 0.7) 100%), url($path-images + "information_background.jpg") no-repeat 0 0;
+    background-size: cover;
+}
+
+.slick-center {
+    display: block;
+    max-width: 10%;
+    max-height: 20%;
+    opacity: 1;
+
+    .slide-h3 {
+        color: $color-white;
+    }
+}
+
+.slider {
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    text-align: center;
+
+    div {
+        margin-right: 5px;
+    }
+
+    .button-primary {
+        color: $color-white;
+        border-color: $color-crimson;
+        background-color: $color-crimson;
+
+        &:hover {
+            color: $color-white;
+            background-color: $color-dark-red;
+            border-color: $color-dark-red;
+        }
+    }
+}
+
+.slide-h3 {
+    margin: 10% 0 10% 0;
+    padding: 40% 20%;
+}
+
+.slick-slide {
+    padding-top: 25px;
+}
+
+.slick-current {
+    padding: 0;
+
+    @media (max-width: $break-point-extra-small), (min-width: $break-point-extra-large) {
+        .carousel-title {
+            font-size: $font-24;
+        }
+
+        .carousel-date {
+            font-size: $font-20;
+        }
+
+        .poster-content .button-primary {
+            padding: 10px 35px;
+        }
+    }
+}

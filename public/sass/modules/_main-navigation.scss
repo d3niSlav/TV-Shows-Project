@@ -1,0 +1,278 @@
+.navbar-fixed-top {
+    position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100001;
+    height: 70px;
+    background: $color-black;
+
+    .top-bar,
+    .bottom-bar {
+        display: none;
+
+        @media (min-width: $break-point-medium) {
+            display: block;
+        }
+    }
+
+    .mobile-nav {
+        @media (min-width: $break-point-medium) {
+            display: none;
+        }
+    }
+}
+
+.top-bar {
+    height: 30px;
+    color: $color-white;
+
+    @media (min-width: $break-point-large) {
+        height: 35px;
+    }
+
+    .content {
+        padding-right: 40px;
+
+        @media (min-width: $break-point-large) {
+            padding-right: 15px;
+        }
+
+        > div {
+            float: right;
+        }
+    }
+
+    .logo {
+        position: absolute;
+            z-index: 1100;
+        width: 120px;
+        height: 53px;
+        margin-left: 15px;
+        background: $color-dark-red;
+        transition: height 0.5s;
+
+        @media (min-width: $break-point-large) {
+            width: 160px;
+            height: 70px;
+        }
+
+        &:after {
+            content: " ";
+            position: absolute;
+                left: 20px;
+                bottom: -8px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8px 40px 0 40px;
+            border-color: $color-dark-red transparent transparent transparent;
+
+            @media (min-width: $break-point-large) {
+                left: 40px;
+            }
+        }
+
+        .logo-home {
+            display: block;
+            min-height: 100%;
+
+            .logo-desktop-image {
+                position: absolute;
+                padding-top: 8px;
+                padding-left: 5px;
+
+                @media (min-width: $break-point-large) {
+                    max-height: 60px;
+                }
+            }
+        }
+
+    }
+
+    .links {
+        margin-left: 18px;
+        margin-right: 3px;
+    }
+
+    .login,
+    .logout {
+        padding-top: 0;
+
+        @media (min-width: $break-point-large) {
+            padding-top: 4px;
+        }
+    }
+}
+
+.button-login,
+.button-logout {
+    padding: 1px 0 0 0;
+    width: 70px;
+    margin-top: 7px;
+    @include font-source-sans($font-11, $color-black, 700, $font-14);
+    text-align: center;
+    border: 1px solid $color-blue;
+    border-radius: 3px;
+    background: $color-blue;
+    cursor: pointer;
+
+    @media (min-width: $break-point-large) {
+        width: 95px;
+        @include font-source-sans($font-14, $color-black, 700, $font-18);
+    }
+}
+
+.button-login:hover, .button-logout:hover {
+    background: $color-light-blue;
+    border: 1px solid $color-light-blue;
+}
+
+.menu-top-menu-container {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 30px;
+
+    @media (min-width: $break-point-large) {
+        height: auto;
+    }
+}
+
+.menu-top-menu {
+    display: inline-block;
+    margin: 0;
+    padding-top: 9px;
+    list-style-type: none;
+
+    li {
+        float: left;
+        padding: 0;
+        font-size: $font-11;
+        cursor: pointer;
+        border: none;
+
+        @media (min-width: $break-point-large) {
+            font-size: $font-16;
+        }
+
+        &:first-child .menu-link {
+            padding-right: 10px;
+            border: none;
+        }
+
+        &.active {
+            .menu-link {
+                color: $color-crimson;
+            }
+        }
+
+        .menu-link {
+            display: inline-block;
+            padding: 0 9px 0 9px;
+            @include font-source-sans($font-11, $color-white, normal, $font-14);
+            border-left: 1px solid rgba($color-gray, 0.6);
+
+            @media (min-width: $break-point-large) {
+                padding: 0 11px 0 12px;
+                line-height: $font-16;
+                font-size: $font-14;
+            }
+
+            &:hover {
+                color: $color-crimson;
+            }
+        }
+    }
+}
+
+.bottom-bar {
+    margin-top: 3px;
+
+    .navigation-spacing {
+        float: right;
+        height: 100%;
+        margin-left: 140px;
+    }
+}
+
+.menu-primary {
+    float: left;
+    height: 20px;
+    margin-bottom: 0;
+    padding: 0 3px 0 0;
+    line-height: $font-14;
+    list-style-type: none;
+
+    @media (min-width: $break-point-large) {
+        height: 32px;
+        line-height: $font-24;
+    }
+
+    li {
+        display: inline-block;
+        list-style-type: none;
+
+        &.active .menu-link {
+            position: relative;
+                z-index: 999;
+            display: block;
+            content: " ";
+            width: 100%;
+            color: $color-blue;
+            border-bottom: 4px solid $color-dark-red;
+        }
+    }
+
+    > li .menu-link {
+        display: block;
+        width: auto;
+        height: 20px;
+        padding: 0 6px 0 6px;
+        @include font-source-sans($font-11, $color-white, normal, $font-12);
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:hover {
+            content: " ";
+            display: block;
+            position: relative;
+                z-index: 999;
+            width: 100%;
+            color: $color-blue;
+            border-bottom: 4px solid $color-dark-red;
+        }
+
+        @media (min-width: $break-point-large) {
+            height: 28px;
+            padding: 0 10px 0 10px;
+            @include font-source-sans($font-14, $color-white, normal, $font-11);
+        }
+    }
+}
+
+.button-get-started-nav,
+.button-subscriptions {
+    width: 96px;
+    margin-right: 14px;
+    margin-top: -3px;
+    padding: 1px 0 0 0;
+    @include font-source-sans($font-11, $color-white, bold, $font-14);
+    text-align: center;
+    vertical-align: middle;
+    background-color: $color-dark-red;
+    border: 1px solid $color-dark-red;
+    border-radius: 5px;
+
+    @media (min-width: $break-point-large) {
+        width: 145px;
+        margin-top: 0;
+        margin-right: -35px;
+        @include font-source-sans($font-14, $color-white, bold, $font-20);
+    }
+
+    &:hover {
+        background: $color-crimson;
+        border: 1px solid $color-crimson;
+    }
+}
